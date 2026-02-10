@@ -1,0 +1,59 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+@use 'src/styles/utils' as *;
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-carouselStyle {
+  .swiper-main {
+    opacity: 0;
+    &.swiper-initialized {
+      opacity: 1;
+    }
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-carouselStyle_01 {
+  .swiper {
+    overflow: visible;
+  }
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+  .swiper-slide {
+    height: auto;
+  }
+  .swiper-pagination {
+    position: relative;
+    margin-top: get_sp(40);
+  }
+  .swiper-pagination-bullet {
+    width: get_sp(10);
+    height: get_sp(10);
+    background-color: $white;
+    opacity: 1;
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+  .swiper-pagination-bullet-active {
+    background-color: $key-color1;
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-carouselStyle_01 {
+    .swiper-pagination {
+      margin-top: 40px;
+    }
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////

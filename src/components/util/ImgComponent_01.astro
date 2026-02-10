@@ -1,0 +1,42 @@
+---
+import { getImage } from 'astro:assets';
+import type { HTMLAttributes } from 'astro/types';
+import type { ImageMetadata } from 'astro';
+
+interface Props extends HTMLAttributes<'img'> {
+  pc: ImageMetadata; // 親で `import img from '../...';` したものを渡す
+  sp?: ImageMetadata; // 省略可
+  sizes?: string; // 例: "(max-width: 768px) 100vw, 1200px"
+}
+
+const { pc, sp, sizes = '(max-width: 768px) 100vw, 2000px', ...attrs } = Astro.props as Props;
+
+// ここで pc/sp がないと即失敗させて原因を分かりやすく
+if (!pc?.src) {
+  throw new Error(
+    '[ImgComponent_01] prop "pc" は ImageMetadata を渡してください（例: import img from ...; <Comp pc={img} />）'
+  );
+}
+
+// 最適化（AVIF/WebPを使いたければフォーマット増やす）
+const pcWebp = await getImage({ src: pc, format: 'webp' });
+const spWebp = sp ? await getImage({ src: sp, format: 'webp' }) : null;
+
+// フォールバックはオリジナルのビルド済みURLでOK（拡張子いじる必要なし）
+const fallback = pc.src;
+---
+
+<picture>
+  <!-- SP（幅優先） -->
+  {
+    spWebp && (
+      <source media="(max-width: 768px)" srcset={spWebp.src} type="image/webp" sizes={sizes} />
+    )
+  }
+
+  <!-- PC -->
+  <source media="(min-width: 769px)" srcset={pcWebp.src} type="image/webp" sizes={sizes} />
+
+  <!-- 最後にフォールバック -->
+  <img src={fallback} {...attrs} />
+</picture>

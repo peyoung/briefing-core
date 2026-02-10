@@ -1,0 +1,73 @@
+---
+const { pageClass, title, images = [] } = Astro.props;
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout pageClass={pageClass} title={title} images={images}>
+  <main role="main">
+    <div class="mainContent">
+      <slot />
+    </div>
+    <!-- /.mainContent -->
+    <div class="footGutter"></div>
+    <!-- /.footGutter -->
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .mainContent {
+    padding: get_sp(138) get_sp(40);
+    opacity: 0;
+    :global(.loaded) & {
+      animation: baseFade_01 0.6s 0.2s forwards;
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .mainContent {
+      @include vwpxpc2(padding-left, 150);
+      @include vwpxpc2(padding-right, 150);
+      padding-top: 40px;
+      padding-bottom: 40px;
+      :global(.movie) & {
+        @include vwpxpc2(padding-left, 50);
+        @include vwpxpc2(padding-right, 50);
+        padding-top: 85px;
+        padding-bottom: 85px;
+      }
+    }
+  }
+  ////////////////////
+  .footGutter {
+    height: 150vh;
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+  // @media screen and (max-width: $break-point-middle-sp) {
+  //   // .snapContainer {
+  //   //   overflow: auto;
+  //   //   scroll-snap-type: y proximity;
+  //   //   height: 100dvh;
+  //   // }
+  //   .snapItem {
+  //     scroll-snap-align: start;
+  //     min-height: 100dvh;
+  //   }
+  // }
+</style>
+
+<script>
+  function setMainContentMargin() {
+    const fixed = document.getElementById('fixedContent');
+    const main = document.querySelector('.mainContent');
+    if (!fixed || !main) return;
+    const h = fixed.offsetHeight;
+    main.style.marginTop = `-${h}px`;
+  }
+  window.addEventListener('DOMContentLoaded', setMainContentMargin);
+  window.addEventListener('resize', setMainContentMargin);
+</script>

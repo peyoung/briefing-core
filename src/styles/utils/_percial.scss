@@ -1,0 +1,30 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+
+@mixin space-loop($className, $styleName) {
+  @for $i from 0 through 300 {
+    // @if $i % 4 == 0 or $i % 5 == 0 {
+    @if $i % 4 == 0 {
+      #{$className + $i} {
+        // #{$styleName}: $i / $design-num-sp * 100vw;
+        @media screen and (min-width: $break-point-middle) {
+          #{$styleName}: #{$i}px;
+        }
+      }
+      #{$className + '-sp' + $i} {
+        @media screen and (max-width: $break-point-middle-sp) {
+          #{$styleName}: math.div($i, $design-num-sp) * 100vw;
+        }
+      }
+    }
+  }
+}
+//padding
+@include space-loop('.u-pt', 'padding-top');
+@include space-loop('.u-pb', 'padding-bottom');
+@include space-loop('.u-pl', 'padding-left');
+@include space-loop('.u-pr', 'padding-right');
+//margin
+@include space-loop('.u-mt', 'margin-top');
+@include space-loop('.u-mb', 'margin-bottom');
+// @include space-loop('.u-ml', 'margin-left');

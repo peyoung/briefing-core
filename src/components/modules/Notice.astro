@@ -1,0 +1,179 @@
+---
+// import Picture from '@components/util/ImgComponent_01.astro';
+// import { Image } from 'astro:assets';
+// import Img_1 from '@images/kv-img_01.jpg';
+---
+
+<div id="notice">
+  <div class="fixedContent g-mrgStyle_01 g-mrgStyle_02">
+    <div class="content">
+      <div class="g-scrollable scroller">
+        <div class="inner">
+          <div class="summary">
+            <p>
+              「BRIEFING CUP 2025」にご参加いただき、<br
+                class="sp"
+              />誠にありがとうございました。<br />初の関西開催、<br
+                class="sp"
+              />また12月の寒さ厳しい中での開催となり、<br />運営面において<br
+                class="sp"
+              />至らぬ点もあったかと思いますが、<br />そのような中でもご参加・<br
+                class="sp"
+              />ご協力を賜りましたこと、<br class="sp" />心より御礼申し上げます。
+            </p>
+            <p>
+              皆様から頂戴した貴重なご意見は、<br class="sp" />2026年の大会に向けて、<br
+              />今後の運営にしっかりと活かしてまいります。
+            </p>
+            <p class="style_01">
+              また皆様とお会いできる日を、<br class="sp" />心より楽しみにしております。
+            </p>
+            <p>See you soon.</p>
+          </div>
+          <!-- /.summary -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.scroller -->
+      <button type="button" class="closeBtn" id="noticeCloseBtn">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.fixedContent -->
+</div>
+<!-- /#notice -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  #notice {
+    position: relative;
+    @include fz_vw(14);
+    // min-height: 100vh;
+    opacity: 0;
+    cursor: default;
+    pointer-events: none;
+    z-index: 100;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    #notice {
+      font-size: 1.6rem;
+    }
+  }
+  ////////////////////
+  .fixedContent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100dvh;
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ////////////////////
+  .content {
+    background-color: $key-gray1;
+    width: 100%;
+    padding: get_sp(50) get_sp(20);
+    // height: 100vh;
+    // max-height: math.div(550, $design-h-sp) * 100dvh;
+    margin-top: get_sp(80);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .content {
+      max-width: $grid_02 + px;
+      padding: math.div(50, 16) + em math.div(24, 16) + em;
+      // height: math.div(448, $design-h) * 100vh;
+      height: 100vh;
+      max-height: 448px;
+      margin-top: 0;
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+    .scroller {
+      width: 100%;
+      max-height: math.div(448, 448) * 100%;
+      pointer-events: all;
+    }
+  }
+  ////////////////////
+  .summary {
+    @include fz_vw(14);
+    line-height: math.div(30, 16) + em;
+    p {
+      font-weight: 400;
+      margin-bottom: math.div(30, 16) + em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &.style_01 {
+        margin-bottom: 0;
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .summary {
+      font-size: 1.6rem;
+    }
+  }
+  ////////////////////
+  .closeBtn {
+    @include btnsetting;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: math.div(60, 16) + em;
+    height: math.div(60, 16) + em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: all;
+    span {
+      display: block;
+      width: math.div(30, 16) + em;
+      height: 1px;
+      background-color: $white;
+      transform-origin: 50% 50%;
+      position: absolute;
+      transition: 0.3s;
+      &:nth-child(1) {
+        rotate: 45deg;
+      }
+      &:nth-child(2) {
+        rotate: -45deg;
+      }
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        span {
+          scale: 1.5;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .closeBtn {
+      width: math.div(40, 16) + em;
+      height: math.div(40, 16) + em;
+      span {
+        width: math.div(13, 16) + em;
+      }
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

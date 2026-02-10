@@ -1,0 +1,129 @@
+@use 'sass:math';
+/* ====================================================
+【色設定】
+==================================================== */
+$black: #000;
+$white: #fff;
+
+$key-color1: #aa182c;
+
+$text-color: $white;
+$link-color: $text-color;
+
+$key-black: #141414;
+$bg-color: $key-black;
+$bg-color-sp: $key-black;
+
+$key-gray1: rgba(27, 27, 27, 0.95);
+$key-gray2: #434343;
+
+/* ~~未定義~~*/
+$key-gray3: #777;
+
+// rgba(124, 109, 101, 0.4);
+
+$attention-color: #ff0000;
+
+$hover-color: lighten($key-black, 5%);
+
+$err-color: $attention-color;
+
+//util
+$facebook-color: #1877f2;
+$twitter-color: #3fb3e6;
+$pocket-color: #ee4056;
+$google-color: #f63e28;
+$youtube-color: #ff1138;
+$line-color: #06c755;
+$instagram-color: #7c4a3b;
+$mail-color: #696867;
+$hatena-color: #00a4de;
+$pinterest-color: #e60023;
+$wechat-color: #1aac19;
+$spotify-color: #1bd860;
+$tiktok-color: #010101;
+
+/* ====================================================
+【テキスト設定】
+==================================================== */
+$base-font-size: 14px;
+$base-line-height: 1.8;
+
+$base-font-family:
+  'Trade Gothic LT Std',
+  Helvetica,
+  'Helvetica Neue',
+  Arial,
+  'Noto Sans JP',
+  'Hiragino Sans',
+  'Hiragino Kaku Gothic ProN',
+  'ヒラギノ角ゴ ProN W3',
+  'ヒラギノ角ゴシック',
+  '游ゴシック Medium',
+  'Yu Gothic Medium',
+  '游ゴシック体',
+  YuGothic,
+  Hiragino Sans,
+  'Hiragino Kaku Gothic ProN',
+  Osaka,
+  'メイリオ',
+  Meiryo,
+  'ＭＳ Ｐゴシック',
+  'MS PGothic',
+  sans-serif;
+$font-ja:
+  'Noto Sans JP',
+  'Hiragino Sans',
+  'Hiragino Kaku Gothic ProN',
+  'ヒラギノ角ゴ ProN W3',
+  'ヒラギノ角ゴシック',
+  '游ゴシック Medium',
+  'Yu Gothic Medium',
+  '游ゴシック体',
+  YuGothic,
+  Hiragino Sans,
+  'Hiragino Kaku Gothic ProN',
+  Osaka,
+  'メイリオ',
+  Meiryo,
+  'ＭＳ Ｐゴシック',
+  'MS PGothic',
+  sans-serif;
+$font-en: 'Trade Gothic LT Std', sans-serif;
+/* ====================================================
+【サイズ設定】
+==================================================== */
+$design-num: 1280;
+$design-width: $design-num + px;
+$design-num-sp: 390;
+$design-width-sp: $design-num-sp + px;
+$design-h: 832;
+$design-h-sp: 844;
+
+$base-pad-num: 40;
+$base-pad: $base-pad-num + px;
+$sp-pad-num: 20;
+$sp-pad: math.div($sp-pad-num, $design-num-sp) * 100vw;
+
+$header-num: 56;
+$header-size: $header-num + px;
+$footer-num: 60;
+$footer-size: $footer-num + px;
+$header-num-sp: 68;
+$header-size-sp: math.div($header-num-sp, $design-num-sp) * 100vw;
+$footer-size-sp: math.div(160, $design-num-sp) * 100vw;
+/* ~~未定義ここから~~*/
+/* ~~未定義ここまで~~*/
+
+$design-num-pad: $design-num - $base-pad-num * 2;
+
+$break-point-large: 961px;
+$break-point-large-sp-num: 960;
+$break-point-large-sp: $break-point-large-sp-num + px;
+
+$break-point-middle: 769px;
+$break-point-middle-sp: 768px;
+
+$break-point-xsmall: 480px-1;
+$break-point-wide: 1600 + px;
+$break-point-design: $design-num + 1 + px;

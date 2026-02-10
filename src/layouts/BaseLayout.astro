@@ -1,0 +1,138 @@
+---
+// import { ViewTransitions } from 'astro:transitions';
+// import Header from '@components/global/Header.astro';
+import Footer from '@components/global/Footer.astro';
+// import Nav from '@components/global/Nav.astro';
+import Icons from '@components/global/Icons.astro';
+// import Modal from '@components/global/Modal.astro';
+// import Loading from '@components/global/Loading.astro';
+
+// import { GoogleFontsOptimizer } from 'astro-google-fonts-optimizer';
+import '@styles/app.scss';
+import { type Props as AstroSeoProps, SEO } from 'astro-seo';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  pageClass?: string;
+  ogType?: string;
+  mainBg?: string;
+  ogImg?: string;
+  images?: any[];
+}
+
+const isDev = import.meta.env.DEV;
+
+const props = Astro.props;
+
+const BASE_TITLE = 'BRIEFING CORE';
+const title = props.title ? `${props.title} | ${BASE_TITLE}` : BASE_TITLE;
+
+const BASE_DESCRIPTION = 'サイト説明です。。';
+const description = props.description ?? BASE_DESCRIPTION;
+
+const BASE_IMG = 'https://briefing-usa.com/feature/briefing_core/ogp.png';
+const ogimg = props.ogImg ?? BASE_IMG;
+
+const BASE_OG_TYPE = 'website';
+const ogType = props.ogType ?? BASE_OG_TYPE;
+
+const pageClass = props.pageClass;
+---
+
+<!-- <html lang="ja" transition:animate="fade"> -->
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+    </script>
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NQL2W7X');
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta name="format-detection" content="email=no,telephone=no,address=no" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="https://www.briefing-usa.com/images/web_clip.png?id=fd99950e12267c996836"
+    />
+    <link rel="icon" type="image/x-icon" href="https://www.briefing-usa.com/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.briefing-usa.com/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.cdnfonts.com/css/trade-gothic-lt-std" rel="stylesheet" />
+
+    <SEO
+      title={title}
+      description={description}
+      noindex={props.noindex ?? false}
+      openGraph={{
+        basic: {
+          title,
+          type: ogType,
+          image: ogimg,
+        },
+        optional: {
+          description: description,
+        },
+      }}
+      extend={{
+        // link: [{ rel: 'icon', href: '/favicon.ico' }],
+
+        meta: [
+          { name: 'viewport', content: 'width=device-width' },
+          { name: 'twitter:card', content: 'summary_large_image' },
+        ],
+      }}
+    />
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NQL2W7X"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="g-wrapper" class={isDev ? pageClass + ' dev' : pageClass}>
+      <Icons />
+      <Footer />
+      <div id="g-container">
+        <div id="g-content">
+          <slot />
+        </div>
+        <!-- /#g-content -->
+      </div>
+      <!-- /#g-container -->
+      <!-- <Nav /> -->
+      <!-- <Loading /> -->
+    </div>
+    <!-- /#g-wrapper -->
+    <script>
+      import '@js/global.js';
+    </script>
+  </body>
+</html>

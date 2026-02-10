@@ -1,0 +1,218 @@
+@use 'src/styles/global' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  //height: 100%;
+  font-size: 62.5%;
+  // visibility: hidden;
+  //overflow: hidden;
+  //height: -webkit-fill-available;
+  @media screen and (max-width: $break-point-middle-sp) {
+    scroll-snap-type: y proximity;
+    // scroll-snap-type: y mandatory;
+  }
+}
+
+body {
+  // min-height: 100vh;
+  // min-height: -webkit-fill-available;
+  color: $text-color;
+  font-family: $base-font-family;
+  line-height: $base-line-height;
+  background-color: $bg-color;
+  // -webkit-font-smoothing: antialiased;
+  // -webkit-text-rendering: optimizelegibility;
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-size-adjust: none;
+  position: relative;
+  // transition: background-color 0.9s;
+  // &.career {
+  //   background-color: $black;
+  //   color: $white;
+  // }
+  // @media screen and (max-width: $break-point-middle-sp) {
+  //   height: 100dvh;
+  // }
+}
+
+//フォントバグ調整
+// body p,
+// body span,
+// body dl,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   transform: rotate(0.03deg);
+// }
+
+// Safari対策
+a[href^='tel'] {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+::selection,
+::-moz-selection {
+  color: #fff;
+  background-color: #eee;
+}
+
+p,
+span {
+  font-weight: 400;
+}
+
+.pc {
+  display: none !important;
+}
+
+.sp {
+  display: block !important;
+}
+
+.pcInline {
+  display: none !important;
+}
+
+.spInline {
+  display: inline !important;
+}
+
+.pcInlineB {
+  display: none !important;
+}
+
+.spInlineB {
+  display: inline-block !important;
+}
+
+.pcTd {
+  display: none !important;
+}
+
+.spTd {
+  display: table-cell !important;
+}
+
+.pcTr {
+  display: none !important;
+}
+
+.spTr {
+  display: table-row !important;
+}
+
+.pcTbl {
+  display: none !important;
+}
+
+.spTbl {
+  display: table !important;
+}
+
+.pcFlex {
+  display: none !important;
+}
+
+.spFlex {
+  display: flex !important;
+}
+@media screen and (min-width: $break-point-middle) {
+  .pc {
+    display: block !important;
+  }
+
+  .sp {
+    display: none !important;
+  }
+
+  .pcInline {
+    display: inline !important;
+  }
+
+  .spInline {
+    display: none !important;
+  }
+
+  .pcInlineB {
+    display: inline-block !important;
+  }
+
+  .spInlineB {
+    display: none !important;
+  }
+
+  .pcTd {
+    display: table-cell !important;
+  }
+
+  .spTd {
+    display: none !important;
+  }
+
+  .pcTr {
+    display: table-row !important;
+  }
+
+  .spTr {
+    display: none !important;
+  }
+
+  .pcTbl {
+    display: table !important;
+  }
+
+  .pcFlex {
+    display: flex !important;
+  }
+
+  .spFlex {
+    display: none !important;
+  }
+
+  .spTbl {
+    display: none !important;
+  }
+}
+
+br.wide {
+  display: none;
+}
+@media screen and (min-width: $break-point-design) {
+  br.wide {
+    display: block;
+  }
+}
+@media screen and (min-width: $break-point-design) {
+  br.narrow {
+    display: none;
+  }
+}
+
+.nl2br {
+  white-space: pre-line;
+}

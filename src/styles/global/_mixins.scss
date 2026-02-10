@@ -1,0 +1,315 @@
+@use 'sass:math';
+@use 'env' as *;
+// 画像の基本設定
+@mixin imgset {
+  display: block;
+  max-width: none;
+  width: 100%;
+  image-rendering: -webkit-optimize-contrast;
+  // -webkit-backface-visibility: hidden;
+  // backface-visibility: hidden;
+  // image-rendering: -webkit-optimize-contrast;
+  // @media all and (-ms-high-contrast: none) {
+  //   width: auto;
+  // }
+}
+
+//テーブル設定
+@mixin setTbl {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+  }
+}
+///////////
+@mixin resetTbl {
+  table {
+    display: table;
+  }
+  tbody {
+    display: table-row-group;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr {
+    display: table-row;
+  }
+  th,
+  td {
+    display: table-cell;
+  }
+}
+
+// フォントサイズ関数
+@function get_vw($size, $viewport: $design-num-sp) {
+  $rate: math.div(100, $viewport);
+  @return $rate * $size * 1vw;
+}
+
+@mixin fz_vw($font_size: 10) {
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size);
+}
+
+@mixin fz_vwc($font_size: 10) {
+  font-size: get_vw($font_size);
+  @media screen and (min-width: $break-point-middle) {
+    font-size: math.div($font_size, 10) + rem;
+  }
+}
+////
+@function get_vwpc($size, $viewport: $design-num) {
+  $rate: math.div(100, $viewport);
+  @return $rate * $size * 1vw;
+}
+
+@mixin fz_vwpc($font_size: 10) {
+  font-size: $font_size * 1px;
+  font-size: get_vwpc($font_size);
+}
+
+@mixin fz_vwpcmax($font_size: 10) {
+  font-size: $font_size * 1px;
+  font-size: get_vwpc($font_size);
+  @media screen and (min-width: $design-width) {
+    font-size: math.div($font_size, 10) + rem;
+  }
+}
+
+@mixin fz_vwpcmin($font_size: 10) {
+  font-size: $font_size / 10 + rem;
+  @media screen and (min-width: $break-point-design) {
+    font-size: $font_size * 1px;
+    font-size: get_vwpc($font_size);
+  }
+}
+
+//clamp
+@function clamp_vw($min, $size, $vp: $design-num) {
+  $min: $min * 0.1rem;
+  $max: $size * 0.1rem;
+  $num: math.div(100, $vp) * 1vw;
+  $size_vw: $num * $size;
+  @return clamp($min, $size_vw, $max);
+}
+
+//プロパティをvw計算に、かつmaxサイズを固定
+@mixin vwpx($prop, $size) {
+  #{$prop}: math.div($size, $design-num-sp) * 100vw;
+}
+
+@mixin vwpxpc($prop, $size) {
+  #{$prop}: math.div($size, $design-num) * 100vw;
+  @media screen and (min-width: $break-point-design) {
+    #{$prop}: #{$size}px;
+  }
+}
+
+@mixin vwpxpc2($prop, $size) {
+  #{$prop}: math.div($size, $design-num) * 100vw;
+}
+
+@mixin vwpxpcmin($prop, $size) {
+  #{$prop}: $size + px;
+  @media screen and (min-width: $break-point-design) {
+    #{$prop}: math.div($size, $design-num) * 100vw;
+  }
+}
+
+//ボタン要素初期化
+@mixin btnsetting {
+  background-color: transparent;
+  outline: 0;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+//ドットボーダー
+@mixin dotted($color: rgba(#000, 1), $stripe: 1, $spacing: 4, $height: 1) {
+  background-image: (
+    linear-gradient(
+      to left,
+      $color,
+      $color (math.div($stripe, ($stripe + $spacing))) * 100%,
+      transparent (math.div($stripe, ($stripe + $spacing))) * 100%,
+      transparent 100%
+    )
+  );
+  background-size: ($stripe + $spacing) * 1px ($stripe + $spacing) * 1px;
+  height: $height * 1px;
+  border: none;
+}
+
+//スマホサイズ計算
+@function get_sp($size, $viewport: $design-num-sp) {
+  $rate: math.div($size, $viewport) * 100vw;
+  @return $rate;
+}
+
+//マウスオーバー
+/////////////////////
+@mixin over_01($color: $black) {
+  position: relative;
+  //padding-bottom: 3px;
+  &::before {
+    content: '';
+    height: 1px;
+    width: 0%;
+    left: 0;
+    //background-color: $hover-color;
+    bottom: 0;
+    position: absolute;
+    transition: 0.3s;
+    background-color: $color;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    &:hover::before {
+      width: 100%;
+    }
+  }
+}
+/////////////////////
+@mixin over_02($color: $black, $pos: 0px) {
+  position: relative;
+  &::before {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: $color;
+    bottom: $pos;
+    position: absolute;
+    transform: translateX(0);
+  }
+  @media screen and (min-width: $break-point-middle) {
+    &:hover::before {
+      animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
+    }
+  }
+}
+
+//リンクカラー
+@mixin linkColor {
+  li.style_02 a:hover,
+  li.style_02 a.current {
+    color: $key-color1;
+  }
+  li.style_03 a:hover,
+  li.style_03 a.current {
+    color: $key-gray2;
+  }
+  li.style_05 a:hover,
+  li.style_05 a.current {
+    color: $key-color2;
+  }
+  li.style_06 a:hover,
+  li.style_06 a.current {
+    color: $key-color3;
+  }
+  li.style_07 a:hover,
+  li.style_07 a.current {
+    color: $key-color5;
+  }
+}
+
+//背景カラー
+@mixin bgColor {
+  .about & {
+    background-color: $key-color1;
+  }
+  .career & {
+    background-color: $key-color2;
+  }
+  .single &,
+  .news & {
+    background-color: $key-color3;
+  }
+  .contact & {
+    background-color: $key-color5;
+  }
+  .privacy & {
+    background-color: $key-color6;
+  }
+}
+
+@mixin clearfix {
+  clear: both;
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
+}
+
+///////グラスエフェクト
+@mixin glass {
+  background-color: rgba(151, 132, 122, 0.4);
+  backdrop-filter: blur(5px) saturate(140%);
+  .bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transition: 0.3s;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &::before {
+    display: none;
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    transition: 0.3s;
+
+    /* 四隅ごとに調整 */
+    background: conic-gradient(
+      from 35deg,
+      rgba(255, 255, 255, 0.8) 0deg,
+      /* 左上 → 濃い */ rgba(255, 255, 255, 0.2) 90deg,
+      /* 右上 → 薄い */ rgba(255, 255, 255, 0.8) 180deg,
+      /* 右下 → 濃い */ rgba(255, 255, 255, 0.2) 270deg,
+      /* 左下 → 薄い */ rgba(255, 255, 255, 0.8) 360deg /* 左上に戻る */
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: rgba(124, 109, 101, 0.6);
+      backdrop-filter: blur(10px) saturate(100%);
+      .bg {
+        opacity: 0;
+      }
+      &::before {
+        opacity: 0.2;
+      }
+    }
+  }
+}
+
+//インラインブロックで並行並べ
+@mixin alignInlineBlock {
+  letter-spacing: -0.4em;
+  > * {
+    display: inline-block;
+    letter-spacing: normal;
+  }
+}

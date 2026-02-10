@@ -1,0 +1,414 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+@use 'src/styles/utils' as *;
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.inputStyle_01 {
+  position: relative;
+  &.style_01 {
+    input {
+      padding-right: 2em;
+    }
+    &::after {
+      content: '㎡';
+      position: absolute;
+      right: 0;
+      top: 0.5em;
+    }
+  }
+  input,
+  textarea {
+    @include fz_vw(16);
+    box-sizing: border-box;
+    position: relative;
+    font-weight: 500;
+    appearance: none;
+    margin: 0;
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid $text-color;
+    outline: none;
+    z-index: 2;
+    width: 100%;
+    line-height: normal;
+    background-color: transparent;
+    transition: 0.2s;
+    color: $text-color;
+    height: math.div(30, 14) + em;
+    &:read-only {
+      cursor: default;
+      pointer-events: none;
+    }
+    &[type='date']::-webkit-date-and-time-value {
+      text-align: left;
+    }
+    &[type='number']::-webkit-outer-spin-button,
+    &[type='number']::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &[type='number'] {
+      -moz-appearance: textfield;
+    }
+    &:focus {
+      // border-bottom: 1px solid $black;
+      /* 各ベンダープレフィックスが取れた標準版！！(http://caniuse.com/#search=placeholder-shown) */
+      &:placeholder-shown {
+        color: $key-gray3;
+      }
+      /* Google Chrome, Safari, Opera 15+, Android, iOS */
+      &::-webkit-input-placeholder {
+        color: $key-gray3;
+      }
+      /* Firefox 18- */
+      &:-moz-placeholder {
+        color: $key-gray3;
+      }
+      /* Firefox 19+ */
+      &::-moz-placeholder {
+        color: $key-gray3;
+      }
+      /* IE 10+ */
+      &:-ms-input-placeholder {
+        color: $key-gray3;
+      }
+    }
+    /* 各ベンダープレフィックスが取れた標準版！！(http://caniuse.com/#search=placeholder-shown) */
+    &:placeholder-shown {
+      color: $key-gray3;
+    }
+    /* Google Chrome, Safari, Opera 15+, Android, iOS */
+    &::-webkit-input-placeholder {
+      color: $key-gray3;
+    }
+    /* Firefox 18- */
+    &:-moz-placeholder {
+      color: $key-gray3;
+    }
+    /* Firefox 19+ */
+    &::-moz-placeholder {
+      color: $key-gray3;
+    }
+    /* IE 10+ */
+    &:-ms-input-placeholder {
+      color: $key-gray3;
+    }
+    &:-webkit-autofill {
+      box-shadow: 0 0 0 1000px $bg-color inset;
+      -webkit-text-fill-color: $text-color;
+      .modalContainer.style_02 & {
+        box-shadow: 0 0 0 1000px $white inset;
+        -webkit-text-fill-color: $bg-color;
+      }
+    }
+  }
+  textarea {
+    border: 1px solid $text-color;
+    display: block;
+    resize: none;
+    line-height: math.div(30, 22) + em;
+    padding: 1em;
+    height: 10em;
+    position: relative;
+    // padding: 20 / $design-num-sp * 100vw;
+    // &:focus {
+    //   border: 1px solid $black;
+    // }
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .inputStyle_01 {
+    input,
+    textarea {
+      font-size: 1.4rem;
+    }
+    textarea {
+      height: 16em;
+    }
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.checkStyle_01 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  @include fz_vw(14);
+  line-height: 1em;
+  @media screen and (max-width: $break-point-middle-sp) {
+    &.style_01 {
+      .wpcf7-form-control {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  }
+  .wpcf7-form-control {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+  }
+  .wpcf7-list-item {
+    transition: 0.3s;
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 0.9;
+        transform: translateX(2px);
+      }
+      &:active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    label {
+      display: flex;
+      transition: 0.3s;
+      cursor: pointer;
+      > span {
+        position: relative;
+        padding-left: 1.5em;
+        display: block;
+        &::before {
+          content: '';
+          width: 1em;
+          height: 1em;
+          border: 1px solid $text-color;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+  input {
+    display: none;
+    appearance: none;
+  }
+  input:checked {
+    & + span {
+      &::before {
+        background-color: $text-color;
+      }
+    }
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .checkStyle_01 {
+    font-size: 1.2rem;
+    .wpcf7-form-control {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 3em;
+      row-gap: 2em;
+    }
+    &.style_01 {
+      .wpcf7-form-control {
+        column-gap: 0em;
+        row-gap: 2em;
+      }
+      .wpcf7-list-item {
+        min-width: 50%;
+      }
+    }
+  }
+}
+@media screen and (min-width: 830px) {
+  .checkStyle_01 {
+    &.style_01 {
+      .wpcf7-form-control {
+        column-gap: 1em;
+        row-gap: 2em;
+      }
+      .wpcf7-list-item {
+        min-width: 20em;
+      }
+    }
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.selectStyle_01 {
+  position: relative;
+  @media (any-hover: hover) {
+    &:hover {
+      .labelIcon {
+        transform: translateY(2px);
+      }
+    }
+  }
+  .wpcf7-form-control-wrap {
+    display: block;
+  }
+  select {
+    appearance: none;
+    border-radius: none;
+    width: 100%;
+    position: relative;
+    @include fz_vw(16);
+    font-weight: 500;
+    background-color: transparent;
+    outline: 0;
+    border: none;
+    border-bottom: 1px solid $text-color;
+    height: math.div(30, 14) + em;
+    color: $text-color;
+    line-height: normal;
+    &:-webkit-autofill {
+      box-shadow: 0 0 0 1000px $black inset;
+      -webkit-text-fill-color: $white;
+      .modalContainer.style_02 & {
+        box-shadow: 0 0 0 1000px $white inset;
+        -webkit-text-fill-color: $black;
+      }
+    }
+  }
+  .labelIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: math.div(30, 14) + em;
+    height: math.div(30, 14) + em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    svg {
+      fill: $text-color;
+      width: math.div(16, 14) + em;
+    }
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .selectStyle_01 {
+    select {
+      font-size: 1.4rem;
+    }
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.inputSection {
+  position: relative;
+  @include fz_vw(14);
+}
+@media screen and (min-width: $break-point-middle) {
+  .inputSection {
+    position: relative;
+    font-size: 1.2rem;
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.formSection {
+  position: relative;
+  padding-bottom: 2em;
+  margin-top: math.div(24, 12) + em;
+  &:first-child {
+    margin-top: 0;
+  }
+  dt,
+  dd,
+  span,
+  a,
+  p {
+    font-weight: 500;
+    &.style_01 {
+      margin-bottom: 2em;
+    }
+  }
+  dt {
+    margin-bottom: 1em;
+  }
+  .col {
+    position: relative;
+  }
+  &.style_01 {
+    margin-top: 1.5em;
+  }
+  &.style_02 {
+    .col {
+      margin-top: math.div(24, 12) + em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .formSection {
+    margin-top: math.div(28, 12) + em;
+    &:first-child {
+      margin-top: 0;
+    }
+    &.style_02 {
+      display: flex;
+      justify-content: space-between;
+      .col {
+        margin-top: 0;
+        width: math.div(400, $w_03) * 100%;
+      }
+    }
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.formTtlSection {
+  position: relative;
+  margin-top: math.div(24, 12) + em;
+  &:first-child {
+    margin-top: 0;
+  }
+  dt,
+  dd,
+  span,
+  a,
+  p {
+    font-weight: 500;
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.formBtnSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: get_sp(80);
+  gap: 2em;
+  .btn {
+    width: 100%;
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .formBtnSection {
+    margin-top: 36px;
+    .btn {
+      width: 190px;
+    }
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+  border: 1px solid $text-color;
+}
+.wpcf7 form.sent .wpcf7-response-output {
+  border: 1px solid $text-color;
+}
+.wpcf7 form .wpcf7-response-output {
+  margin: 0;
+  border: 1px solid $text-color;
+  color: $text-color;
+}
+.wpcf7-not-valid-tip {
+  padding-top: 0.5em;
+}
+.wpcf7-list-item {
+  margin: 0;
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+}

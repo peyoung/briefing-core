@@ -1,0 +1,89 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+
+.use-sprite {
+  display: none;
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.u-align_01 {
+  text-align: center;
+}
+
+@media screen and (max-width: $break-point-middle-sp) {
+  .u-align_02 {
+    text-align: left;
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.js-rellax {
+  will-change: transform;
+  backface-visibility: hidden;
+  // .menuOpen & {
+  //   transform: none !important;
+  // }
+}
+@media screen and (max-width: $break-point-middle-sp) {
+  .js-rellax.spBreak {
+    transform: none !important;
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.grecaptcha-badge {
+  display: none;
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.mailTo {
+  span {
+    &::after {
+      content: '@';
+    }
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.g-scrollable {
+  width: 100%;
+  @media screen and (max-width: $break-point-middle-sp) {
+    &.simplebar-scrollable-y {
+      padding-right: 2em;
+    }
+  }
+  // @media screen and (min-width: $break-point-middle) {
+  //   &.simplebar-scrollable-y {
+  //     padding-right: 2em;
+  //   }
+  // }
+  // overflow: auto;
+  .simplebar-track.simplebar-vertical {
+    width: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+  }
+  // .simplebar-scrollbar {
+  //   background-color: $white;
+  // }
+  /*　スクロールバーのツマミ部分の色を変えたい時　*/
+  .simplebar-scrollbar::before {
+    // background: linear-gradient(151deg, #60c5ff, #31ffad, #31e4ff); //デフォルトはblack
+    background: $key-color1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+  }
+
+  /*　スクロールバーのツマミ部分の不透明度とhover時のtransitionを変えたい時　*/
+  .simplebar-scrollbar.simplebar-visible:before {
+    opacity: 1; //デフォルトは0.5
+    transition-duration: 0.2s; //デフォルトは0s;
+  }
+
+  /*　スクロールバー太さを変えたい時　*/
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////

@@ -1,0 +1,54 @@
+---
+
+---
+
+<div class="loadingContainer">
+  <div class="circle"></div>
+</div>
+<!-- /.loadingContainer -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .loadingContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+    opacity: 0;
+    z-index: 0;
+    left: -100%;
+    background-color: $key-gray1;
+    :global(.is-loading) & {
+      z-index: 6000;
+      left: 0;
+      opacity: 1;
+    }
+  }
+  ////////////////////
+  .circle {
+    box-sizing: border-box;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: 10px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+    animation: spin 1s infinite linear;
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

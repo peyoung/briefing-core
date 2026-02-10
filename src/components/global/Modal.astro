@@ -1,0 +1,300 @@
+---
+import { Image } from 'astro:assets';
+import Arrow from '@images/icon-arrow_01.svg';
+
+const images = Astro.props.images ?? [];
+---
+
+<div class="modalContainer" data-lenis-prevent-wheel>
+  <div class="modalContent">
+    <div class="modalCloseArea js-modalClose"></div>
+    <div class="inner">
+      <div class="modalSlider">
+        <div class="screen">
+          <div class="inner">
+            {
+              images && images.length > 0 ? (
+                images.map((img, i) => (
+                  <div class={`item ${i === 0 ? 'is-active' : ''}`} data-index={i}>
+                    <figure>
+                      <Image src={img} alt="" width={2000} densities={[1, 2, 3]} loading="lazy" />
+                    </figure>
+                  </div>
+                ))
+              ) : (
+                <div class="item is-active">
+                  <figure />
+                </div>
+              )
+            }
+            <!-- /.item -->
+            <p class="counter">
+              <span class="currentNum">0</span>
+              <span class="totalNum">0</span>
+            </p>
+            <!-- /.counter -->
+          </div>
+          <!-- /.inner -->
+        </div>
+        <!-- /.screen -->
+        <div class="navigation">
+          <button type="button" class="btnPrev">
+            <span class="labelIcon">
+              <Image src={Arrow} alt="" width={52} densities={[1, 2, 3]} loading="lazy" />
+            </span>
+            <!-- /.labelIcon -->
+          </button>
+          <button type="button" class="btnNext">
+            <span class="labelIcon">
+              <Image src={Arrow} alt="" width={52} densities={[1, 2, 3]} loading="lazy" />
+            </span>
+            <!-- /.labelIcon -->
+          </button>
+        </div>
+        <!-- /.navigation -->
+      </div>
+      <!-- /.modalSlider -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.modalContent -->
+  <button type="button" class="modalCloseBtn js-modalClose">
+    <span></span>
+    <span></span>
+  </button>
+  <!-- /.modalCloseBtn -->
+</div>
+<!-- /.modalContainer -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    transition: clip-path 0.2s $ease-out-quad;
+    overflow: auto;
+    overscroll-behavior-y: contain;
+    /*スクロールバー非表示（IE・Edge）*/
+    -ms-overflow-style: none;
+    /*スクロールバー非表示（Firefox）*/
+    scrollbar-width: none;
+    opacity: 0;
+    z-index: -1;
+    :global(.modalOpen) & {
+      opacity: 1;
+      z-index: 2000;
+    }
+  }
+  ////////////////////
+  .modalCloseArea {
+    display: none;
+  }
+  // @media screen and (min-width: $break-point-middle) {
+  //   .modalCloseArea {
+  //     display: block;
+  //     position: fixed;
+  //     top: 0;
+  //     left: 0;
+  //     bottom: 0;
+  //     width: 100%;
+  //   }
+  // }
+  ////////////////////
+  .modalContent {
+    min-height: calc(100dvh + 1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $key-gray1;
+    backdrop-filter: blur(5px);
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    transition: clip-path 0.3s;
+    width: 100%;
+    padding: get_sp(40) get_sp(40) 0;
+    > .inner {
+      width: 100%;
+    }
+    :global(.modalReady) & {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .modalContent {
+      padding-top: 0;
+      padding-bottom: 0;
+      @include vwpxpc(padding-left, 150);
+      @include vwpxpc(padding-right, 150);
+    }
+  }
+  ////////////////////
+  .modalSlider {
+    position: relative;
+  }
+  ////////////////////
+  .screen {
+    display: flex;
+    justify-content: center;
+  }
+  ////////////////////
+  .item {
+    display: none;
+    clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
+    transition: clip-path 0.3s;
+    :global(img) {
+      @include imgset;
+      max-height: get_sp(380);
+    }
+    &.is-active {
+      display: block;
+    }
+    &.is-start {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .item {
+      :global(img) {
+        @include imgset;
+        height: math.div(654, $design-h) * 100vh;
+        object-fit: contain;
+        max-height: 654px;
+      }
+    }
+  }
+  ////////////////////
+  .counter {
+    @include fz_vw(14);
+    line-height: 1em;
+    text-transform: uppercase;
+    margin-top: math.div(16, 14) + em;
+    display: flex;
+    justify-content: center;
+    span {
+      font-weight: 400;
+      &::after {
+        content: '/';
+      }
+      &:last-child {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .counter {
+      font-size: 1.4rem;
+    }
+  }
+  ////////////////////
+  .navigation {
+    @include fz_vw(12);
+    button {
+      @include btnsetting;
+      position: absolute;
+      width: 1em;
+      height: 1em;
+      top: calc(50% - 0.5em - 1.4rem);
+      transition: 0.3s;
+      &.btnPrev {
+        left: -2.5em;
+        transform: scale(-1, 1);
+        @media (any-hover: hover) {
+          &:hover {
+            transform: scale(-1, 1) translateX(0.2em);
+          }
+          &:active {
+            transform: scale(-1, 1) translateX(0em);
+          }
+        }
+      }
+      &.btnNext {
+        right: -2.5em;
+        @media (any-hover: hover) {
+          &:hover {
+            transform: translateX(0.2em);
+          }
+          &:active {
+            transform: translateX(0em);
+          }
+        }
+      }
+    }
+    img {
+      @include imgset;
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .navigation {
+      @include fz_vwpcmin(20);
+      button {
+        &.btnPrev {
+          left: -4em;
+        }
+        &.btnNext {
+          right: -4em;
+        }
+      }
+    }
+  }
+  ////////////////////
+  .modalCloseBtn {
+    position: fixed;
+    @include btnsetting;
+    width: get_sp(40);
+    height: get_sp(40);
+    bottom: 0;
+    $gap: get_sp(20);
+    left: calc(50% - #{$gap});
+    transition: 0.3s;
+    opacity: 0;
+    span {
+      display: block;
+      width: get_sp(30);
+      height: 1px;
+      background-color: $white;
+      position: absolute;
+      transform-origin: 50% 50%;
+      position: absolute;
+      transition: 0.3s;
+      &:nth-child(1) {
+        rotate: 45deg;
+      }
+      &:nth-child(2) {
+        rotate: -45deg;
+      }
+    }
+    :global(.modalReady) & {
+      opacity: 1;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        span {
+          scale: 1.5;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .modalCloseBtn {
+      width: 60px;
+      height: 60px;
+      bottom: auto;
+      left: auto;
+      top: 20px;
+      right: 20px;
+      span {
+        width: 40px;
+      }
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

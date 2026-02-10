@@ -1,0 +1,80 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+@use 'src/styles/utils' as *;
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-postContent {
+  @include fz_vw(18);
+  line-height: math.div(28, 18) + em;
+  > * + * {
+    margin-top: 1em;
+  }
+  img {
+    @include imgset;
+    width: auto;
+    max-width: 100%;
+    @media screen and (max-width: $break-point-middle-sp) {
+      margin-left: get_sp(-20);
+      margin-right: get_sp(-20);
+      $gap: get_sp(40);
+      width: calc(100vw - #{$gap});
+      max-width: none;
+    }
+  }
+  p,
+  a,
+  span,
+  li,
+  dd,
+  dt {
+    font-weight: 900;
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-postContent {
+    font-size: 1.8rem;
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-postRelation {
+  @include fz_vw(14);
+  margin-top: math.div(28, 14) + em;
+  line-height: 1em;
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: math.div(5, 14) + em;
+  }
+  dt,
+  dd {
+    font-weight: 900;
+  }
+  dt {
+    @include fz_vw(12);
+  }
+  a {
+    color: $key-color1;
+    text-decoration: underline;
+    display: flex;
+    @media (any-hover: hover) {
+      &:hover {
+        transform: translateX(2px);
+        text-decoration: none;
+      }
+    }
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-postRelation {
+    font-size: 1.4rem;
+    margin-top: math.div(64, 14) + em;
+    dt {
+      font-size: 1.2rem;
+    }
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+}

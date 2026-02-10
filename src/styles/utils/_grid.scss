@@ -1,0 +1,54 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+$grid_01: 1180;
+$grid_02: 690;
+
+$w_01: $design-num;
+$w_02: $design-num - $base-pad-num * 2;
+$w_03: 956;
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+  .g-setW_01 {
+    max-width: $w_01 + px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+  .g-setW_02 {
+    max-width: $w_02 + px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+  .g-setW_03 {
+    max-width: $w_03 + px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+  .g-mrgStyle_01 {
+    padding-left: $base-pad;
+    padding-right: $base-pad;
+  }
+}
+///////////////////////////////
+@media screen and (max-width: $break-point-middle-sp) {
+  .g-mrgStyle_02 {
+    padding-left: $sp-pad;
+    padding-right: $sp-pad;
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+}

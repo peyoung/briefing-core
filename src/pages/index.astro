@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+// import Notice from '@components/modules/Notice.astro';
+
+// import Picture from '@components/util/ImgComponent_01.astro';
+// import { Image } from 'astro:assets';
+// import Img_1 from '@images/img_01.jpg';
+
+//SEO設定
+const pageClass = 'home';
+const title = '';
+// const description = '';
+// const noindex = false;
+// const ogType = '';
+// const ogimg = '';
+---
+
+<BaseLayout pageClass={pageClass} title={title}>
+  <main role="main">
+    <p class="test">CARRY YOUR DISCOVERY</p>
+    <!-- /.test -->
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .test {
+    font-size: 5rem;
+    font-weight: 700;
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

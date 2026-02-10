@@ -1,0 +1,423 @@
+@use 'src/styles/global' as *;
+
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  /*font-size:98%;*/
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  color: $link-color;
+}
+
+/* change colours to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+html {
+  //overflow-y: scroll;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+input,
+textarea {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+a:focus {
+  outline: none;
+}
+
+.clearfix:after {
+  content: '.';
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+.clearfix {
+  min-height: 1px;
+}
+
+* html .clearfix {
+  height: 1px;
+  /*¥*/ /*/
+	height: auto;
+	overflow: hidden;
+	/**/
+}
+
+.both {
+  clear: both;
+}
+
+.inline_block {
+  display: inline-block;
+  // *display: inline;
+  // *zoom: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  width: 100%;
+}
+
+a,
+a:hover {
+  transition: 0.3s;
+}
+
+// a img {
+//   //	-webkit-transition: 0.1s;
+//   //	-moz-transition: 0.1s;
+//   //	-o-transition: 0.1s;
+//   //	transition: 0.1s;
+// }
+
+// a img:hover {
+//   opacity: 0.7;
+//   filter: alpha(opacity=70); /* ie lt 8 */
+//   -ms-filter: 'alpha(opacity=70)'; /* ie 8 */
+//   -moz-opacity: 0.7; /* FF lt 1.5, Netscape */
+//   -khtml-opacity: 0.7; /* Safari 1.x */
+// }
+
+// /*Firefoxだけに適用されるCSSハック*/
+// @-moz-document url-prefix() {
+//   a img:hover {
+//     opacity: 0.8;
+//   }
+// }
+
+@media screen and (max-width: $break-point-xsmall) {
+  a,
+  abbr,
+  address,
+  article,
+  aside,
+  audio,
+  b,
+  blockquote,
+  body,
+  canvas,
+  caption,
+  cite,
+  code,
+  dd,
+  del,
+  details,
+  dfn,
+  div,
+  dl,
+  dt,
+  em,
+  fieldset,
+  figcaption,
+  figure,
+  footer,
+  form,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  header,
+  hgroup,
+  html,
+  i,
+  iframe,
+  img,
+  input,
+  ins,
+  kbd,
+  label,
+  legend,
+  li,
+  mark,
+  menu,
+  nav,
+  object,
+  ol,
+  p,
+  pre,
+  q,
+  samp,
+  section,
+  select,
+  small,
+  span,
+  strong,
+  sub,
+  summary,
+  sup,
+  table,
+  tbody,
+  td,
+  textarea,
+  tfoot,
+  th,
+  thead,
+  time,
+  tr,
+  ul,
+  var,
+  video {
+    border: 0;
+    font-size: 100%;
+    font-style: normal;
+    font-weight: 600;
+    //font-weight: normal;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: baseline;
+  }
+
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section {
+    display: block;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  blockquote,
+  q {
+    quotes: none;
+  }
+
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  a {
+    outline: none;
+  }
+
+  img {
+    vertical-align: bottom;
+  }
+
+  body {
+    font-size: 14px;
+    /*	line-height: 1;*/
+    -webkit-text-size-adjust: none;
+  }
+  /************************************************************************↑リセットここまで*/
+}

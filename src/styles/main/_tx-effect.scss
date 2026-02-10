@@ -1,0 +1,56 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+@use 'src/styles/utils' as *;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+.txEffect_01 {
+  position: relative;
+  opacity: 0;
+  .is-active-view & {
+    opacity: 1;
+  }
+  > span {
+    display: block;
+    overflow: hidden;
+  }
+  // &.style_01 > span {
+  //   overflow: visible;
+  // }
+  > span > span {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    @for $i from 1 through 40 {
+      &:nth-child(#{$i}) {
+        .is-active-view & {
+          animation: txEffect_01 0.4s 0s + 0.03 * $i $ease-out-sine forwards;
+          // animation: txEffect_01 0.4s $ease-in-out-sine forwards;
+        }
+      }
+    }
+    // transform: translateY(-0.5em);
+    // top: -0.2em;
+  }
+}
+///////////////////////////////////////////////////////////
+@keyframes txEffect_01 {
+  0% {
+    opacity: 0;
+    // transform: translateY(-0.5em);
+    // top: -0.2em;
+  }
+  // 80% {
+  //   top: -0.3em;
+  // }
+  100% {
+    opacity: 1;
+    // transform: translateY(0);
+    // top: 0;
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
