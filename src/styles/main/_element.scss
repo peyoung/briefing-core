@@ -3,6 +3,33 @@
 @use 'src/styles/utils' as *;
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
+.g-ttlStyle_01 {
+  // font-size: 2rem;
+  @include fz_vwpcmin(20);
+  line-height: math.div(28, 20) + em;
+  letter-spacing: math.div(-0.4, 20) + em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: $font-ja;
+  span {
+    font-weight: 500;
+    display: block;
+  }
+}
+////////////////////////////////////////
+.g-ttlStyle_02 {
+  // font-size: 20rem;
+  @include fz_vwpcmin(200);
+  font-weight: 700;
+  line-height: 1em;
+  letter-spacing: math.div(-4, 200) + em;
+  text-transform: uppercase;
+  transform: translateY(0.3em);
+  white-space: nowrap;
+  span {
+    font-weight: 700;
+  }
+}
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 @media screen and (min-width: $break-point-middle) {

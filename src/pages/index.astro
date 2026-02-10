@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-// import Notice from '@components/modules/Notice.astro';
+import FirstView from '@components/modules/FirstView.astro';
+import BrandCore from '@components/modules/BrandCore.astro';
 
 // import Picture from '@components/util/ImgComponent_01.astro';
 // import { Image } from 'astro:assets';
@@ -17,8 +18,14 @@ const title = '';
 
 <BaseLayout pageClass={pageClass} title={title}>
   <main role="main">
-    <p class="test">CARRY YOUR DISCOVERY</p>
-    <!-- /.test -->
+    <div class="pageSection">
+      <FirstView />
+    </div>
+    <!-- /.pageSection -->
+    <div class="pageSection">
+      <BrandCore />
+    </div>
+    <!-- /.pageSection -->
   </main>
 </BaseLayout>
 
@@ -27,9 +34,8 @@ const title = '';
   @use 'src/styles/global' as *;
   @use 'src/styles/utils' as *;
   ////////////////////
-  .test {
-    font-size: 5rem;
-    font-weight: 700;
+  .pageSection {
+    position: relative;
   }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {

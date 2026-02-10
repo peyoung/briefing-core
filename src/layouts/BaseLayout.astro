@@ -1,6 +1,6 @@
 ---
 // import { ViewTransitions } from 'astro:transitions';
-// import Header from '@components/global/Header.astro';
+import Header from '@components/global/Header.astro';
 import Footer from '@components/global/Footer.astro';
 // import Nav from '@components/global/Nav.astro';
 import Icons from '@components/global/Icons.astro';
@@ -129,8 +129,13 @@ const pageClass = props.pageClass;
       <!-- /#g-container -->
       <!-- <Nav /> -->
       <!-- <Loading /> -->
+      <Header />
     </div>
     <!-- /#g-wrapper -->
+    <!-- ステータスバー用 -->
+    <div class="for-status-bars"></div>
+    <!-- タブバー用 -->
+    <div class="for-tab-bars"></div>
     <script>
       import '@js/global.js';
     </script>

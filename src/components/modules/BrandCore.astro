@@ -1,0 +1,72 @@
+---
+import Picture from '@components/util/ImgComponent_01.astro';
+import { Image } from 'astro:assets';
+import Img_1 from '@images/img_02.jpg';
+import Img_1Sp from '@images/img_02_sp.jpg';
+---
+
+<section class="mainSection" id="brandCore">
+  <div class="bgImg">
+    <figure>
+      <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+    </figure>
+  </div>
+  <!-- /.bgImg -->
+  <div class="content">
+    <div class="inner">
+      <h2 class="pageRead g-ttlStyle_01">
+        <span>BRIEFINGは、</span>
+        <span>誰のためにあるのか？</span>
+        <span>何をもたらすのか？</span>
+      </h2>
+      <!-- /.pageRead -->
+      <p class="pageTtl g-ttlStyle_02">WHY WE EXIST</p>
+      <!-- /.pageTtl -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.content -->
+</section>
+<!-- /.mainSection -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .mainSection {
+    height: 100svh;
+    min-height: math.div(600, 20) + em;
+    position: relative;
+    @include fz_vwpcmin(20);
+    img {
+      @include imgset;
+    }
+  }
+  ////////////////////
+  .bgImg {
+    height: 100%;
+    figure {
+      height: 100%;
+    }
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  ////////////////////
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

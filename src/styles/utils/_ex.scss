@@ -87,3 +87,28 @@
 }
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
+@media screen and (max-width: $break-point-middle-sp) {
+  /* ステータスバー透過防止 */
+  .for-status-bars {
+    position: fixed;
+    top: 0;
+    pointer-events: none;
+    height: 5px;
+    width: 100%;
+    background-color: #000;
+    mix-blend-mode: lighten;
+  }
+
+  /* タブバー透過防止 */
+  .for-tab-bars {
+    position: fixed;
+    bottom: 0;
+    pointer-events: none;
+    height: 4px;
+    width: 100%;
+    background-color: #000;
+    mix-blend-mode: lighten;
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////

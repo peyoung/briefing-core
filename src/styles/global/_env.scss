@@ -10,14 +10,13 @@ $key-color1: #aa182c;
 $text-color: $white;
 $link-color: $text-color;
 
+/* ~~未定義~~*/
 $key-black: #141414;
 $bg-color: $key-black;
 $bg-color-sp: $key-black;
 
 $key-gray1: rgba(27, 27, 27, 0.95);
 $key-gray2: #434343;
-
-/* ~~未定義~~*/
 $key-gray3: #777;
 
 // rgba(124, 109, 101, 0.4);
@@ -97,14 +96,15 @@ $design-num: 1280;
 $design-width: $design-num + px;
 $design-num-sp: 390;
 $design-width-sp: $design-num-sp + px;
-$design-h: 832;
-$design-h-sp: 844;
+$design-h: 752;
+$design-h-sp: 742;
 
-$base-pad-num: 40;
+$base-pad-num: 36;
 $base-pad: $base-pad-num + px;
-$sp-pad-num: 20;
+$sp-pad-num: 40;
 $sp-pad: math.div($sp-pad-num, $design-num-sp) * 100vw;
 
+/* ~~未定義ここから~~*/
 $header-num: 56;
 $header-size: $header-num + px;
 $footer-num: 60;
@@ -112,7 +112,6 @@ $footer-size: $footer-num + px;
 $header-num-sp: 68;
 $header-size-sp: math.div($header-num-sp, $design-num-sp) * 100vw;
 $footer-size-sp: math.div(160, $design-num-sp) * 100vw;
-/* ~~未定義ここから~~*/
 /* ~~未定義ここまで~~*/
 
 $design-num-pad: $design-num - $base-pad-num * 2;

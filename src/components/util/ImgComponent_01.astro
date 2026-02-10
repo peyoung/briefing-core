@@ -7,9 +7,20 @@ interface Props extends HTMLAttributes<'img'> {
   pc: ImageMetadata; // 親で `import img from '../...';` したものを渡す
   sp?: ImageMetadata; // 省略可
   sizes?: string; // 例: "(max-width: 768px) 100vw, 1200px"
+  /** 画像圧縮率（0-100）。未指定ならデフォルトはビルド設定に従う */
+  quality?: number;
+  /** 生成するフォーマット。'webp' や 'avif' 等。文字列または配列で指定可。既定: 'webp' */
+  formats?: string | string[];
 }
 
-const { pc, sp, sizes = '(max-width: 768px) 100vw, 2000px', ...attrs } = Astro.props as Props;
+const {
+  pc,
+  sp,
+  sizes = '(max-width: 768px) 100vw, 3000px',
+  quality,
+  formats = 'webp',
+  ...attrs
+} = Astro.props as Props;
 
 // ここで pc/sp がないと即失敗させて原因を分かりやすく
 if (!pc?.src) {
@@ -17,26 +28,51 @@ if (!pc?.src) {
     '[ImgComponent_01] prop "pc" は ImageMetadata を渡してください（例: import img from ...; <Comp pc={img} />）'
   );
 }
+// フォーマット指定を配列化
+const formatsArr: string[] = Array.isArray(formats) ? formats : [formats];
 
-// 最適化（AVIF/WebPを使いたければフォーマット増やす）
-const pcWebp = await getImage({ src: pc, format: 'webp' });
-const spWebp = sp ? await getImage({ src: sp, format: 'webp' }) : null;
+// 指定フォーマットごとに getImage を実行（quality はオプション）
+const pcImgs = await Promise.all(
+  formatsArr.map((fmt) => getImage({ src: pc, format: fmt as any, quality }))
+);
+const spImgs = sp
+  ? await Promise.all(formatsArr.map((fmt) => getImage({ src: sp, format: fmt as any, quality })))
+  : null;
 
 // フォールバックはオリジナルのビルド済みURLでOK（拡張子いじる必要なし）
 const fallback = pc.src;
+
+// MIME タイプ決定ヘルパー (テンプレートで使うためフロントマター内に配置)
+const mime = (fmt: string) => {
+  const f = fmt.toLowerCase();
+  if (f === 'jpg' || f === 'jpeg') return 'image/jpeg';
+  if (f === 'png') return 'image/png';
+  if (f === 'avif') return 'image/avif';
+  return `image/${f}`;
+};
 ---
 
 <picture>
-  <!-- SP（幅優先） -->
+  <!-- SP（幅優先）: sp があり、各フォーマット分の画像がある場合 -->
   {
-    spWebp && (
-      <source media="(max-width: 768px)" srcset={spWebp.src} type="image/webp" sizes={sizes} />
-    )
+    spImgs &&
+      formatsArr.map((fmt, i) => (
+        <source media="(max-width: 768px)" srcset={spImgs[i].src} type={mime(fmt)} sizes={sizes} />
+      ))
   }
 
-  <!-- PC -->
-  <source media="(min-width: 769px)" srcset={pcWebp.src} type="image/webp" sizes={sizes} />
+  <!-- PC: 各フォーマット分 -->
+  {
+    pcImgs.map((img, i) => (
+      <source
+        media="(min-width: 769px)"
+        srcset={img.src}
+        type={mime(formatsArr[i])}
+        sizes={sizes}
+      />
+    ))
+  }
 
   <!-- 最後にフォールバック -->
-  <img src={fallback} {...attrs} />
+  <img src={fallback} width={pc.width} height={pc.height} {...attrs} />
 </picture>

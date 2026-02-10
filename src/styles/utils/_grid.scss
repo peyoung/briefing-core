@@ -2,12 +2,8 @@
 @use 'src/styles/global' as *;
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
-$grid_01: 1180;
-$grid_02: 690;
-
 $w_01: $design-num;
 $w_02: $design-num - $base-pad-num * 2;
-$w_03: 956;
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 @media screen and (min-width: $break-point-middle) {
@@ -25,20 +21,14 @@ $w_03: 956;
     margin-right: auto;
   }
 }
-////////////////////////////////////
-@media screen and (min-width: $break-point-middle) {
-  .g-setW_03 {
-    max-width: $w_03 + px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 @media screen and (min-width: $break-point-middle) {
   .g-mrgStyle_01 {
-    padding-left: $base-pad;
-    padding-right: $base-pad;
+    @include vwpxpc(padding-left, $base-pad-num);
+    @include vwpxpc(padding-right, $base-pad-num);
+    // padding-left: $base-pad;
+    // padding-right: $base-pad;
   }
 }
 ///////////////////////////////

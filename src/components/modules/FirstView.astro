@@ -1,0 +1,74 @@
+---
+// import Picture from '@components/util/ImgComponent_01.astro';
+import { Image } from 'astro:assets';
+import Logo from '@images/logo-briefing_01.svg';
+import Img_1 from '@images/img_01.jpg';
+---
+
+<div class="mainSection" id="firstView">
+  <div class="bgImg">
+    <figure>
+      <Image src={Img_1} alt="" width={2000} densities={[1, 2, 3]} loading="eager" />
+    </figure>
+  </div>
+  <!-- /.bgImg -->
+  <div class="content">
+    <div class="inner">
+      <h1 class="siteTtl">
+        <a href="/">
+          <Image src={Logo} alt="BRIEFING" width={314} densities={[1, 2, 3]} loading="eager" />
+        </a>
+      </h1>
+      <!-- /.siteTtl -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.content -->
+</div>
+<!-- /.mainSection -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .mainSection {
+    height: 100svh;
+    position: relative;
+    img {
+      @include imgset;
+    }
+  }
+  ////////////////////
+  .bgImg {
+    height: 100%;
+    figure {
+      height: 100%;
+    }
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  ////////////////////
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ////////////////////
+  .siteTtl {
+    img {
+      @include vwpxpc2(width, 314);
+      min-width: 314px;
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

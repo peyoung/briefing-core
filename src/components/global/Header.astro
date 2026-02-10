@@ -1,8 +1,61 @@
 ---
-
+import { Image } from 'astro:assets';
+import Logo from '@images/logo-briefing_01.svg';
 ---
 
-<header>
+<header class="g-mrgStyle_01">
+  <div class="inner">
+    <div class="col-logo">
+      <a href="/">
+        <Image src={Logo} alt="BRIEFING" width={144} densities={[1, 2, 3]} loading="eager" />
+      </a>
+    </div>
+    <!-- /.col-logo -->
+    <div class="col-nav">
+      <nav>
+        <ul class="globalNav">
+          <li>
+            <a href="#brandCore">
+              <span class="num"></span>
+              <span class="labelTx">BRAND CORE</span>
+              <!-- /.labelTx -->
+            </a>
+          </li>
+          <li>
+            <a href="#brandCore">
+              <span class="num"></span>
+              <span class="labelTx">VALUE</span>
+              <!-- /.labelTx -->
+            </a>
+          </li>
+          <li>
+            <a href="#brandCore">
+              <span class="num"></span>
+              <span class="labelTx">FACT</span>
+              <!-- /.labelTx -->
+            </a>
+          </li>
+          <li>
+            <a href="#brandCore">
+              <span class="num"></span>
+              <span class="labelTx">TAGLINE</span>
+              <!-- /.labelTx -->
+            </a>
+          </li>
+          <li>
+            <a href="#brandCore">
+              <span class="num"></span>
+              <span class="labelTx">PORPOSE</span>
+              <!-- /.labelTx -->
+            </a>
+          </li>
+        </ul>
+        <!-- /.globalNav -->
+      </nav>
+    </div>
+    <!-- /.col-nav -->
+  </div>
+  <!-- /.inner -->
 </header>
 
 <style lang="scss">
@@ -10,6 +63,67 @@
   @use 'src/styles/global' as *;
   @use 'src/styles/utils' as *;
   ////////////////////
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > .inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    a {
+      pointer-events: all;
+    }
+  }
+  ////////////////////
+  .col-logo {
+    img {
+      @include imgset;
+      width: 144px;
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>
+<style lang="scss" is:global>
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .globalNav {
+    display: flex;
+    // font-size: 1.2rem;
+    line-height: normal;
+    letter-spacing: math.div(-0.24, 12) + em;
+    text-transform: uppercase;
+    gap: math.div(49, 12) + em;
+    counter-reset: number 0;
+    @include fz_vwpcmin(12);
+    span {
+      font-weight: 700;
+    }
+    .num {
+      counter-increment: number 1;
+      &::before {
+        content: '0' counter(number);
+      }
+    }
+    a {
+      display: flex;
+      gap: 0.5em;
+      opacity: 0.4;
+    }
+  }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {
   }
