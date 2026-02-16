@@ -4,6 +4,7 @@
 ///////////////////////////////////////////////////////////
 $w_01: $design-num;
 $w_02: $design-num - $base-pad-num * 2;
+$w_03: 815;
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 @media screen and (min-width: $break-point-middle) {
@@ -17,6 +18,14 @@ $w_02: $design-num - $base-pad-num * 2;
 @media screen and (min-width: $break-point-middle) {
   .g-setW_02 {
     max-width: $w_02 + px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+  .g-setW_03 {
+    max-width: $w_03 + px;
     margin-left: auto;
     margin-right: auto;
   }

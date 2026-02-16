@@ -7,7 +7,7 @@ import Img_1Sp from '@images/img_02_sp.jpg';
 import Img_2Sp from '@images/img_04_sp.jpg';
 ---
 
-<section class="mainSection g-mainSection js-toggleClass" id="brandCore">
+<section class="mainSection g-mainSection js-toggleClass" id="value">
   <div class="scene style_01">
     <div class="inner">
       <div class="bgImg">
@@ -36,7 +36,7 @@ import Img_2Sp from '@images/img_04_sp.jpg';
     <!-- /.inner -->
   </div>
   <!-- /.scene -->
-  <div class="scene style_02">
+  <div class="scene style_02 stay">
     <div class="inner">
       <div class="content">
         <div class="inner">
@@ -98,57 +98,6 @@ import Img_2Sp from '@images/img_04_sp.jpg';
 </section>
 <!-- /.mainSection -->
 
-<script>
-  // モーダル開時のスクロール監視（600px 以上移動で自動クローズ）
-  const modalScrollHandlers = new Map();
-
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.js-sceneModal');
-    if (!btn) return;
-    const parent = btn.closest('.mainSection');
-    if (!parent) return;
-
-    const opened = parent.classList.toggle('is-modal');
-
-    // 開いた場合は現在位置を記録してスクロール監視を追加
-    if (opened) {
-      const startY = window.scrollY;
-      const handler = () => {
-        if (Math.abs(window.scrollY - startY) >= 600) {
-          parent.classList.remove('is-modal');
-          const h = modalScrollHandlers.get(parent);
-          if (h) {
-            window.removeEventListener('scroll', h);
-            modalScrollHandlers.delete(parent);
-          }
-        }
-      };
-      modalScrollHandlers.set(parent, handler);
-      window.addEventListener('scroll', handler, { passive: true });
-    } else {
-      // 閉じた場合は監視を削除
-      const h = modalScrollHandlers.get(parent);
-      if (h) {
-        window.removeEventListener('scroll', h);
-        modalScrollHandlers.delete(parent);
-      }
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    const closer = e.target.closest('.js-sceneModalClose');
-    if (!closer) return;
-    const parent = closer.closest('.mainSection');
-    if (!parent) return;
-    parent.classList.remove('is-modal');
-    const h = modalScrollHandlers.get(parent);
-    if (h) {
-      window.removeEventListener('scroll', h);
-      modalScrollHandlers.delete(parent);
-    }
-  });
-</script>
-
 <style lang="scss">
   @use 'sass:math';
   @use 'src/styles/global' as *;
@@ -202,10 +151,11 @@ import Img_2Sp from '@images/img_04_sp.jpg';
   ////////////////////
   .pageTtl {
     position: absolute;
-    top: calc(100vh - 1em);
     left: 0;
     width: 100%;
     transition: 0.6s;
+    top: calc(100vh - 1em);
+    @include fz_vwpc(200);
     :global(.is-scene_02) & {
       top: math.div(126, $design-h) * 100vh;
       @include fz_vwpcmin(70);

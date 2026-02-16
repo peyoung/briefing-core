@@ -103,8 +103,14 @@ function setSceneClasses() {
         start: 'top top',
         onEnter: () => parent.classList.add(`is-scene_${styleNum}`),
         onEnterBack: () => parent.classList.add(`is-scene_${styleNum}`),
-        onLeave: () => parent.classList.remove(`is-scene_${styleNum}`),
-        onLeaveBack: () => parent.classList.remove(`is-scene_${styleNum}`),
+        onLeave: () => {
+          if (!el.classList.contains('stay')) {
+            parent.classList.remove(`is-scene_${styleNum}`);
+          }
+        },
+        onLeaveBack: () => {
+          parent.classList.remove(`is-scene_${styleNum}`);
+        },
       });
     });
   }
