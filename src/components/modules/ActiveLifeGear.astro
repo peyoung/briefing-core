@@ -1,0 +1,295 @@
+---
+import Picture from '@components/util/ImgComponent_01.astro';
+// import { Image } from 'astro:assets';
+import Img_1 from '@images/img_03.jpg';
+import Img_2 from '@images/img_04.jpg';
+import Img_1Sp from '@images/img_02_sp.jpg';
+import Img_2Sp from '@images/img_04_sp.jpg';
+---
+
+<section class="mainSection g-mainSection js-toggleClass" id="brandCore">
+  <div class="scene style_01">
+    <div class="inner">
+      <div class="bgImg">
+        <figure>
+          <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+        </figure>
+        <figure class="style_02">
+          <Picture pc={Img_2} sp={Img_2Sp} alt="" loading="eager" />
+        </figure>
+      </div>
+      <!-- /.bgImg -->
+      <div class="content">
+        <div class="inner">
+          <h2 class="pageRead g-ttlStyle_01 style_01">
+            <span class="style_02">好奇心を発見へと導く</span>
+            <span class="style_02">高品質なギア</span>
+          </h2>
+          <!-- /.pageRead -->
+          <p class="pageTtl g-ttlStyle_02">ACTIVE LIFE GEAR</p>
+          <!-- /.pageTtl -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+  <div class="scene style_02">
+    <div class="inner">
+      <div class="content">
+        <div class="inner">
+          <div class="summary g-summaryStyle_01">
+            <p>
+              BRIEFINGがつくるのは、バッグではない。<br /><button
+                type="button"
+                class="g-btnStyle_01 btn js-sceneModal">“<span>ACTIVES</span>”</button
+              >の人生を豊かにする発見へと導くギアを生み出している。<br />日常、出発、目的地。<br
+              />すべての時間を、心高まる瞬間に変えるもの。
+            </p>
+          </div>
+          <!-- /.summary -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene-->
+  <section class="scene modalScene">
+    <div class="inner">
+      <div class="content">
+        <div class="inner">
+          <div class="modalContent">
+            <div class="col-ttl">
+              <h3 class="g-ttlStyle_03 modalTtl style_01">ACTIVES</h3>
+              <!-- /.g-ttlStyle_03 -->
+            </div>
+            <!-- /.col-ttl -->
+            <div class="col">
+              <p class="g-ttlStyle_01 modalSubTtl style_02">
+                <span class="style_02">人生を豊かにする発見を求める</span>
+                <span class="style_02">都市のアクティブな大人たち</span>
+              </p>
+              <!-- /.pageRead -->
+              <div class="g-summaryStyle_01 modalSummary style_01">
+                <p>
+                  好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
+                  />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
+                  />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
+                  />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
+                  />旅が好き。アートやカルチャーにも関心が高い。<br
+                  />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+                </p>
+              </div>
+              <!-- /.g-summaryStyle_01 -->
+              <div class="modalBtnSection">
+                <button type="button" class="g-btnStyle_02 js-sceneModalClose">
+                  <span class="labelTx">BACK</span>
+                  <!-- /.labelTx -->
+                </button>
+              </div>
+              <!-- /.modalBtnSection -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.modalContent -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </section>
+  <!-- /.scene-->
+</section>
+<!-- /.mainSection -->
+
+<script>
+  // モーダル開時のスクロール監視（600px 以上移動で自動クローズ）
+  const modalScrollHandlers = new Map();
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.js-sceneModal');
+    if (!btn) return;
+    const parent = btn.closest('.mainSection');
+    if (!parent) return;
+
+    const opened = parent.classList.toggle('is-modal');
+
+    // 開いた場合は現在位置を記録してスクロール監視を追加
+    if (opened) {
+      const startY = window.scrollY;
+      const handler = () => {
+        if (Math.abs(window.scrollY - startY) >= 600) {
+          parent.classList.remove('is-modal');
+          const h = modalScrollHandlers.get(parent);
+          if (h) {
+            window.removeEventListener('scroll', h);
+            modalScrollHandlers.delete(parent);
+          }
+        }
+      };
+      modalScrollHandlers.set(parent, handler);
+      window.addEventListener('scroll', handler, { passive: true });
+    } else {
+      // 閉じた場合は監視を削除
+      const h = modalScrollHandlers.get(parent);
+      if (h) {
+        window.removeEventListener('scroll', h);
+        modalScrollHandlers.delete(parent);
+      }
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const closer = e.target.closest('.js-sceneModalClose');
+    if (!closer) return;
+    const parent = closer.closest('.mainSection');
+    if (!parent) return;
+    parent.classList.remove('is-modal');
+    const h = modalScrollHandlers.get(parent);
+    if (h) {
+      window.removeEventListener('scroll', h);
+      modalScrollHandlers.delete(parent);
+    }
+  });
+</script>
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  @media screen and (min-height: $breakH + 1px) {
+    .scene {
+      height: 200vh;
+    }
+  }
+  ////////////////////
+  .bgImg {
+    figure {
+      &.style_02 {
+        opacity: 0;
+        :global(.is-scene_02) &,
+        :global(.is-modal) & {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  ////////////////////
+  .content {
+    > .inner {
+      :global(.is-modal) & {
+        opacity: 0;
+      }
+    }
+  }
+  ////////////////////
+  .pageRead {
+    margin-bottom: math.div(200, 20) + em;
+    transition: 0.6s;
+    :global(.is-scene_02) & {
+      margin-bottom: math.div(240, 20) + em;
+    }
+    @media screen and (max-height: $breakH + px) {
+      margin-bottom: math.div(240, 20) + em;
+    }
+  }
+  ////////////////////
+  .pageTtl {
+    position: absolute;
+    top: calc(100vh - 1em);
+    left: 0;
+    width: 100%;
+    transition: 0.6s;
+    :global(.is-scene_02) & {
+      top: math.div(126, $design-h) * 100vh;
+      @include fz_vwpcmin(70);
+    }
+    @media screen and (max-height: $breakH + px) {
+      top: math.div(126, $design-h) * 100vh;
+      @include fz_vwpcmin(70);
+    }
+  }
+  ////////////////////
+  @media screen and (min-height: $breakH + 1px) {
+    .scene.style_02 {
+      .content {
+        opacity: 0;
+        :global(.is-scene_02) & {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  ////////////////////
+  .summary {
+    margin-bottom: math.div(113, 14) + em;
+  }
+  ////////////////////
+  .btn {
+    span {
+      &::before {
+        :global(.is-scene_02) & {
+          animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0.4s 1;
+        }
+      }
+    }
+  }
+  ////////////////////
+  .scene.modalScene {
+    pointer-events: none;
+    height: 0;
+    :global(.is-modal) & {
+      pointer-events: all;
+    }
+    .content {
+      transition: 0.3s;
+      backdrop-filter: blur(10px) saturate(100%);
+      clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+      transition: clip-path 0.4s $ease-out-quad;
+      align-items: center;
+      > .inner {
+        opacity: 1;
+      }
+      :global(.is-modal) & {
+        opacity: 1;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      }
+    }
+  }
+  @media screen and (min-height: $breakH + 1px) {
+    .modalScene {
+      height: 100vh;
+    }
+  }
+  ////////////////////
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(155px);
+  }
+  ////////////////////
+  .modalTtl {
+    margin-bottom: math.div(30, 70) + em;
+  }
+  ////////////////////
+  .modalSubTtl {
+    margin-bottom: math.div(15, 20) + em;
+  }
+  ////////////////////
+  .modalBtnSection {
+    display: flex;
+    justify-content: center;
+    margin-top: math.div(30, 16) + em;
+    // @include fz_vwpcmin(16);
+    font-size: 1.6rem;
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

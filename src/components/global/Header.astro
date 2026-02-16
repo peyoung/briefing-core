@@ -1,4 +1,6 @@
 ---
+import Nav from '@components/navigation/NavGlobal.astro';
+
 import { Image } from 'astro:assets';
 import Logo from '@images/logo-briefing_01.svg';
 ---
@@ -14,41 +16,7 @@ import Logo from '@images/logo-briefing_01.svg';
     <div class="col-nav">
       <nav>
         <ul class="globalNav">
-          <li>
-            <a href="#brandCore">
-              <span class="num"></span>
-              <span class="labelTx">BRAND CORE</span>
-              <!-- /.labelTx -->
-            </a>
-          </li>
-          <li>
-            <a href="#brandCore">
-              <span class="num"></span>
-              <span class="labelTx">VALUE</span>
-              <!-- /.labelTx -->
-            </a>
-          </li>
-          <li>
-            <a href="#brandCore">
-              <span class="num"></span>
-              <span class="labelTx">FACT</span>
-              <!-- /.labelTx -->
-            </a>
-          </li>
-          <li>
-            <a href="#brandCore">
-              <span class="num"></span>
-              <span class="labelTx">TAGLINE</span>
-              <!-- /.labelTx -->
-            </a>
-          </li>
-          <li>
-            <a href="#brandCore">
-              <span class="num"></span>
-              <span class="labelTx">PORPOSE</span>
-              <!-- /.labelTx -->
-            </a>
-          </li>
+          <Nav />
         </ul>
         <!-- /.globalNav -->
       </nav>
@@ -56,6 +24,13 @@ import Logo from '@images/logo-briefing_01.svg';
     <!-- /.col-nav -->
   </div>
   <!-- /.inner -->
+  <div class="menuBtn">
+    <button type="button" class="g-btnStyle_02" id="menuBtn">
+      <span class="labelTx is-normal">MENU</span>
+      <span class="labelTx is-open">CLOSE</span>
+    </button>
+  </div>
+  <!-- /.menuBtn -->
 </header>
 
 <style lang="scss">
@@ -74,14 +49,25 @@ import Logo from '@images/logo-briefing_01.svg';
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s;
+    &.is-active {
+      opacity: 1;
+      :global(a),
+      :global(button) {
+        pointer-events: all;
+      }
+    }
     > .inner {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-    a {
-      pointer-events: all;
+      transition: opacity 0.3s;
+      :global(.menuOpen) & {
+        opacity: 0;
+        pointer-events: none;
+      }
     }
   }
   ////////////////////
@@ -89,6 +75,27 @@ import Logo from '@images/logo-briefing_01.svg';
     img {
       @include imgset;
       width: 144px;
+    }
+  }
+  ////////////////////
+  .menuBtn {
+    position: absolute;
+    top: 26px;
+    @include fz_vwpcmin(14);
+    @include vwpxpc(right, 50);
+    span {
+      display: block;
+    }
+    .is-normal {
+      :global(.menuOpen) & {
+        display: none;
+      }
+    }
+    .is-open {
+      display: none;
+      :global(.menuOpen) & {
+        display: block;
+      }
     }
   }
   ////////////////////

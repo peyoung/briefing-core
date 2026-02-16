@@ -43,3 +43,69 @@ gsap.ticker.add((time) => {
 //     });
 //   });
 // }
+
+window.addEventListener('load', () => {
+  setToggleClass();
+});
+
+function setToggleClass() {
+  const triggers = document.querySelectorAll('.js-toggleClass');
+  triggers.forEach((el, index) => {
+    // 最初の要素だけstart位置を調整して、ロード時に確実に反応するようにする
+    const startPos = index === 0 ? 'top bottom' : 'top top';
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: startPos,
+      end: 'bottom top-=20%',
+      toggleClass: 'is-current',
+    });
+  });
+}
+
+// #firstView の bottom が top に到達したタイミングで header に is-active を付与/解除
+function setHeaderActiveOnFirstView() {
+  const header = document.querySelector('header');
+  const first = document.querySelector('#firstView');
+  if (!header || !first) return;
+
+  ScrollTrigger.create({
+    trigger: '#firstView',
+    start: 'bottom top',
+    onEnter: () => header.classList.add('is-active'),
+    onLeaveBack: () => header.classList.remove('is-active'),
+  });
+}
+
+// 初期化にヘッダー制御を追加
+// 初期化にヘッダー制御とシーントリガーを追加
+window.addEventListener('load', () => {
+  setHeaderActiveOnFirstView();
+  setSceneClasses();
+});
+
+// (モーダルハンドラは各コンポーネント側で実装します)
+
+// シーンスタイル用の ScrollTrigger をまとめて作成
+function setSceneClasses() {
+  // style_02 から style_05 までを準備
+  for (let i = 2; i <= 5; i++) {
+    const styleNum = String(i).padStart(2, '0');
+    const selector = `.scene.style_${styleNum}`;
+
+    const elems = document.querySelectorAll(selector);
+    elems.forEach((el) => {
+      const parent = el.closest('.mainSection');
+      if (!parent) return;
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top top',
+        onEnter: () => parent.classList.add(`is-scene_${styleNum}`),
+        onEnterBack: () => parent.classList.add(`is-scene_${styleNum}`),
+        onLeave: () => parent.classList.remove(`is-scene_${styleNum}`),
+        onLeaveBack: () => parent.classList.remove(`is-scene_${styleNum}`),
+      });
+    });
+  }
+}

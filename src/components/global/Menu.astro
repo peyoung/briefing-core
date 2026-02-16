@@ -1,56 +1,21 @@
 ---
-const { pageClass } = Astro.props;
+// const { pageClass } = Astro.props;
+import Nav from '@components/navigation/NavGlobal.astro';
 // import Bnr from '@components/modules/BnrEc.astro';
-
-const linkPrefix = pageClass === 'home' ? '' : '/';
+// const linkPrefix = pageClass === 'home' ? '' : '/';
 ---
 
 <div id="menuPanel" data-lenis-prevent-wheel>
-  <div class="closeArea js-menu-close"></div>
-  <!-- /.closeArea -->
   <div class="menuSection">
-    <div class="menuContent" id="navPanel">
+    <div class="menuContent">
       <div class="inner">
+        <div class="closeArea js-menu-close"></div>
+        <!-- /.closeArea -->
         <nav>
-          <ul class="globalNav">
-            <li>
-              <a href={`${linkPrefix}#about`}>
-                <span class="labelEn">ABOUT</span>
-                <span class="labelJa">NEWTRONについて</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${linkPrefix}#media`}>
-                <span class="labelEn">MEDIA</span>
-                <span class="labelJa">メディア</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${linkPrefix}#features`}>
-                <span class="labelEn">FEATURES</span>
-                <span class="labelJa">商品特徴</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${linkPrefix}#ingredients`}>
-                <span class="labelEn">INGREDIENTS</span>
-                <span class="labelJa">配合成分</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${linkPrefix}#designedFor`}>
-                <span class="labelEn">DESIGNED FOR</span>
-                <span class="labelJa">（仮）どんな人飲む？</span>
-              </a>
-            </li>
-            <li>
-              <a href={`${linkPrefix}#faq`}>
-                <span class="labelEn">FAQ</span>
-                <span class="labelJa">よくあるご質問</span>
-              </a>
-            </li>
+          <ul class="globalMenu">
+            <Nav />
           </ul>
-          <!-- /.globalNav -->
+          <!-- /.globalMenu -->
         </nav>
       </div>
       <!-- /.inner -->
@@ -79,13 +44,10 @@ const linkPrefix = pageClass === 'home' ? '' : '/';
     /*スクロールバー非表示（Firefox）*/
     scrollbar-width: none;
     opacity: 0;
-    z-index: -1;
-    @media screen and (min-width: $break-point-middle) {
-      backdrop-filter: blur(5px) saturate(100%);
-    }
+    pointer-events: none;
     .menuOpen & {
       opacity: 1;
-      z-index: 90;
+      pointer-events: all;
     }
   }
   ////////////////////
@@ -102,57 +64,46 @@ const linkPrefix = pageClass === 'home' ? '' : '/';
     width: 100%;
     position: relative;
     min-height: calc(100dvh + 1px);
-    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
     transition: clip-path 0.2s $ease-out-quad;
+    backdrop-filter: blur(10px) saturate(100%);
+    background-color: rgba(0, 0, 0, 0.5);
     .menuStart & {
       clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
   }
-  @media screen and (min-width: $break-point-middle) {
-    .menuSection {
-      @include vwpxpc2(width, $grid_01);
-      min-width: $grid_01 + px;
-      margin-left: auto;
-      clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
-      .menuStart & {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-      }
-    }
-  }
   ////////////////////
   .menuContent {
-    transform: translateY(100%);
-    $gap: get_sp(40);
-    min-height: calc(100dvh - #{$gap});
+    min-height: 100dvh;
     display: flex;
     align-items: center;
-    transition: 0.3s;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    > .inner {
-      width: 100%;
-      padding: get_sp(20) 0;
-    }
-    &.is-current {
-      transform: translateY(0);
-      position: relative;
-    }
-  }
-  @media screen and (min-width: $break-point-middle) {
-    .menuContent {
-      transform: translateX(100%);
-      min-height: 100dvh;
-      > .inner {
-        padding: math.div(100, $design-h) * 100vh 0;
-      }
-      &.is-current {
-        transform: translateX(0);
-      }
-    }
+    justify-content: center;
   }
   ////////////////////
+  .globalMenu {
+    position: relative;
+    text-align: center;
+    line-height: math.div(62, 24) + em;
+    letter-spacing: math.div(-0.48, 24) + em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include fz_vwpcmin(24);
+    a {
+      display: flex;
+      pointer-events: all;
+      @media (any-hover: hover) {
+        &:hover {
+          transform: translateX(2px);
+          color: $key-color1;
+        }
+      }
+    }
+    .labelTx {
+      font-weight: 700;
+    }
+  }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {
   }

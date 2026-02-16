@@ -22,10 +22,13 @@ function setMainMenu() {
       closeFnc();
     }
   });
-  $('.menuOpen #clickBlocker,.menuCloseArea,.menuCloseBtn').on('click', function (event) {
-    event.stopPropagation();
-    closeFnc();
-  });
+  $('.menuOpen #clickBlocker,.menuCloseArea,.menuCloseBtn,.js-menu-close').on(
+    'click',
+    function (event) {
+      event.stopPropagation();
+      closeFnc();
+    }
+  );
 
   $('#menuPanel a').on('click', function () {
     // カーテンアニメーション(0.6s)が終わるまで待ってからメニューを閉じる

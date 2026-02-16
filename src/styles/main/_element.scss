@@ -11,23 +11,136 @@
   text-transform: uppercase;
   font-weight: 500;
   font-family: $font-ja;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   span {
     font-weight: 500;
     display: block;
+    &.style_02 {
+      width: 100%;
+    }
+  }
+  &.style_01 {
+    $gap: math.div(20, 20) + em;
+    transform: translateY(#{$gap});
+  }
+  &.style_02 {
+    font-size: 2rem;
   }
 }
 ////////////////////////////////////////
 .g-ttlStyle_02 {
   // font-size: 20rem;
-  @include fz_vwpcmin(200);
+  @include fz_vwpc(200);
   font-weight: 700;
   line-height: 1em;
   letter-spacing: math.div(-4, 200) + em;
   text-transform: uppercase;
-  transform: translateY(0.3em);
+  $gap: math.div(55, 200) + em;
+  transform: translateY(#{$gap});
   white-space: nowrap;
   span {
     font-weight: 700;
+  }
+}
+////////////////////////////////////////
+.g-ttlStyle_03 {
+  text-align: center;
+  @include fz_vwpcmin(70);
+  font-weight: 700;
+  line-height: math.div(70, 70) + em;
+  letter-spacing: math.div(-1.4, 70) + em;
+  text-transform: uppercase;
+  &.style_01 {
+    font-size: 7rem;
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-summaryStyle_01 {
+  text-align: center;
+  font-family: $font-ja;
+  @include fz_vwpcmin(14);
+  line-height: math.div(22, 14) + em;
+  letter-spacing: math.div(-0.28, 14) + em;
+  text-transform: uppercase;
+  p {
+    font-weight: 500;
+  }
+  &.style_01 {
+    font-size: 1.4rem;
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-btnStyle_01 {
+  @include btnsetting;
+  display: inline;
+  color: $key-color1;
+  font-weight: 700;
+  transition: 0.3s;
+  line-height: 1em;
+  span {
+    font-weight: 700;
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    &::before {
+      content: '';
+      height: 1px;
+      width: 100%;
+      background-color: $key-color1;
+      bottom: 0;
+      position: absolute;
+      transform: translateX(0);
+      transition: 0.3s;
+    }
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      filter: brightness(1.2);
+      span {
+        &::before {
+          transform: translateX(100%);
+        }
+      }
+    }
+  }
+}
+//////////////////////////
+.g-btnStyle_02 {
+  @include btnsetting;
+  display: flex;
+  color: $white;
+  line-height: math.div(18, 16) + em;
+  letter-spacing: math.div(-0.32, 16) + em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  &::before {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: $white;
+    bottom: 0.2em;
+    position: absolute;
+    transform: translateX(0);
+    transition: 0.3s;
+  }
+  span {
+    font-weight: 700;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translateX(0.2em);
+      color: $key-color1;
+      &::before {
+        background-color: $key-color1;
+        animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
+      }
+    }
   }
 }
 ///////////////////////////////////////////////////////////
