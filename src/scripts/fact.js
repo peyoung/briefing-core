@@ -9,6 +9,7 @@ const state = {
   mutationObserver: null,
   currentFactContent: null,
   lastActiveIndex: -1,
+  locked: false,
 };
 
 function getIndexOfTrigger(trigger) {
@@ -75,7 +76,7 @@ function findClosestScrollItemIndex(factContent) {
   return idx;
 }
 
-function centerActiveItem(index) {
+function centerActiveItem(index, instant = false) {
   const slider = document.querySelector('.factSlider');
   if (!slider) return;
   const inner = slider.querySelector(':scope > .inner') || slider;
@@ -104,11 +105,19 @@ function centerActiveItem(index) {
 
   const diff = windowCenter - activeCenter;
   const newX = currentX + diff;
-  inner.style.transition = 'transform 0.45s cubic-bezier(0.25,1,0.5,1)';
-  inner.style.transform = `translateX(${newX}px)`;
+  if (instant) {
+    // apply transform without transition
+    inner.style.transition = 'none';
+    inner.style.transform = `translateX(${newX}px)`;
+    // force reflow
+    inner.getBoundingClientRect();
+  } else {
+    inner.style.transition = 'transform 0.45s cubic-bezier(0.25,1,0.5,1)';
+    inner.style.transform = `translateX(${newX}px)`;
+  }
 }
 
-function updateSliderActive(index) {
+function updateSliderActive(index, instant = false) {
   const slider = document.querySelector('.factSlider');
   if (!slider) return;
   const inner = slider.querySelector(':scope > .inner') || slider;
@@ -117,7 +126,7 @@ function updateSliderActive(index) {
   if (index < 0 || index >= items.length) return;
   if (state.lastActiveIndex === index) return;
   items.forEach((it, i) => it.classList.toggle('is-active', i === index));
-  centerActiveItem(index);
+  centerActiveItem(index, instant);
   state.lastActiveIndex = index;
 }
 
@@ -215,14 +224,22 @@ document.addEventListener('click', (e) => {
     const factContent = section.querySelector('.factModalContent');
     if (!factContent) return;
 
-    // open modal content (scene-modal.js handles mainSection is-modal)
+    // prevent re-entrant open/close
+    if (state.locked) return;
+    state.locked = true;
+
+    // open modal content and mark parent mainSection as modal
     factContent.classList.add('is-active');
+    try {
+      const main = section.closest('.mainSection') || section;
+      if (main) main.classList.add('is-modal');
+    } catch (e) {}
     // target the inner modalContent for fade; fall back to factContent
     const modalContent = factContent.querySelector('.modalContent') || factContent;
     // start hidden until scroll & positioning complete
     modalContent.style.opacity = '0';
+    modalContent.style.visibility = 'hidden';
     state.currentFactContent = factContent;
-    setupScrollSync(factContent);
     setupResize();
 
     const idx = getIndexOfTrigger(trigger);
@@ -232,18 +249,35 @@ document.addEventListener('click', (e) => {
       if (target) await scrollToTopOfElement(target);
     }
 
-    // ensure slider active updated after scroll
+    // abort if closed while we were positioning
+    if (!factContent.classList.contains('is-active') || state.currentFactContent !== factContent) {
+      state.locked = false;
+      return;
+    }
+
+    // now start scroll sync after initial positioning to avoid immediate close
+    setupScrollSync(factContent);
+
+    // position slider instantly before revealing
+    const positionedIdx = findClosestScrollItemIndex(factContent);
+    if (positionedIdx !== -1) updateSliderActive(positionedIdx, true);
+
+    // ensure slider active updated after scroll (safety)
     if (state.scrollHandler) state.scrollHandler();
 
-    // fade in after positioning (apply to modalContent)
+    // reveal: make visible then fade in
+    modalContent.style.visibility = 'visible';
     requestAnimationFrame(() => {
       modalContent.style.transition = modalContent.style.transition || 'opacity 0.35s ease';
       modalContent.style.opacity = '1';
-      // remove inline styles after transition to restore stylesheet control
       setTimeout(() => {
         modalContent.style.transition = '';
         modalContent.style.opacity = '';
-      }, 800);
+        // clear inner transition so future centerActiveItem uses configured transition
+        const inner = modalContent.querySelector('.factSlider > .inner');
+        if (inner) inner.style.transition = '';
+        state.locked = false;
+      }, 400);
     });
   })();
 });
