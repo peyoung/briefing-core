@@ -45,23 +45,31 @@ gsap.ticker.add((time) => {
 // }
 
 window.addEventListener('load', () => {
+  // restore GSAP-based toggleClass behavior
   setToggleClass();
 });
 
 function setToggleClass() {
   const triggers = document.querySelectorAll('.js-toggleClass');
+  // store created toggle ScrollTriggers so other code can disable/enable them
+  window.__toggleTriggers = window.__toggleTriggers || [];
+  // clear previous references
+  window.__toggleTriggers.length = 0;
   triggers.forEach((el, index) => {
     // 最初の要素だけstart位置を調整して、ロード時に確実に反応するようにする
     const startPos = index === 0 ? 'top bottom' : 'top top';
 
-    ScrollTrigger.create({
+    const st = ScrollTrigger.create({
       trigger: el,
       start: startPos,
       end: 'bottom top-=20%',
       toggleClass: 'is-current',
     });
+    window.__toggleTriggers.push(st);
   });
 }
+
+// Note: IntersectionObserver-based toggle moved to main.js
 
 // #firstView の bottom が top に到達したタイミングで header に is-active を付与/解除
 function setHeaderActiveOnFirstView() {
