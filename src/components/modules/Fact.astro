@@ -1,0 +1,171 @@
+---
+import Picture from '@components/util/ImgComponent_01.astro';
+// import { Image } from 'astro:assets';
+import Img_1 from '@images/img_05.jpg';
+import Img_1Sp from '@images/img_05_sp.jpg';
+---
+
+<section class="mainSection g-mainSection js-toggleClass" id="brandCore">
+  <div class="scene">
+    <div class="inner">
+      <div class="bgImg">
+        <figure>
+          <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+        </figure>
+      </div>
+      <!-- /.bgImg -->
+      <div class="content">
+        <div class="inner">
+          <div class="factNav">
+            <ul>
+              <li>
+                <button type="button" class="factBtn style_01 js-sceneModal">
+                  <span class="labelTx">GEEKY</span>
+                  <span class="labelIcon">
+                    <span></span>
+                    <span></span>
+                  </span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="factBtn style_02">
+                  <span class="labelTx">CRAFTED</span>
+                  <span class="labelIcon">
+                    <span></span>
+                    <span></span>
+                  </span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="factBtn style_03">
+                  <span class="labelTx">PLAYFUL</span>
+                  <span class="labelIcon">
+                    <span></span>
+                    <span></span>
+                  </span>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <!-- /.factNav -->
+          <h2 class="pageRead g-ttlStyle_01">
+            <span class="style_02">人生を豊かにする発見を求める</span>
+            <span class="style_02">都市のアクティブな大人たち</span>
+          </h2>
+          <!-- /.pageRead -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+  <div class="scene modalScene g-modalScene">
+    <div class="inner">
+      <div class="content">
+        <div class="inner">
+          <section class="factItem">
+            <p>aaa</p>
+          </section>
+          <!-- /.factItem -->
+          <section class="factItem">
+            <p>ooo</p>
+          </section>
+          <!-- /.factItem -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+</section>
+<!-- /.mainSection -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  @media screen and (min-height: $breakH + 1px) {
+    .scene {
+      height: 200vh;
+    }
+  }
+  ////////////////////
+  .scene.modalScene {
+    height: 0;
+  }
+  @media screen and (min-height: $breakH + 1px) {
+    .scene.modalScene {
+      height: 100vh;
+    }
+  }
+  ////////////////////
+  .content {
+    align-items: center;
+  }
+  ////////////////////
+  .factNav {
+    text-align: center;
+    line-height: math.div(160, 200) + em;
+    letter-spacing: math.div(-4, 200) + em;
+    text-transform: uppercase;
+    @include fz_vwpcmax(200);
+    span {
+      font-weight: 700;
+    }
+  }
+  ////////////////////
+  .factBtn {
+    @include btnsetting;
+    color: $white;
+    position: relative;
+    .labelIcon {
+      position: absolute;
+      top: math.div(-25, 200) + em;
+      display: block;
+      width: math.div(30, 200) + em;
+      height: math.div(30, 200) + em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      > span {
+        display: block;
+        width: 100%;
+        height: 6px;
+        background-color: $key-color1;
+        position: absolute;
+        &:last-child {
+          transform: rotate(90deg);
+        }
+      }
+    }
+    &.style_01 {
+      $gap: math.div(-50, 200) + em;
+      transform: translateX(#{$gap});
+      .labelIcon {
+        right: math.div(-40, 200) + em;
+      }
+    }
+    &.style_02 {
+      $gap: math.div(100, 200) + em;
+      transform: translateX(#{$gap});
+      .labelIcon {
+        right: math.div(-30, 200) + em;
+      }
+    }
+    &.style_03 {
+      $gap: math.div(-150, 200) + em;
+      transform: translateX(#{$gap});
+      .labelIcon {
+        right: math.div(-30, 200) + em;
+      }
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

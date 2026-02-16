@@ -58,52 +58,43 @@ import Img_2Sp from '@images/img_04_sp.jpg';
     <!-- /.inner -->
   </div>
   <!-- /.scene-->
-  <section class="scene modalScene">
-    <div class="inner">
-      <div class="content">
-        <div class="inner">
-          <div class="modalContent">
-            <div class="col-ttl">
-              <h3 class="g-ttlStyle_03 modalTtl style_01">ACTIVES</h3>
-              <!-- /.g-ttlStyle_03 -->
-            </div>
-            <!-- /.col-ttl -->
-            <div class="col">
-              <p class="g-ttlStyle_01 modalSubTtl style_02">
-                <span class="style_02">人生を豊かにする発見を求める</span>
-                <span class="style_02">都市のアクティブな大人たち</span>
-              </p>
-              <!-- /.pageRead -->
-              <div class="g-summaryStyle_01 modalSummary style_01">
-                <p>
-                  好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
-                  />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
-                  />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
-                  />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
-                  />旅が好き。アートやカルチャーにも関心が高い。<br
-                  />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
-                </p>
-              </div>
-              <!-- /.g-summaryStyle_01 -->
-              <div class="modalBtnSection">
-                <button type="button" class="g-btnStyle_02 js-sceneModalClose">
-                  <span class="labelTx">BACK</span>
-                  <!-- /.labelTx -->
-                </button>
-              </div>
-              <!-- /.modalBtnSection -->
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.modalContent -->
-        </div>
-        <!-- /.inner -->
+  <section class="modalScene g-modalScene">
+    <div class="modalContent">
+      <div class="col-ttl">
+        <h3 class="g-ttlStyle_03 modalTtl style_01">ACTIVES</h3>
+        <!-- /.g-ttlStyle_03 -->
       </div>
-      <!-- /.content -->
+      <!-- /.col-ttl -->
+      <div class="col">
+        <p class="g-ttlStyle_01 modalSubTtl style_02">
+          <span class="style_02">人生を豊かにする発見を求める</span>
+          <span class="style_02">都市のアクティブな大人たち</span>
+        </p>
+        <!-- /.pageRead -->
+        <div class="g-summaryStyle_01 modalSummary style_01">
+          <p>
+            好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
+            />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
+            />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
+            />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
+            />旅が好き。アートやカルチャーにも関心が高い。<br
+            />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+          </p>
+        </div>
+        <!-- /.g-summaryStyle_01 -->
+        <div class="modalBtnSection">
+          <button type="button" class="g-btnStyle_02 js-sceneModalClose">
+            <span class="labelTx">BACK</span>
+            <!-- /.labelTx -->
+          </button>
+        </div>
+        <!-- /.modalBtnSection -->
+      </div>
+      <!-- /.col -->
     </div>
-    <!-- /.inner -->
+    <!-- /.modalContent -->
   </section>
-  <!-- /.scene-->
+  <!-- /.modalScene-->
 </section>
 <!-- /.mainSection -->
 
@@ -180,6 +171,15 @@ import Img_2Sp from '@images/img_04_sp.jpg';
       }
     }
   }
+  @media screen and (max-height: $breakH + px) {
+    .bgImg {
+      figure {
+        &.style_02 {
+          opacity: 1;
+        }
+      }
+    }
+  }
   ////////////////////
   .content {
     > .inner {
@@ -241,37 +241,14 @@ import Img_2Sp from '@images/img_04_sp.jpg';
     }
   }
   ////////////////////
-  .scene.modalScene {
-    pointer-events: none;
-    height: 0;
-    :global(.is-modal) & {
-      pointer-events: all;
-    }
-    .content {
-      transition: 0.3s;
-      backdrop-filter: blur(10px) saturate(100%);
-      clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
-      transition: clip-path 0.4s $ease-out-quad;
-      align-items: center;
-      > .inner {
-        opacity: 1;
-      }
-      :global(.is-modal) & {
-        opacity: 1;
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-      }
-    }
-  }
-  @media screen and (min-height: $breakH + 1px) {
-    .modalScene {
-      height: 100vh;
-    }
-  }
-  ////////////////////
   .modalContent {
     display: flex;
     flex-direction: column;
-    transform: translateY(155px);
+    align-items: center;
+    text-align: center;
+    @media screen and (min-height: $breakH + 1px) {
+      transform: translateY(155px);
+    }
   }
   ////////////////////
   .modalTtl {
