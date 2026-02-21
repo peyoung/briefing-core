@@ -98,11 +98,11 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   @use 'src/styles/global' as *;
   @use 'src/styles/utils' as *;
   ////////////////////
-  @media screen and (min-height: $breakH + 1px) {
-    .scene {
-      height: 200vh;
-    }
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene {
+    height: 200vh;
   }
+  // }
   ////////////////////
   // .bgImg {
   //   figure {
@@ -110,15 +110,6 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   //       opacity: 0;
   //       :global(.is-scene_02) &,
   //       :global(.is-modal) & {
-  //         opacity: 1;
-  //       }
-  //     }
-  //   }
-  // }
-  // @media screen and (max-height: $breakH + px) {
-  //   .bgImg {
-  //     figure {
-  //       &.style_02 {
   //         opacity: 1;
   //       }
   //     }
@@ -139,9 +130,9 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     :global(.is-scene_02) & {
       margin-bottom: math.div(240, 20) + em;
     }
-    @media screen and (max-height: $breakH + px) {
-      margin-bottom: math.div(240, 20) + em;
-    }
+    // @media screen and (max-height: $breakH + px) {
+    //   margin-bottom: math.div(240, 20) + em;
+    // }
   }
   ////////////////////
   .pageTtl {
@@ -155,22 +146,22 @@ import Img_1Sp from '@images/img_04_sp.jpg';
       top: math.div(126, $design-h) * 100vh;
       @include fz_vwpcmin(70);
     }
-    @media screen and (max-height: $breakH + px) {
-      top: math.div(126, $design-h) * 100vh;
-      @include fz_vwpcmin(70);
-    }
+    // @media screen and (max-height: $breakH + px) {
+    //   top: math.div(126, $design-h) * 100vh;
+    //   @include fz_vwpcmin(70);
+    // }
   }
   ////////////////////
-  @media screen and (min-height: $breakH + 1px) {
-    .scene.style_02 {
-      .content {
-        opacity: 0;
-        :global(.is-scene_02) & {
-          opacity: 1;
-        }
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene.style_02 {
+    .content {
+      opacity: 0;
+      :global(.is-scene_02) & {
+        opacity: 1;
       }
     }
   }
+  // }
   ////////////////////
   .summary {
     margin-bottom: math.div(113, 14) + em;

@@ -110,20 +110,17 @@ import ModalImg_3 from '@images/fact-img_03.jpg';
   @use 'src/styles/global' as *;
   @use 'src/styles/utils' as *;
   ////////////////////
-  @media screen and (min-height: $breakH + 1px) {
-    .scene {
-      min-height: 200vh;
-    }
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene {
+    min-height: 200vh;
   }
+  // }
   ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
   .scene.modalScene {
-    height: 0;
+    height: 100vh;
   }
-  @media screen and (min-height: $breakH + 1px) {
-    .scene.modalScene {
-      height: 100vh;
-    }
-  }
+  // }
   ////////////////////
   .content {
     align-items: center;
