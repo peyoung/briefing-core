@@ -1,5 +1,6 @@
 ---
-
+import { Image } from 'astro:assets';
+import Arrow from '@images/icon-arrow_01.svg';
 ---
 
 <div class="g-modalScroller" data-lenis-prevent-wheel>
@@ -13,24 +14,39 @@
         <!-- /.col-ttl -->
         <div class="col">
           <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
-            <span class="style_02">人生を豊かにする発見を求める</span>
-            <span class="style_02">都市のアクティブな大人たち</span>
+            <span class="style_02">ハマった者しか</span>
+            <span class="style_02">辿り着けない視点</span>
           </p>
           <!-- /.pageRead -->
           <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
             <p>
-              好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
-              />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
-              />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
-              />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
-              />旅が好き。アートやカルチャーにも関心が高い。<br
-              />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+              「こんな商品が欲しかった！」その感動はどうやって生まれるのか？<br
+              />世の中が欲しいものをつくっても、そこに驚きはない。<br
+              />誰よりも深く、その分野にどっぷりハマる。<br
+              />そうすれば、誰も辿り着けないインサイトが見えてくる。<br
+              />いうなれば“オタク”ならではの視点。BRIEFINGの商品はそこから生まれなければならない。
             </p>
           </div>
           <!-- /.g-summaryStyle_01 -->
-          <div class="modalBtnSection g-modalBtnSection">
-            <button type="button" class="g-btnStyle_02 js-g-ModalClose">
-              <span class="labelTx">BACK</span>
+          <div class="modalBtnSection g-modalBtnSection style_01">
+            <button type="button" class="g-btnStyle_03 js-factMove" data-target="factPlayful">
+              <span class="labelIcon">
+                <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+              </span>
+              <!-- /.labelIcon -->
+              <span class="labelTx">PLAYFUL</span>
+              <!-- /.labelTx -->
+            </button>
+            <button
+              type="button"
+              class="g-btnStyle_03 style_01 js-factMove"
+              data-target="factCrafted"
+            >
+              <span class="labelIcon">
+                <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+              </span>
+              <!-- /.labelIcon -->
+              <span class="labelTx">CRAFTED</span>
               <!-- /.labelTx -->
             </button>
           </div>
@@ -47,24 +63,39 @@
         <!-- /.col-ttl -->
         <div class="col">
           <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
-            <span class="style_02">人生を豊かにする発見を求める</span>
-            <span class="style_02">都市のアクティブな大人たち</span>
+            <span class="style_02">行動を引き出す</span>
+            <span class="style_02">機能美とデザイン</span>
           </p>
           <!-- /.pageRead -->
           <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
             <p>
-              好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
-              />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
-              />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
-              />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
-              />旅が好き。アートやカルチャーにも関心が高い。<br
-              />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+              人間工学的に“正しい”だけで、心は動かない。BRIEFINGが掲げるのは「ACTIVE USE DESIGN」。<br
+              />使いやすさを超え、人の行動を引き出すためのデザイン。<br
+              />無骨で堅牢な素材を、日本ならではの丁寧なクラフトで仕立てることで、<br
+              />持つたびに気分が高まり、身体が自然と動き出す。すべての時間をアクティブに変えていく。<br
+              />その機能美と心高まる使い心地こそが、BRIEFINGのクラフトだ。
             </p>
           </div>
           <!-- /.g-summaryStyle_01 -->
-          <div class="modalBtnSection g-modalBtnSection">
-            <button type="button" class="g-btnStyle_02 js-g-ModalClose">
-              <span class="labelTx">BACK</span>
+          <div class="modalBtnSection g-modalBtnSection style_01">
+            <button type="button" class="g-btnStyle_03 js-factMove" data-target="factGeeky">
+              <span class="labelIcon">
+                <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+              </span>
+              <!-- /.labelIcon -->
+              <span class="labelTx">GEEKY</span>
+              <!-- /.labelTx -->
+            </button>
+            <button
+              type="button"
+              class="g-btnStyle_03 style_01 js-factMove"
+              data-target="factPlayful"
+            >
+              <span class="labelIcon">
+                <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+              </span>
+              <!-- /.labelIcon -->
+              <span class="labelTx">PLAYFUL</span>
               <!-- /.labelTx -->
             </button>
           </div>
@@ -81,25 +112,39 @@
         <!-- /.col-ttl -->
         <div class="col">
           <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
-            <span class="style_02">人生を豊かにする発見を求める</span>
-            <span class="style_02">都市のアクティブな大人たち</span>
+            <span class="style_02">ACTIVESを駆り立てる</span>
+            <span class="style_02">遊び心</span>
           </p>
           <!-- /.pageRead -->
           <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
             <p>
-              好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
-              />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
-              />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
-              />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
-              />旅が好き。アートやカルチャーにも関心が高い。<br
-              />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+              正しいだけのプロダクトに心は踊らない。<br
+              />つくり手が宿した企み、問い、余韻。人はその遊び心を敏感に感じとる。<br
+              />“日本人にしかつくれないMADE IN
+              USA”。ロンハーマンがそう評したミルスペックのトートバッグに始まり、<br
+              />街とゴルフ場どちらでも着られるシンプルなウェア。移動中もアクティブな気分を高めるソフトキャリー。<br
+              />すべてにPLAYFULは息づき、受け継がれている。
             </p>
           </div>
           <!-- /.g-summaryStyle_01 -->
-          <div class="modalBtnSection g-modalBtnSection">
-            <button type="button" class="g-btnStyle_02 js-g-ModalClose">
-              <span class="labelTx">BACK</span>
+          <div class="modalBtnSection g-modalBtnSection style_01">
+            <button type="button" class="g-btnStyle_03 js-factMove" data-target="factCrafted">
+              <span class="labelIcon">
+                <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+              </span>
+              <!-- /.labelIcon -->
+              <span class="labelTx">CRAFTED</span>
               <!-- /.labelTx -->
+            </button>
+            <button
+              type="button"
+              class="g-btnStyle_03 style_01 js-factMove"
+              data-target="factGeeky"
+            >
+              <span class="labelIcon">
+                <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+              </span>
+              <span class="labelTx">GEEKY</span>
             </button>
           </div>
           <!-- /.modalBtnSection -->

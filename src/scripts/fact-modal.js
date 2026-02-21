@@ -45,6 +45,31 @@ document.addEventListener('DOMContentLoaded', function () {
     closeButtons.forEach((btn) => btn.addEventListener('click', closeModal));
   }
 
+  // .js-factMove ボタンでモーダル内を移動
+  const moveButtons = document.querySelectorAll('.js-factMove');
+  if (moveButtons.length) {
+    moveButtons.forEach((btn) => {
+      btn.addEventListener('click', function (e) {
+        if (e && typeof e.preventDefault === 'function') e.preventDefault();
+        const targetId = btn.getAttribute('data-target') || btn.dataset.target || null;
+        if (!targetId) return;
+
+        // 即時で対象の .modalContent をアクティブにする
+        document
+          .querySelectorAll('.modalContent.is-active')
+          .forEach((el) => el.classList.remove('is-active'));
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.classList.add('is-active');
+          lastActiveId = targetId;
+        }
+
+        // スクロールしてから監視を再開（監視は開始しないでスクロール）
+        initiateScrollThenObserve(targetId);
+      });
+    });
+  }
+
   // ---- inview 判定 (GSAP 不使用) ----
   let inviewObserver = null;
   let visibleMap = new Map(); // targetId -> intersectionRatio
@@ -118,6 +143,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // スクロールしてから監視を開始するユーティリティ
   function initiateScrollThenObserve(targetId) {
+    // 既存の observer があれば一旦停止しておく（スクロール中の干渉を防ぐ）
+    if (inviewObserver) {
+      inviewObserver.disconnect();
+      inviewObserver = null;
+    }
     const scroller = document.querySelector('.g-modalScroller');
     if (!scroller) {
       startInviewObserver();

@@ -71,6 +71,14 @@
   &.style_01 {
     font-size: 1.4rem;
   }
+  &.style_02 {
+    p {
+      margin-bottom: math.div(22, 14) + em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
@@ -140,6 +148,50 @@
         background-color: $key-color1;
         animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
       }
+    }
+  }
+}
+//////////////////////////
+.g-btnStyle_03 {
+  @include btnsetting;
+  display: flex;
+  color: $white;
+  line-height: 1em;
+  letter-spacing: math.div(-0.32, 16) + em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: math.div(4, 12) + em;
+  span {
+    font-weight: 700;
+  }
+  .labelIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: math.div(5, 12) + em;
+    height: math.div(7, 12) + em;
+    transform: translateY(math.div(-1, 12) + em);
+    img {
+      @include imgset;
+      width: math.div(5, 12) + em;
+    }
+  }
+  &.style_01 {
+    flex-direction: row-reverse;
+    .labelIcon {
+      scale: -1 1;
+    }
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      transform: translateX(-0.2em);
+    }
+    &.style_01:hover {
+      transform: translateX(0.2em);
     }
   }
 }

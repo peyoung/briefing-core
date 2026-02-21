@@ -1,0 +1,302 @@
+---
+import Picture from '@components/util/ImgComponent_01.astro';
+// import { Image } from 'astro:assets';
+import Img_1 from '@images/img_06.jpg';
+import Img_1Sp from '@images/img_06_sp.jpg';
+---
+
+<section class="mainSection g-mainSection js-toggleClass" id="redLine">
+  <div class="scene">
+    <div class="inner">
+      <div class="content js-tabContent">
+        <div class="columnStyle">
+          <div class="col-img">
+            <div class="mapSection">
+              <div class="bgImg">
+                <figure>
+                  <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+                </figure>
+              </div>
+              <!-- /.bgImg -->
+              <div class="mapContent js-tabNav">
+                <button type="button" class="mapBtn style_01 is-active" data-target="redLineGeeky">
+                  <span class="labelIcon"></span>
+                  <span class="labelTx">GEEKY</span>
+                </button>
+                <button type="button" class="mapBtn style_02" data-target="redLineCrafted">
+                  <span class="labelTx">CRAFTED</span>
+                  <span class="labelIcon"></span>
+                </button>
+                <button type="button" class="mapBtn style_03" data-target="redLinePlayful">
+                  <span class="labelIcon"></span>
+                  <span class="labelTx">PLAYFUL</span>
+                </button>
+              </div>
+              <!-- /.mapContent -->
+            </div>
+            <!-- /.mapSection -->
+          </div>
+          <!-- /.col-img -->
+          <div class="col-content">
+            <div class="bgImg">
+              <figure>
+                <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+              </figure>
+            </div>
+            <!-- /.bgImg -->
+            <div class="tabWrapper">
+              <section class="item is-active" id="redLineGeeky">
+                <div class="inner">
+                  <h3 class="itemTtl">GEEKY</h3>
+                  <!-- /.itemTtl -->
+                  <div class="summary g-summaryStyle_01 style_01 style_02">
+                    <p>
+                      日本規格でありながらアメリカの軍用バッグや特殊バッグを製造する軍需工場を選定することでBRIEFINGのミリタリズムを体現している。
+                    </p>
+                    <p>
+                      軍需工場が実際に使用している1050Dバリスティックナイロンやウェッビングテープを使用することで本物のクオリティを日常に落とし込んでいる。
+                    </p>
+                  </div>
+                  <!-- /.summary -->
+                </div>
+                <!-- /.inner -->
+              </section>
+              <!-- /.item -->
+              <section class="item" id="redLineCrafted">
+                <div class="inner">
+                  <h3 class="itemTtl">CRAFTED</h3>
+                  <!-- /.itemTtl -->
+                  <div class="summary g-summaryStyle_01 style_01 style_02">
+                    <p>
+                      金属製のパーツには光の反射を防ぎステルス性を高める為のマット仕上げを採用。ファスナーには世界最良と言われるYKK製を採用、引手には移動時のノイズを抑えて開閉のしやすいナイロンコードを採用。
+                    </p>
+                    <p>
+                      プラスチックパーツには信頼性の高いDURAFLEX
+                      USA製を採用することで機能性と耐久性を両立させている。
+                    </p>
+                  </div>
+                  <!-- /.summary -->
+                </div>
+                <!-- /.inner -->
+              </section>
+              <!-- /.item -->
+              <section class="item" id="redLinePlayful">
+                <div class="inner">
+                  <h3 class="itemTtl">PLAYFUL</h3>
+                  <!-- /.itemTtl -->
+                  <div class="summary g-summaryStyle_01 style_01 style_02">
+                    <p>
+                      メインのウェッビングテープにレッドライン（ミル・スペック#27265）を使用することでミリタリズムをアイコンへと昇華させている。
+                    </p>
+                    <p>
+                      ITW製のGRIMLOCをストラップ（カラビナ）代わりに使用することで遊び心、実用性、ミリタリズムを内包する。
+                    </p>
+                  </div>
+                  <!-- /.summary -->
+                </div>
+                <!-- /.inner -->
+              </section>
+              <!-- /.item -->
+            </div>
+            <!-- /.tabWrapper -->
+          </div>
+          <!-- /.col-content -->
+        </div>
+        <!-- /.columnStyle -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+</section>
+<!-- /.mainSection -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene {
+    min-height: 200vh;
+  }
+  // }
+  ////////////////////
+  .content {
+    align-items: center;
+  }
+  ////////////////////
+  .columnStyle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    > * {
+      width: 50%;
+    }
+    .bgImg {
+      height: 100%;
+      figure {
+        height: 100%;
+      }
+      img {
+        @include imgset;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  ////////////////////
+  .mapSection {
+    height: 100%;
+    position: relative;
+    // overflow: clip;
+  }
+  ////////////////////
+  .mapContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include vwpxpc2(width, 640);
+    min-height: 100vh;
+    // background-color: #ff000063;
+    aspect-ratio: 640/752;
+  }
+  ////////////////////
+  .mapBtn {
+    @include btnsetting;
+    pointer-events: all;
+    color: $white;
+    line-height: math.div(18, 18) + em;
+    letter-spacing: math.div(-0.36, 18) + em;
+    text-transform: uppercase;
+    display: flex;
+    gap: math.div(5, 18) + em;
+    align-items: center;
+    opacity: 0.4;
+    transition: 0.3s;
+    position: absolute;
+    // @include fz_vwpc(18);
+    font-size: 1.8rem;
+    .labelIcon {
+      display: block;
+      width: math.div(8, 18) + em;
+      height: math.div(8, 18) + em;
+      border-radius: 100%;
+      background-color: $white;
+    }
+    .labelTx {
+      font-weight: 700;
+      top: math.div(3, 18) + em;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s;
+      padding-top: 0.1em;
+      &::before {
+        content: '';
+        height: 1px;
+        width: 100%;
+        background-color: $white;
+        bottom: math.div(2, 18) + em;
+        position: absolute;
+        transform: translateX(0);
+      }
+    }
+    &.is-active {
+      opacity: 1;
+      cursor: default;
+      pointer-events: none;
+      color: $key-color1;
+      .labelIcon {
+        background-color: $key-color1;
+      }
+      .labelTx {
+        &::before {
+          background-color: $key-color1;
+        }
+      }
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 1;
+        .labelTx {
+          transform: translateX(2px);
+          &::before {
+            animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
+          }
+        }
+      }
+      &.style_02:hover {
+        .labelTx {
+          transform: translateX(-2px);
+        }
+      }
+    }
+    &.style_01 {
+      left: calc(50% - math.div(-30, $design-num) * 100vw);
+      top: math.div(311, $design-h) * 100%;
+    }
+    &.style_02 {
+      left: calc(50% - math.div(5, $design-num) * 100vw);
+      top: math.div(416, $design-h) * 100%;
+    }
+    &.style_03 {
+      left: calc(50% - math.div(-80, $design-num) * 100vw);
+      top: math.div(470, $design-h) * 100%;
+    }
+  }
+  ////////////////////
+  .col-content {
+    position: relative;
+    overflow: clip;
+    .bgImg {
+      filter: blur(30px);
+      scale: 1.1;
+    }
+  }
+  ////////////////////
+  .item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    text-align: left;
+    padding-top: math.div(450, $design-h) * 100vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    &.is-active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    @media screen and (min-width: $break-point-design) {
+      padding-top: math.div(351, $design-h) * 100vh;
+    }
+    > .inner {
+      width: math.div(420, 640) * 100%;
+    }
+  }
+  ////////////////////
+  .itemTtl {
+    @include fz_vwpc(64);
+    font-style: normal;
+    font-weight: 700;
+    line-height: math.div(64, 64) + em;
+    letter-spacing: math.div(-1.28, 64) + em;
+    text-transform: uppercase;
+    margin-bottom: math.div(20, 64) + em;
+  }
+  ////////////////////
+  .summary {
+    text-align: left;
+    padding-right: math.div(40, 640) * 100%;
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

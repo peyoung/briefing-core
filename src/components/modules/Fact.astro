@@ -158,62 +158,6 @@ import Img_1Sp from '@images/img_05_sp.jpg';
     }
   }
   ////////////////////
-  .factModalContent {
-    pointer-events: none;
-    display: none;
-    .factScroller {
-      position: relative;
-      padding-top: 200vh;
-      padding-bottom: 100vh;
-    }
-    &.is-active {
-      pointer-events: all;
-    }
-    .scrollItem {
-      height: 100vh;
-      // background-color: #ff0000;
-      // &:nth-child(2) {
-      //   background-color: #ffff00;
-      // }
-    }
-  }
-  ////////////////////
-  .modalContent {
-    position: relative;
-    // opacity: 0;
-    // :global(.is-active) & {
-    //   opacity: 1;
-    // }
-  }
-  ////////////////////
-  .factSlider {
-    text-align: center;
-    pointer-events: none;
-    user-select: none;
-    > .inner {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    img {
-      @include imgset;
-      width: auto;
-      height: math.div(287, $design-h) * 100vh;
-      aspect-ratio: 220 / 287;
-      filter: grayscale(1);
-      transition: 0.3s;
-    }
-    .item {
-      &.is-active {
-        img {
-          height: math.div(436, $design-h) * 100vh;
-          filter: grayscale(0);
-        }
-      }
-    }
-  }
-  ////////////////////
   @media screen and (min-width: $break-point-middle) {
   }
 </style>

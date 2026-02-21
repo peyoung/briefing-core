@@ -102,8 +102,10 @@
     position: absolute;
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
     &.is-active {
       opacity: 1;
+      pointer-events: all;
     }
   }
 }
@@ -125,6 +127,11 @@
   margin-top: math.div(30, 16) + em;
   // @include fz_vwpcmin(16);
   font-size: 1.6rem;
+  &.style_01 {
+    margin-top: math.div(63, 12) + em;
+    font-size: 1.2rem;
+    gap: math.div(83, 12) + em;
+  }
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////

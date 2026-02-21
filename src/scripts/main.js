@@ -262,11 +262,10 @@ function setAcc() {
 //タブ
 function setTab() {
   $('.js-tabNav button').on('click', function () {
-    $(this).parents('.js-tabNav').find('button').removeClass('is-current');
-    $(this).addClass('is-current');
-    const target = '#' + $(this).data('tab');
-    $('.js-tabContent').find('.tabItem').removeClass('is-current');
-    $('.js-tabContent').find('.tabItem').hide();
-    $(target).fadeIn(300);
+    $(this).parents('.js-tabNav').find('button').removeClass('is-active');
+    $(this).addClass('is-active');
+    const target = '#' + $(this).data('target');
+    $('.js-tabContent').find('.item').removeClass('is-active');
+    $(target).addClass('is-active');
   });
 }
