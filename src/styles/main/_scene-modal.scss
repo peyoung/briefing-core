@@ -3,6 +3,64 @@
 @use 'src/styles/utils' as *;
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
+.g-modalScroller {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: auto;
+  overscroll-behavior-y: contain;
+  /*スクロールバー非表示（IE・Edge）*/
+  -ms-overflow-style: none;
+  /*スクロールバー非表示（Firefox）*/
+  scrollbar-width: none;
+  pointer-events: none;
+  backdrop-filter: blur(10px) saturate(100%);
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  transition: clip-path 0.4s $ease-out-quad;
+  .g-modalOpen & {
+    pointer-events: all;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .mainContent {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+  }
+  .handler {
+    // > * {
+    //   background-color: #333;
+    //   &:nth-child(2n) {
+    //     background-color: #666;
+    //   }
+    // }
+    .item {
+      height: 200dvh;
+      // &:nth-child(3) {
+      //   background-color: #ff0000;
+      // }
+    }
+    .closeItem {
+      height: 100dvh;
+      // background-color: #ff0000;
+    }
+  }
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.g-modalWrapper {
+  position: relative;
+  overflow: clip;
+  width: 100%;
+  min-height: calc(100dvh + 1px);
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 .g-modalScene {
   pointer-events: none;
   transition: 0.3s;
@@ -40,6 +98,14 @@
   // @media screen and (min-height: $breakH + 1px) {
   transform: translateY(155px);
   // }
+  &.style_01 {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s;
+    &.is-active {
+      opacity: 1;
+    }
+  }
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
