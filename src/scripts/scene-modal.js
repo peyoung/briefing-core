@@ -11,7 +11,6 @@ document.addEventListener('click', (e) => {
 
   // 開いた場合は現在位置を記録してスクロール監視を追加
   if (opened) {
-    if (btn.classList.contains('js-setSlider')) return;
     const startY = window.scrollY;
     const handler = () => {
       if (Math.abs(window.scrollY - startY) >= 600) {

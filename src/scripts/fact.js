@@ -1,5 +1,5 @@
 // fact.js
-// Minimal implementation: click .js-setSlider → open .factModalContent and scroll target
+// Minimal implementation: click .js-setFactModal → open .factModalContent and scroll target
 // Keep scroll-sync: when .scrollItem hits top, set corresponding .factSlider .item is-active
 // Center active item and handle resize. Cleanup when modal loses is-active via MutationObserver.
 
@@ -22,7 +22,7 @@ const state = {
 function getIndexOfTrigger(trigger) {
   const section = trigger.closest('#fact');
   if (!section) return -1;
-  const buttons = section.querySelectorAll('.js-setSlider');
+  const buttons = section.querySelectorAll('.js-setFactModal');
   return Array.from(buttons).indexOf(trigger);
 }
 
@@ -345,7 +345,7 @@ function teardown() {
 // Click handler: open modal and scroll to matching scrollItem
 document.addEventListener('click', (e) => {
   (async () => {
-    const trigger = e.target instanceof Element ? e.target.closest('.js-setSlider') : null;
+    const trigger = e.target instanceof Element ? e.target.closest('.js-setFactModal') : null;
     if (!trigger) return;
     const section = trigger.closest('#fact');
     if (!section) return;

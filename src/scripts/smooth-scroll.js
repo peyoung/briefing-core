@@ -1,7 +1,12 @@
 // スムーススクロール
 // headerの高さを取得し、headeHeightに代入
 // const headerHeight = document.querySelector('header .col-logo').offsetHeight;
-const headerHeight = 0;
+let headerHeight = -window.innerHeight; // 100vh を JS 側で扱う
+
+// ウィンドウサイズが変わったら headerHeight を更新
+window.addEventListener('resize', function () {
+  headerHeight = window.innerHeight;
+});
 
 //querySelectorAllメソッドを使用してページ内のhref属性が#で始まるものを選択
 //forEachメソッドを使って、各アンカータグにクリックされた時の処理

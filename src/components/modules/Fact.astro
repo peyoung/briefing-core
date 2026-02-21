@@ -23,7 +23,7 @@ import ModalImg_3 from '@images/fact-img_03.jpg';
           <div class="factNav">
             <ul>
               <li>
-                <button type="button" class="factBtn style_01 js-setSlider">
+                <button type="button" class="factBtn style_01 js-sceneModal">
                   <span class="labelTx">GEEKY</span>
                   <span class="labelIcon">
                     <span></span>
@@ -32,7 +32,7 @@ import ModalImg_3 from '@images/fact-img_03.jpg';
                 </button>
               </li>
               <li>
-                <button type="button" class="factBtn style_02 js-setSlider">
+                <button type="button" class="factBtn style_02 js-setFactModal">
                   <span class="labelTx">CRAFTED</span>
                   <span class="labelIcon">
                     <span></span>
@@ -41,7 +41,7 @@ import ModalImg_3 from '@images/fact-img_03.jpg';
                 </button>
               </li>
               <li>
-                <button type="button" class="factBtn style_03 js-setSlider">
+                <button type="button" class="factBtn style_03 js-setFactModal">
                   <span class="labelTx">PLAYFUL</span>
                   <span class="labelIcon">
                     <span></span>
@@ -53,8 +53,8 @@ import ModalImg_3 from '@images/fact-img_03.jpg';
           </div>
           <!-- /.factNav -->
           <h2 class="pageRead g-ttlStyle_01">
-            <span class="style_02">人生を豊かにする発見を求める</span>
-            <span class="style_02">都市のアクティブな大人たち</span>
+            <span class="style_02">すべてのプロダクトは、</span>
+            <span class="style_02">この約束のもと生み出され、ACTIVESを魅了する。</span>
           </h2>
           <!-- /.pageRead -->
         </div>
@@ -63,81 +63,43 @@ import ModalImg_3 from '@images/fact-img_03.jpg';
       <!-- /.content -->
     </div>
     <!-- /.inner -->
-    <div class="factModalContent">
-      <div class="factScroller">
-        <div class="scrollItem"></div>
-        <div class="scrollItem"></div>
-        <div class="scrollItem"></div>
-      </div>
-      <!-- /.factScroller -->
-      <div class="modalScene g-modalScene">
-        <div class="modalContent">
-          <div class="inner">
-            <div class="factSlider">
-              <div class="inner">
-                <section class="item">
-                  <div class="eyecatch">
-                    <figure>
-                      <Image
-                        src={ModalImg_1}
-                        alt=""
-                        width={1000}
-                        densities={[1, 2, 3]}
-                        loading="eager"
-                      />
-                    </figure>
-                  </div>
-                  <!-- /.eyecatch -->
-                  <div class="childContent">aaa</div>
-                  <!-- /.childContent -->
-                </section>
-                <!-- /.item -->
-                <section class="item">
-                  <div class="eyecatch">
-                    <figure>
-                      <Image
-                        src={ModalImg_2}
-                        alt=""
-                        width={1000}
-                        densities={[1, 2, 3]}
-                        loading="eager"
-                      />
-                    </figure>
-                  </div>
-                  <!-- /.eyecatch -->
-                  <div class="childContent">1aaa</div>
-                  <!-- /.childContent -->
-                </section>
-                <!-- /.item -->
-                <section class="item">
-                  <div class="eyecatch">
-                    <figure>
-                      <Image
-                        src={ModalImg_3}
-                        alt=""
-                        width={1000}
-                        densities={[1, 2, 3]}
-                        loading="eager"
-                      />
-                    </figure>
-                  </div>
-                  <!-- /.eyecatch -->
-                  <div class="childContent">12aaa</div>
-                  <!-- /.childContent -->
-                </section>
-                <!-- /.item -->
-              </div>
-              <!-- /.inner -->
-            </div>
-            <!-- /.factSlider -->
-          </div>
-          <!-- /.inner -->
+    <section class="modalScene g-modalScene">
+      <div class="modalContent g-modalContent">
+        <div class="col-ttl">
+          <h3 class="g-ttlStyle_03 modalTtl g-modalTtl style_01">ACTIVES</h3>
+          <!-- /.g-ttlStyle_03 -->
         </div>
-        <!-- /.modalContent -->
+        <!-- /.col-ttl -->
+        <div class="col">
+          <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
+            <span class="style_02">人生を豊かにする発見を求める</span>
+            <span class="style_02">都市のアクティブな大人たち</span>
+          </p>
+          <!-- /.pageRead -->
+          <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
+            <p>
+              好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
+              />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
+              />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
+              />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
+              />旅が好き。アートやカルチャーにも関心が高い。<br
+              />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+            </p>
+          </div>
+          <!-- /.g-summaryStyle_01 -->
+          <div class="modalBtnSection g-modalBtnSection">
+            <button type="button" class="g-btnStyle_02 js-sceneModalClose">
+              <span class="labelTx">BACK</span>
+              <!-- /.labelTx -->
+            </button>
+          </div>
+          <!-- /.modalBtnSection -->
+        </div>
+        <!-- /.col -->
       </div>
-      <!-- /.modalScene -->
-    </div>
-    <!-- /.factModalContent -->
+      <!-- /.modalContent -->
+    </section>
+    <!-- /.modalScene-->
   </div>
   <!-- /.scene -->
 </section>

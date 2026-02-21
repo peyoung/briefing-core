@@ -35,9 +35,9 @@ function setSlider_01() {
   });
 }
 
-// 複数ある `.js-setSlider` のいずれかがクリックされたら `setSlider_01` を起動
+// 複数ある `.js-setFactModal` のいずれかがクリックされたら `setSlider_01` を起動
 document.addEventListener('click', (e) => {
-  const trigger = e.target instanceof Element ? e.target.closest('.js-setSlider') : null;
+  const trigger = e.target instanceof Element ? e.target.closest('.js-setFactModal') : null;
   if (!trigger) return;
   if (!swiper01) {
     setSlider_01();

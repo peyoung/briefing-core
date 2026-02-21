@@ -170,7 +170,7 @@
     transition: 0.3s;
     background-color: $color;
   }
-  @media screen and (min-width: $break-point-middle) {
+  @media (any-hover: hover) {
     &:hover::before {
       width: 100%;
     }
@@ -188,7 +188,7 @@
     position: absolute;
     transform: translateX(0);
   }
-  @media screen and (min-width: $break-point-middle) {
+  @media (any-hover: hover) {
     &:hover::before {
       animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
     }

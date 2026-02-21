@@ -1,0 +1,66 @@
+@use 'sass:math';
+@use 'src/styles/global' as *;
+@use 'src/styles/utils' as *;
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+.g-modalScene {
+  pointer-events: none;
+  transition: 0.3s;
+  backdrop-filter: blur(10px) saturate(100%);
+  clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  transition: clip-path 0.4s $ease-out-quad;
+  min-height: $breakH + px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (min-height: $breakH + 1px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .is-modal & {
+    pointer-events: all;
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+@media screen and (min-height: $breakH + 1px) {
+  .g-modalScene {
+    height: 100vh;
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  @media screen and (min-height: $breakH + 1px) {
+    transform: translateY(155px);
+  }
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-modalTtl {
+  margin-bottom: math.div(30, 70) + em;
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-modalSubTtl {
+  margin-bottom: math.div(15, 20) + em;
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+.g-modalBtnSection {
+  display: flex;
+  justify-content: center;
+  margin-top: math.div(30, 16) + em;
+  // @include fz_vwpcmin(16);
+  font-size: 1.6rem;
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+@media screen and (min-width: $break-point-middle) {
+}

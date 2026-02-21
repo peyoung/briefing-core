@@ -1,6 +1,4 @@
 ---
-import Nav from '@components/navigation/NavGlobal.astro';
-
 import { Image } from 'astro:assets';
 import Logo from '@images/logo-briefing_01.svg';
 ---
@@ -14,23 +12,33 @@ import Logo from '@images/logo-briefing_01.svg';
     </div>
     <!-- /.col-logo -->
     <div class="col-nav">
-      <nav>
-        <ul class="globalNav">
-          <Nav />
+      <div class="pickMenu">
+        <ul>
+          <li>
+            <a href="#brandCore">
+              <span class="labelTx">BRAND CORE</span>
+              <!-- /.labelTx -->
+            </a>
+          </li>
+          <li>
+            <a href="#g-wrapper">
+              <span class="labelTx">TOP</span>
+              <!-- /.labelTx -->
+            </a>
+          </li>
         </ul>
-        <!-- /.globalNav -->
-      </nav>
+      </div>
+      <!-- /.pickMenu -->
+      <div class="menuBtn">
+        <button type="button" id="menuBtn">
+          <span class="labelTx">MENU</span>
+        </button>
+      </div>
+      <!-- /.menuBtn -->
     </div>
     <!-- /.col-nav -->
   </div>
   <!-- /.inner -->
-  <div class="menuBtn">
-    <button type="button" class="g-btnStyle_02" id="menuBtn">
-      <span class="labelTx is-normal">MENU</span>
-      <span class="labelTx is-open">CLOSE</span>
-    </button>
-  </div>
-  <!-- /.menuBtn -->
 </header>
 
 <style lang="scss">
@@ -78,58 +86,96 @@ import Logo from '@images/logo-briefing_01.svg';
     }
   }
   ////////////////////
-  .menuBtn {
-    position: absolute;
-    top: 26px;
-    @include fz_vwpcmin(14);
-    @include vwpxpc(right, 50);
-    span {
-      display: block;
-    }
-    .is-normal {
-      :global(.menuOpen) & {
-        display: none;
-      }
-    }
-    .is-open {
-      display: none;
-      :global(.menuOpen) & {
-        display: block;
-      }
-    }
-  }
-  ////////////////////
-  @media screen and (min-width: $break-point-middle) {
-  }
-</style>
-<style lang="scss" is:global>
-  @use 'sass:math';
-  @use 'src/styles/global' as *;
-  @use 'src/styles/utils' as *;
-  ////////////////////
-  .globalNav {
+  .col-nav {
     display: flex;
-    // font-size: 1.2rem;
+    gap: math.div(139, 12) + em;
     line-height: normal;
     letter-spacing: math.div(-0.24, 12) + em;
     text-transform: uppercase;
-    gap: math.div(49, 12) + em;
-    counter-reset: number 0;
     @include fz_vwpcmin(12);
     span {
       font-weight: 700;
     }
-    .num {
-      counter-increment: number 1;
-      &::before {
-        content: '0' counter(number);
-      }
-    }
-    a {
+    a,
+    button {
+      color: $white;
       display: flex;
       gap: 0.5em;
-      opacity: 0.4;
+      span {
+        display: block;
+      }
+      @media (any-hover: hover) {
+        &:hover {
+          overflow: 0.9;
+          transform: translateX(0.2em);
+        }
+      }
     }
+  }
+  ////////////////////
+  .pickMenu {
+    ul {
+      display: flex;
+      gap: math.div(49, 12) + em;
+    }
+    a {
+      position: relative;
+      &::before {
+        content: '';
+        height: 1px;
+        width: 0%;
+        left: 0;
+        bottom: 0.2em;
+        position: absolute;
+        transition: 0.3s;
+        background-color: $white;
+      }
+      @media (any-hover: hover) {
+        &:hover {
+          &::before {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  ////////////////////
+  .menuBtn {
+    button {
+      @include btnsetting;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s;
+      &::before {
+        content: '';
+        height: 1px;
+        width: 100%;
+        background-color: $white;
+        bottom: 0.2em;
+        position: absolute;
+        transform: translateX(0);
+        transition: 0.3s;
+      }
+      @media (any-hover: hover) {
+        &:hover {
+          &::before {
+            background-color: $key-color1;
+            animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
+          }
+        }
+      }
+    }
+    // .is-normal {
+    //   :global(.menuOpen) & {
+    //     display: none;
+    //   }
+    // }
+    // .is-open {
+    //   display: none;
+    //   :global(.menuOpen) & {
+    //     display: block;
+    //   }
+    // }
   }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {

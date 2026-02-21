@@ -7,10 +7,10 @@ import Nav from '@components/navigation/NavGlobal.astro';
 
 <div id="menuPanel" data-lenis-prevent-wheel>
   <div class="menuSection">
+    <div class="closeArea js-menu-close"></div>
+    <!-- /.closeArea -->
     <div class="menuContent">
       <div class="inner">
-        <div class="closeArea js-menu-close"></div>
-        <!-- /.closeArea -->
         <nav>
           <ul class="globalMenu">
             <Nav />
@@ -19,6 +19,13 @@ import Nav from '@components/navigation/NavGlobal.astro';
         </nav>
       </div>
       <!-- /.inner -->
+      <div class="menuCloseBtn">
+        <button type="button" class="js-menu-close">
+          <span class="labelTx">CLOSE</span>
+          <!-- /.labelTx -->
+        </button>
+      </div>
+      <!-- /.menuCloseBtn -->
     </div>
     <!-- /.menuContent -->
   </div>
@@ -64,44 +71,91 @@ import Nav from '@components/navigation/NavGlobal.astro';
     width: 100%;
     position: relative;
     min-height: calc(100dvh + 1px);
-    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
-    transition: clip-path 0.2s $ease-out-quad;
-    backdrop-filter: blur(10px) saturate(100%);
-    background-color: rgba(0, 0, 0, 0.5);
-    .menuStart & {
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    }
+    display: flex;
+    justify-content: flex-end;
   }
   ////////////////////
   .menuContent {
+    position: relative;
+    @include vwpxpc2(width, 330);
+    min-width: 330px;
     min-height: 100dvh;
     display: flex;
     align-items: center;
-    justify-content: center;
-  }
-  ////////////////////
-  .globalMenu {
+    justify-content: flex-end;
+    backdrop-filter: blur(10px) saturate(100%);
+    // background-color: rgba(0, 0, 0, 0.5);
+    clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+    transition: clip-path 0.2s $ease-out-quad;
+    padding: 0 math.div(54, $design-num) * 100%;
     position: relative;
-    text-align: center;
-    line-height: math.div(62, 24) + em;
-    letter-spacing: math.div(-0.48, 24) + em;
+    text-align: right;
+    letter-spacing: math.div(-0.28, 14) + em;
     text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @include fz_vwpcmin(24);
-    a {
+    @include fz_vwpcmin(14);
+    .menuStart & {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    a,
+    button {
+      color: $white;
+      @include btnsetting;
       display: flex;
       pointer-events: all;
+      overflow: hidden;
+      line-height: 1.2em;
+      position: relative;
+      transition: 0.3s;
+      &::before {
+        content: '';
+        height: 1px;
+        width: 0%;
+        left: 0;
+        bottom: 0.2em;
+        position: absolute;
+        transition: 0.3s;
+        background-color: $white;
+      }
+      .labelTx {
+        font-weight: 700;
+      }
       @media (any-hover: hover) {
         &:hover {
           transform: translateX(2px);
-          color: $key-color1;
         }
       }
     }
-    .labelTx {
-      font-weight: 700;
+  }
+  ////////////////////
+  .globalMenu {
+    display: flex;
+    gap: math.div(49, 14) + em;
+    flex-direction: column;
+    align-items: flex-end;
+    a {
+      @media (any-hover: hover) {
+        &:hover {
+          &::before {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  ////////////////////
+  .menuCloseBtn {
+    position: absolute;
+    bottom: math.div(58, $design-h) * 100vh;
+    right: math.div(54, 330) * 100%;
+    button {
+      &::before {
+        width: 100%;
+      }
+      @media (any-hover: hover) {
+        &:hover::before {
+          animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
+        }
+      }
     }
   }
   ////////////////////

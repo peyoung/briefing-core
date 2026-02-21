@@ -31,10 +31,9 @@ function setMainMenu() {
   );
 
   $('#menuPanel a').on('click', function () {
-    // カーテンアニメーション(0.6s)が終わるまで待ってからメニューを閉じる
     setTimeout(() => {
       closeFnc();
-    }, 800);
+    }, 100);
   });
 }
 

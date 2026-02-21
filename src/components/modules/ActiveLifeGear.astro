@@ -1,10 +1,8 @@
 ---
 import Picture from '@components/util/ImgComponent_01.astro';
 // import { Image } from 'astro:assets';
-import Img_1 from '@images/img_03.jpg';
-import Img_2 from '@images/img_04.jpg';
-import Img_1Sp from '@images/img_02_sp.jpg';
-import Img_2Sp from '@images/img_04_sp.jpg';
+import Img_1 from '@images/img_04.jpg';
+import Img_1Sp from '@images/img_04_sp.jpg';
 ---
 
 <section class="mainSection g-mainSection js-toggleClass" id="value">
@@ -13,9 +11,6 @@ import Img_2Sp from '@images/img_04_sp.jpg';
       <div class="bgImg">
         <figure>
           <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
-        </figure>
-        <figure class="style_02">
-          <Picture pc={Img_2} sp={Img_2Sp} alt="" loading="eager" />
         </figure>
       </div>
       <!-- /.bgImg -->
@@ -59,19 +54,19 @@ import Img_2Sp from '@images/img_04_sp.jpg';
   </div>
   <!-- /.scene-->
   <section class="modalScene g-modalScene">
-    <div class="modalContent">
+    <div class="g-modalContent modalContent">
       <div class="col-ttl">
-        <h3 class="g-ttlStyle_03 modalTtl style_01">ACTIVES</h3>
+        <h3 class="g-ttlStyle_03 modalTtl g-modalTtl style_01">ACTIVES</h3>
         <!-- /.g-ttlStyle_03 -->
       </div>
       <!-- /.col-ttl -->
       <div class="col">
-        <p class="g-ttlStyle_01 modalSubTtl style_02">
+        <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
           <span class="style_02">人生を豊かにする発見を求める</span>
           <span class="style_02">都市のアクティブな大人たち</span>
         </p>
         <!-- /.pageRead -->
-        <div class="g-summaryStyle_01 modalSummary style_01">
+        <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
           <p>
             好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
             />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
@@ -82,7 +77,7 @@ import Img_2Sp from '@images/img_04_sp.jpg';
           </p>
         </div>
         <!-- /.g-summaryStyle_01 -->
-        <div class="modalBtnSection">
+        <div class="g-modalBtnSection modalBtnSection">
           <button type="button" class="g-btnStyle_02 js-sceneModalClose">
             <span class="labelTx">BACK</span>
             <!-- /.labelTx -->
@@ -109,26 +104,26 @@ import Img_2Sp from '@images/img_04_sp.jpg';
     }
   }
   ////////////////////
-  .bgImg {
-    figure {
-      &.style_02 {
-        opacity: 0;
-        :global(.is-scene_02) &,
-        :global(.is-modal) & {
-          opacity: 1;
-        }
-      }
-    }
-  }
-  @media screen and (max-height: $breakH + px) {
-    .bgImg {
-      figure {
-        &.style_02 {
-          opacity: 1;
-        }
-      }
-    }
-  }
+  // .bgImg {
+  //   figure {
+  //     &.style_02 {
+  //       opacity: 0;
+  //       :global(.is-scene_02) &,
+  //       :global(.is-modal) & {
+  //         opacity: 1;
+  //       }
+  //     }
+  //   }
+  // }
+  // @media screen and (max-height: $breakH + px) {
+  //   .bgImg {
+  //     figure {
+  //       &.style_02 {
+  //         opacity: 1;
+  //       }
+  //     }
+  //   }
+  // }
   ////////////////////
   .content {
     > .inner {
@@ -189,32 +184,6 @@ import Img_2Sp from '@images/img_04_sp.jpg';
         }
       }
     }
-  }
-  ////////////////////
-  .modalContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    @media screen and (min-height: $breakH + 1px) {
-      transform: translateY(155px);
-    }
-  }
-  ////////////////////
-  .modalTtl {
-    margin-bottom: math.div(30, 70) + em;
-  }
-  ////////////////////
-  .modalSubTtl {
-    margin-bottom: math.div(15, 20) + em;
-  }
-  ////////////////////
-  .modalBtnSection {
-    display: flex;
-    justify-content: center;
-    margin-top: math.div(30, 16) + em;
-    // @include fz_vwpcmin(16);
-    font-size: 1.6rem;
   }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {
