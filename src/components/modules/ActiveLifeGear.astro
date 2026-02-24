@@ -131,6 +131,13 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     }
   }
   ////////////////////
+  .bgImg {
+    :global(.is-scene_02) & {
+      opacity: 1;
+      filter: brightness(0.5);
+    }
+  }
+  ////////////////////
   @media screen and (min-width: $break-point-middle) {
     .pageRead {
       margin-bottom: math.div(200, 20) + em;

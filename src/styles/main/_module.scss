@@ -44,7 +44,10 @@ $speed_1: 1s;
   .bgImg {
     height: 100%;
     opacity: 0;
-    transition: opacity $speed_1;
+    filter: brightness(1);
+    transition:
+      opacity $speed_1,
+      filter $speed_1;
     figure {
       height: 100%;
       transition: opacity $speed_1;

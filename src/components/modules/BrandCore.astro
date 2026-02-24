@@ -76,6 +76,16 @@ import Img_2Sp from '@images/img_03_sp.jpg';
     }
   }
   ////////////////////
+  .bgImg {
+    figure:nth-child(2) {
+      opacity: 0;
+      :global(.is-scene_02) & {
+        opacity: 1;
+        filter: brightness(0.5);
+      }
+    }
+  }
+  ////////////////////
   @media screen and (max-width: $break-point-middle-sp) {
     .pageRead {
       transition: 0.3s;
