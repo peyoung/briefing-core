@@ -26,22 +26,19 @@
 ////////////////////////////////////////////////////////////
 $speed_1: 1s;
 .g-mainSection {
-  @include fz_vwpcmin(20);
+  @include fz_vw(18);
   pointer-events: none;
   position: relative;
-  min-height: $breakH + px;
   img {
     @include imgset;
   }
   .scene {
     > .inner {
-      // @media screen and (min-height: $breakH + 1px) {
       position: fixed;
       width: 100%;
       height: 100%;
       top: 0;
       left: 0;
-      // }
     }
   }
   .bgImg {
@@ -76,6 +73,14 @@ $speed_1: 1s;
     opacity: 0;
     transition: opacity $speed_1;
     width: 100%;
+    @media screen and (max-width: $break-point-middle-sp) {
+      justify-content: flex-start;
+      > .inner {
+        display: flex;
+        gap: math.div(32, 18) + em;
+        flex-direction: column-reverse;
+      }
+    }
   }
 }
 .g-mainSection.is-current {
@@ -85,6 +90,12 @@ $speed_1: 1s;
   }
   .content {
     opacity: 1;
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-mainSection {
+    @include fz_vwpcmin(20);
+    min-height: $breakH + px;
   }
 }
 ////////////////////////////////////////////////////////////

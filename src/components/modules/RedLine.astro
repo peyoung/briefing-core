@@ -1,8 +1,10 @@
 ---
 import Picture from '@components/util/ImgComponent_01.astro';
-// import { Image } from 'astro:assets';
+import { Image } from 'astro:assets';
 import Img_1 from '@images/img_06.jpg';
 import Img_1Sp from '@images/img_06_sp.jpg';
+
+import Arrow from '@images/icon-arrow_01.svg';
 ---
 
 <section class="mainSection g-mainSection js-toggleClass" id="redLine">
@@ -60,6 +62,23 @@ import Img_1Sp from '@images/img_06_sp.jpg';
                   <!-- /.summary -->
                 </div>
                 <!-- /.inner -->
+                <div class="btnSection js-tabNav g-mrgStyle_02">
+                  <button type="button" class="g-btnStyle_03" data-target="redLinePlayful">
+                    <span class="labelIcon">
+                      <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+                    </span>
+                    <!-- /.labelIcon -->
+                    <span class="labelTx">PLAYFUL</span>
+                    <!-- /.labelTx -->
+                  </button>
+                  <button type="button" class="g-btnStyle_03 style_01" data-target="redLineCrafted">
+                    <span class="labelIcon">
+                      <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+                    </span>
+                    <span class="labelTx">CRAFTED</span>
+                  </button>
+                </div>
+                <!-- /.btnSection -->
               </section>
               <!-- /.item -->
               <section class="item" id="redLineCrafted">
@@ -78,6 +97,23 @@ import Img_1Sp from '@images/img_06_sp.jpg';
                   <!-- /.summary -->
                 </div>
                 <!-- /.inner -->
+                <div class="btnSection js-tabNav g-mrgStyle_02">
+                  <button type="button" class="g-btnStyle_03" data-target="redLineGeeky">
+                    <span class="labelIcon">
+                      <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+                    </span>
+                    <!-- /.labelIcon -->
+                    <span class="labelTx">GEEKY</span>
+                    <!-- /.labelTx -->
+                  </button>
+                  <button type="button" class="g-btnStyle_03 style_01" data-target="redLinePlayful">
+                    <span class="labelIcon">
+                      <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+                    </span>
+                    <span class="labelTx">PLAYFUL</span>
+                  </button>
+                </div>
+                <!-- /.btnSection -->
               </section>
               <!-- /.item -->
               <section class="item" id="redLinePlayful">
@@ -95,6 +131,23 @@ import Img_1Sp from '@images/img_06_sp.jpg';
                   <!-- /.summary -->
                 </div>
                 <!-- /.inner -->
+                <div class="btnSection js-tabNav g-mrgStyle_02">
+                  <button type="button" class="g-btnStyle_03" data-target="redLineCrafted">
+                    <span class="labelIcon">
+                      <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+                    </span>
+                    <!-- /.labelIcon -->
+                    <span class="labelTx">CRAFTED</span>
+                    <!-- /.labelTx -->
+                  </button>
+                  <button type="button" class="g-btnStyle_03 style_01" data-target="redLineGeeky">
+                    <span class="labelIcon">
+                      <Image src={Arrow} alt="" width={5} densities={[1, 2, 3]} loading="eager" />
+                    </span>
+                    <span class="labelTx">GEEKY</span>
+                  </button>
+                </div>
+                <!-- /.btnSection -->
               </section>
               <!-- /.item -->
             </div>
@@ -125,15 +178,14 @@ import Img_1Sp from '@images/img_06_sp.jpg';
   ////////////////////
   .content {
     align-items: center;
+    height: 100dvh;
   }
   ////////////////////
   .columnStyle {
     width: 100%;
     height: 100%;
     display: flex;
-    > * {
-      width: 50%;
-    }
+    flex-direction: column;
     .bgImg {
       height: 100%;
       figure {
@@ -143,6 +195,14 @@ import Img_1Sp from '@images/img_06_sp.jpg';
         @include imgset;
         height: 100%;
         object-fit: cover;
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .columnStyle {
+      flex-direction: row;
+      > * {
+        width: 50%;
       }
     }
   }
@@ -161,7 +221,12 @@ import Img_1Sp from '@images/img_06_sp.jpg';
     @include vwpxpc2(width, 640);
     min-height: 100vh;
     // background-color: #ff000063;
-    aspect-ratio: 640/752;
+    aspect-ratio: 1/1;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .mapContent {
+      aspect-ratio: 640/752;
+    }
   }
   ////////////////////
   .mapBtn {
@@ -177,8 +242,7 @@ import Img_1Sp from '@images/img_06_sp.jpg';
     opacity: 0.4;
     transition: 0.3s;
     position: absolute;
-    // @include fz_vwpc(18);
-    font-size: 1.8rem;
+    @include fz_vw(18);
     .labelIcon {
       display: block;
       width: math.div(8, 18) + em;
@@ -246,13 +310,27 @@ import Img_1Sp from '@images/img_06_sp.jpg';
       top: math.div(470, $design-h) * 100%;
     }
   }
+  @media screen and (min-width: $break-point-middle) {
+    .mapBtn {
+      // @include fz_vwpc(18);
+      font-size: 1.8rem;
+    }
+  }
   ////////////////////
   .col-content {
     position: relative;
     overflow: clip;
     .bgImg {
-      filter: blur(30px);
-      scale: 1.1;
+      filter: blur(20px);
+      scale: 1.2;
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .col-content {
+      .bgImg {
+        filter: blur(30px);
+        scale: 1.1;
+      }
     }
   }
   ////////////////////
@@ -266,20 +344,10 @@ import Img_1Sp from '@images/img_06_sp.jpg';
     justify-content: center;
     width: 100%;
     text-align: left;
-    padding-top: math.div(450, $design-h) * 100vh;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s;
-    // &.is-active {
-    //   opacity: 1;
-    //   pointer-events: all;
-    // }
-    @media screen and (min-width: $break-point-design) {
-      padding-top: math.div(351, $design-h) * 100vh;
-    }
-    > .inner {
-      width: math.div(420, 640) * 100%;
-    }
+    padding: $sp-pad $sp-pad 0;
   }
   .mainSection.is-current {
     .item.is-active {
@@ -287,20 +355,67 @@ import Img_1Sp from '@images/img_06_sp.jpg';
       pointer-events: all;
     }
   }
+  @media screen and (min-width: $break-point-middle) {
+    .item {
+      padding: 0;
+      padding-top: math.div(450, $design-h) * 100vh;
+      @media screen and (min-width: $break-point-design) {
+        padding-top: math.div(351, $design-h) * 100vh;
+      }
+      > .inner {
+        width: math.div(420, 640) * 100%;
+      }
+    }
+  }
   ////////////////////
   .itemTtl {
-    @include fz_vwpc(64);
+    @include fz_vw(32);
     font-style: normal;
     font-weight: 700;
     line-height: math.div(64, 64) + em;
     letter-spacing: math.div(-1.28, 64) + em;
     text-transform: uppercase;
-    margin-bottom: math.div(20, 64) + em;
+    margin-bottom: math.div(10, 40) + em;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .itemTtl {
+      @include fz_vwpc(64);
+      margin-bottom: math.div(20, 64) + em;
+    }
   }
   ////////////////////
   .summary {
     text-align: left;
-    padding-right: math.div(40, 640) * 100%;
+    @media screen and (max-width: $break-point-middle-sp) {
+      @include fz_vw(13);
+      p {
+        display: inline;
+      }
+      br {
+        display: none;
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .summary {
+      text-align: left;
+      padding-right: math.div(40, 640) * 100%;
+    }
+  }
+  ////////////////////
+  .btnSection {
+    @include fz_vw(12);
+    position: absolute;
+    top: get_sp(220);
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .btnSection {
+      display: none;
+    }
   }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {

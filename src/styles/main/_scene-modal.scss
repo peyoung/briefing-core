@@ -31,6 +31,9 @@
     justify-content: center;
     position: sticky;
     top: 0;
+    @media screen and (max-width: $break-point-middle-sp) {
+      align-items: flex-start;
+    }
   }
   .handler {
     // > * {
@@ -67,10 +70,9 @@
   backdrop-filter: blur(10px) saturate(100%);
   clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
   transition: clip-path 0.4s $ease-out-quad;
-  min-height: $breakH + px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   // @media screen and (min-height: $breakH + 1px) {
   position: fixed;
   top: 0;
@@ -88,15 +90,21 @@
   height: 100vh;
 }
 // }
+@media screen and (min-width: $break-point-middle) {
+  .g-modalScene {
+    min-height: $breakH + px;
+    align-items: center;
+    justify-content: center;
+  }
+}
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 .g-modalContent {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
   // @media screen and (min-height: $breakH + 1px) {
-  transform: translateY(155px);
+  transform: translateY(get_sp($grid_01 + 8));
   // }
   &.style_01 {
     position: absolute;
@@ -109,28 +117,57 @@
     }
   }
 }
+@media screen and (min-width: $break-point-middle) {
+  .g-modalContent {
+    align-items: center;
+    text-align: center;
+    transform: translateY(155px);
+  }
+}
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 .g-modalTtl {
-  margin-bottom: math.div(30, 70) + em;
+  margin-bottom: math.div(10, 70) + em;
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-modalTtl {
+    margin-bottom: math.div(30, 70) + em;
+  }
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 .g-modalSubTtl {
-  margin-bottom: math.div(15, 20) + em;
+  margin-bottom: math.div(8, 20) + em;
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-modalSubTtl {
+    margin-bottom: math.div(15, 20) + em;
+  }
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 .g-modalBtnSection {
   display: flex;
-  justify-content: center;
-  margin-top: math.div(30, 16) + em;
+  justify-content: flex-start;
+  margin-top: math.div(20, 16) + em;
   // @include fz_vwpcmin(16);
-  font-size: 1.6rem;
+  @include fz_vw(16);
   &.style_01 {
-    margin-top: math.div(63, 12) + em;
-    font-size: 1.2rem;
-    gap: math.div(83, 12) + em;
+    @include fz_vw(12);
+    margin-top: math.div(32, 12) + em;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-modalBtnSection {
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-top: math.div(30, 16) + em;
+    &.style_01 {
+      font-size: 1.2rem;
+      margin-top: math.div(63, 12) + em;
+      gap: math.div(83, 12) + em;
+    }
   }
 }
 ///////////////////////////////////////////////////////////

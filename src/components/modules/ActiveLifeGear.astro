@@ -14,14 +14,24 @@ import Img_1Sp from '@images/img_04_sp.jpg';
         </figure>
       </div>
       <!-- /.bgImg -->
-      <div class="content">
+      <div class="content g-mrgStyle_02">
         <div class="inner">
           <h2 class="pageRead g-ttlStyle_01 style_01">
             <span class="style_02">好奇心を発見へと導く</span>
             <span class="style_02">高品質なギア</span>
           </h2>
           <!-- /.pageRead -->
-          <p class="pageTtl g-ttlStyle_02">ACTIVE LIFE GEAR</p>
+          <p class="pageTtl g-ttlStyle_02 style_02">
+            <span>ACTIVE</span>
+            <span>LIFE</span>
+            <span>GEAR</span>
+          </p>
+          <!-- /.pageTtl -->
+          <p class="pageTtl g-ttlStyle_02 style_01">
+            <span>ACTIVE</span>
+            <span>LIFE</span>
+            <span>GEAR</span>
+          </p>
           <!-- /.pageTtl -->
         </div>
         <!-- /.inner -->
@@ -33,16 +43,16 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   <!-- /.scene -->
   <div class="scene style_02 stay">
     <div class="inner">
-      <div class="content">
+      <div class="content g-mrgStyle_02">
         <div class="inner">
           <div class="summary g-summaryStyle_01">
-            <p>
+            <p class="style_01">
               BRIEFINGがつくるのは、バッグではない。<br /><button
                 type="button"
                 class="g-btnStyle_01 btn js-sceneModal">“<span>ACTIVES</span>”</button
-              >の人生を豊かにする発見へと導くギアを生み出している。<br />日常、出発、目的地。<br
-              />すべての時間を、心高まる瞬間に変えるもの。
+              >の人生を豊かにする<br class="sp" />発見へと導くギアを生み出している。
             </p>
+            <p>日常、出発、目的地。<br />すべての時間を、心高まる瞬間に変えるもの。</p>
           </div>
           <!-- /.summary -->
         </div>
@@ -54,7 +64,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   </div>
   <!-- /.scene-->
   <section class="modalScene g-modalScene">
-    <div class="g-modalContent modalContent">
+    <div class="g-modalContent modalContent g-mrgStyle_02">
       <div class="col-ttl">
         <h3 class="g-ttlStyle_03 modalTtl g-modalTtl style_01">ACTIVES</h3>
         <!-- /.g-ttlStyle_03 -->
@@ -104,18 +114,6 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   }
   // }
   ////////////////////
-  // .bgImg {
-  //   figure {
-  //     &.style_02 {
-  //       opacity: 0;
-  //       :global(.is-scene_02) &,
-  //       :global(.is-modal) & {
-  //         opacity: 1;
-  //       }
-  //     }
-  //   }
-  // }
-  ////////////////////
   .content {
     > .inner {
       :global(.is-modal) & {
@@ -123,37 +121,89 @@ import Img_1Sp from '@images/img_04_sp.jpg';
       }
     }
   }
-  ////////////////////
-  .pageRead {
-    margin-bottom: math.div(200, 20) + em;
-    transition: 0.6s;
-    :global(.is-scene_02) & {
-      margin-bottom: math.div(230, 20) + em;
-    }
-    // @media screen and (max-height: $breakH + px) {
-    //   margin-bottom: math.div(240, 20) + em;
-    // }
-  }
-  ////////////////////
-  .pageTtl {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    transition: 0.6s;
-    top: calc(100vh - 1em);
-    @include fz_vwpc(200);
-    :global(.is-scene_02) & {
-      $gap: math.div(130, 200) + em;
-      top: calc(50% - #{$gap});
-      @include fz_vwpcmin(70);
-      @media screen and (max-height: $breakH + px) {
-        top: math.div(126, $design-h) * 100vh;
+  @media screen and (max-width: $break-point-middle-sp) {
+    .content {
+      align-items: flex-start;
+      padding-top: get_sp($grid_01);
+      > .inner {
+        position: relative;
       }
     }
-    // @media screen and (max-height: $breakH + px) {
-    //   top: math.div(126, $design-h) * 100vh;
-    //   @include fz_vwpcmin(70);
-    // }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+    .pageRead {
+      margin-bottom: math.div(200, 20) + em;
+      transition: 0.6s;
+      :global(.is-scene_02) & {
+        margin-bottom: math.div(230, 20) + em;
+      }
+      // @media screen and (max-height: $breakH + px) {
+      //   margin-bottom: math.div(240, 20) + em;
+      // }
+    }
+  }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .pageRead {
+      transition: 0.3s;
+      opacity: 0;
+      :global(.is-scene_02) & {
+        opacity: 1;
+      }
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+    .pageTtl {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      transition: 0.6s;
+      top: calc(100vh - 1em);
+      @include fz_vwpc(200);
+      :global(.is-scene_02) & {
+        $gap: math.div(130, 200) + em;
+        top: calc(50% - #{$gap});
+        @include fz_vwpcmin(70);
+        @media screen and (max-height: $breakH + px) {
+          top: math.div(126, $design-h) * 100vh;
+        }
+      }
+      &.style_02 {
+        display: none;
+      }
+      // @media screen and (max-height: $breakH + px) {
+      //   top: math.div(126, $design-h) * 100vh;
+      //   @include fz_vwpcmin(70);
+      // }
+    }
+  }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .pageTtl {
+      transition: 0.3s;
+      :global(.is-scene_02) & {
+        @include fz_vw(40);
+      }
+      &.style_01 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        :global(.is-scene_02) & {
+          opacity: 0;
+        }
+      }
+      &.style_02 {
+        display: block;
+        opacity: 0;
+        // margin-top: -70 * 3 + em;
+        :global(.is-scene_02) & {
+          opacity: 1;
+        }
+        > span {
+          display: inline;
+        }
+      }
+    }
   }
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
@@ -170,6 +220,12 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   .summary {
     margin-bottom: math.div(103, 14) + em;
   }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .summary {
+      text-align: left;
+      margin-top: get_sp(130);
+    }
+  }
   ////////////////////
   .btn {
     span {
@@ -177,6 +233,15 @@ import Img_1Sp from '@images/img_04_sp.jpg';
         :global(.is-scene_02) & {
           animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0.4s 1;
         }
+      }
+    }
+  }
+  ////////////////////
+  @media screen and (max-width: $break-point-middle-sp) {
+    .modalSummary {
+      text-align: left;
+      br {
+        display: none;
       }
     }
   }

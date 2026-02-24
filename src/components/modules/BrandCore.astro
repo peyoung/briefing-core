@@ -19,7 +19,7 @@ import Img_2Sp from '@images/img_03_sp.jpg';
         </figure>
       </div>
       <!-- /.bgImg -->
-      <div class="content">
+      <div class="content g-mrgStyle_02">
         <div class="inner">
           <h2 class="pageRead g-ttlStyle_01 style_01">
             <span class="style_01">BRIEFINGは、</span>
@@ -27,7 +27,17 @@ import Img_2Sp from '@images/img_03_sp.jpg';
             <span class="style_02">何をもたらすのか？</span>
           </h2>
           <!-- /.pageRead -->
-          <p class="pageTtl g-ttlStyle_02">WHY WE EXIST</p>
+          <p class="pageTtl g-ttlStyle_02 style_02">
+            <span>WHY</span>
+            <span>WE</span>
+            <span>EXIST</span>
+          </p>
+          <!-- /.pageTtl -->
+          <p class="pageTtl g-ttlStyle_02 style_01">
+            <span>WHY</span>
+            <span>WE</span>
+            <span>EXIST</span>
+          </p>
           <!-- /.pageTtl -->
         </div>
         <!-- /.inner -->
@@ -36,6 +46,8 @@ import Img_2Sp from '@images/img_03_sp.jpg';
     </div>
     <!-- /.inner -->
   </div>
+  <!-- /.scene -->
+  <div class="scene style_02 stay"></div>
   <!-- /.scene -->
 </section>
 <!-- /.mainSection -->
@@ -48,8 +60,64 @@ import Img_2Sp from '@images/img_03_sp.jpg';
   // @media screen and (min-height: $breakH + 1px) {
   .scene {
     height: 200vh;
+    @media screen and (max-width: $break-point-middle-sp) {
+      height: 100vh;
+    }
   }
   // }
+  ////////////////////
+  @media screen and (max-width: $break-point-middle-sp) {
+    .content {
+      align-items: flex-start;
+      padding-top: get_sp($grid_01);
+      > .inner {
+        position: relative;
+      }
+    }
+  }
+  ////////////////////
+  @media screen and (max-width: $break-point-middle-sp) {
+    .pageRead {
+      transition: 0.3s;
+      opacity: 0;
+      :global(.is-scene_02) & {
+        opacity: 1;
+      }
+    }
+  }
+  ////////////////////
+  .pageTtl {
+    &.style_02 {
+      display: none;
+    }
+  }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .pageTtl {
+      transition: 0.3s;
+      :global(.is-scene_02) & {
+        @include fz_vw(40);
+      }
+      &.style_01 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        :global(.is-scene_02) & {
+          opacity: 0;
+        }
+      }
+      &.style_02 {
+        display: block;
+        opacity: 0;
+        // margin-top: -70 * 3 + em;
+        :global(.is-scene_02) & {
+          opacity: 1;
+        }
+        > span {
+          display: inline;
+        }
+      }
+    }
+  }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {
   }

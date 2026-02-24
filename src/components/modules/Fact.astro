@@ -14,7 +14,7 @@ import Img_1Sp from '@images/img_05_sp.jpg';
         </figure>
       </div>
       <!-- /.bgImg -->
-      <div class="content">
+      <div class="content g-mrgStyle_02">
         <div class="inner">
           <div class="factNav">
             <ul>
@@ -62,7 +62,9 @@ import Img_1Sp from '@images/img_05_sp.jpg';
           <!-- /.factNav -->
           <h2 class="pageRead g-ttlStyle_01">
             <span class="style_02">すべてのプロダクトは、</span>
-            <span class="style_02">この約束のもと生み出され、ACTIVESを魅了する。</span>
+            <span class="style_02"
+              >この約束のもと生み出され、<br class="sp" />ACTIVESを魅了する。</span
+            >
           </h2>
           <!-- /.pageRead -->
         </div>
@@ -100,15 +102,32 @@ import Img_1Sp from '@images/img_05_sp.jpg';
       opacity: 0;
     }
   }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .content {
+      align-items: flex-start;
+      padding-top: get_sp($grid_01);
+      > .inner {
+        position: relative;
+        flex-direction: column;
+        gap: get_sp(10);
+      }
+    }
+  }
   ////////////////////
   .factNav {
-    text-align: center;
     line-height: math.div(160, 200) + em;
     letter-spacing: math.div(-4, 200) + em;
     text-transform: uppercase;
-    @include fz_vwpcmax(200);
+    @include fz_vw(80);
+    text-align: left;
     span {
       font-weight: 700;
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .factNav {
+      text-align: center;
+      @include fz_vwpcmax(200);
     }
   }
   ////////////////////
@@ -116,19 +135,29 @@ import Img_1Sp from '@images/img_05_sp.jpg';
     @include btnsetting;
     color: $white;
     position: relative;
+    transition: 0.3s;
+    left: 0;
+    @media (any-hover: hover) {
+      &:hover {
+        left: 0.05em;
+        .labelIcon {
+          opacity: 1 !important;
+        }
+      }
+    }
     .labelIcon {
       position: absolute;
       top: math.div(-25, 200) + em;
       display: block;
-      width: math.div(30, 200) + em;
-      height: math.div(30, 200) + em;
+      width: get_sp(18);
+      height: get_sp(18);
       display: flex;
       align-items: center;
       justify-content: center;
       > span {
         display: block;
         width: 100%;
-        height: 6px;
+        height: get_sp(3);
         background-color: $key-color1;
         position: absolute;
         &:last-child {
@@ -137,25 +166,84 @@ import Img_1Sp from '@images/img_05_sp.jpg';
       }
     }
     &.style_01 {
-      $gap: math.div(-50, 200) + em;
-      transform: translateX(#{$gap});
       .labelIcon {
-        right: math.div(-40, 200) + em;
+        right: math.div(-50, 200) + em;
+        animation: labelIconBlink 2s ease-in-out infinite;
+      }
+      @media (any-hover: hover) {
+        &:hover {
+          .labelIcon {
+            animation-play-state: paused;
+          }
+        }
       }
     }
     &.style_02 {
-      $gap: math.div(100, 200) + em;
-      transform: translateX(#{$gap});
       .labelIcon {
-        right: math.div(-30, 200) + em;
+        right: math.div(-40, 200) + em;
+        animation: labelIconBlink 2s 0.2s ease-in-out infinite;
+      }
+      @media (any-hover: hover) {
+        &:hover {
+          .labelIcon {
+            animation-play-state: paused;
+          }
+        }
       }
     }
     &.style_03 {
-      $gap: math.div(-150, 200) + em;
-      transform: translateX(#{$gap});
       .labelIcon {
-        right: math.div(-30, 200) + em;
+        right: math.div(-40, 200) + em;
+        animation: labelIconBlink 2s 0.4s ease-in-out infinite;
       }
+      @media (any-hover: hover) {
+        &:hover {
+          .labelIcon {
+            animation-play-state: paused;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .factBtn {
+      .labelIcon {
+        width: math.div(30, 200) + em;
+        height: math.div(30, 200) + em;
+        > span {
+          height: 6px;
+        }
+      }
+      &.style_01 {
+        $gap: math.div(-50, 200) + em;
+        transform: translateX(#{$gap});
+        .labelIcon {
+          right: math.div(-40, 200) + em;
+        }
+      }
+      &.style_02 {
+        $gap: math.div(100, 200) + em;
+        transform: translateX(#{$gap});
+        .labelIcon {
+          right: math.div(-30, 200) + em;
+        }
+      }
+      &.style_03 {
+        $gap: math.div(-150, 200) + em;
+        transform: translateX(#{$gap});
+        .labelIcon {
+          right: math.div(-30, 200) + em;
+        }
+      }
+    }
+  }
+  @keyframes labelIconBlink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
     }
   }
   ////////////////////

@@ -229,7 +229,7 @@ function setHeader() {
     let h;
     let baseHeight;
     if ($('#g-wrapper').hasClass('home')) {
-      h = $('#fv').height();
+      h = 1000;
       baseHeight = h - 50;
     } else {
       baseHeight = 50;

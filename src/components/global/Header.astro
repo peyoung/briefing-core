@@ -57,6 +57,12 @@ import Logo from '@images/logo-briefing_01.svg';
     justify-content: center;
     opacity: 0;
     transition: opacity 0.4s;
+    @media screen and (max-width: $break-point-middle-sp) {
+      align-items: flex-start;
+      padding-top: get_sp($grid_01 - 40);
+      padding-left: get_sp(20);
+      padding-right: get_sp(20);
+    }
     &.is-active {
       opacity: 1;
       :global(a),
@@ -87,17 +93,21 @@ import Logo from '@images/logo-briefing_01.svg';
       width: 144px;
     }
   }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .col-logo {
+      display: none;
+    }
+  }
   ////////////////////
   .col-nav {
     display: flex;
-    width: math.div(280, $design-num) * 100%;
-    min-width: 280px;
+    width: 100%;
     justify-content: space-between;
     // gap: math.div(139, 12) + em;
     line-height: normal;
     letter-spacing: math.div(-0.24, 12) + em;
     text-transform: uppercase;
-    @include fz_vwpcmin(12);
+    @include fz_vw(12);
     span {
       font-weight: 700;
     }
@@ -117,11 +127,22 @@ import Logo from '@images/logo-briefing_01.svg';
       }
     }
   }
+  @media screen and (min-width: $break-point-middle) {
+    .col-nav {
+      width: math.div(280, $design-num) * 100%;
+      min-width: 280px;
+      @include fz_vwpcmin(12);
+    }
+  }
   ////////////////////
   .pickMenu {
     ul {
       display: flex;
       gap: math.div(49, 12) + em;
+      @media screen and (max-width: $break-point-middle-sp) {
+        gap: math.div(14, 12) + em;
+        transform: translateY(math.div(2, 12) + em);
+      }
     }
     a {
       position: relative;

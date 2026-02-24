@@ -38,9 +38,7 @@ function setMainMenu() {
 }
 
 function openFnc() {
-  window.lenis?.stop();
-  const video = document.querySelector('#kvVideo');
-  if (video) video.play();
+  // window.lenis?.stop();
   current_scrollY = $(window).scrollTop();
   $('#menuBtn').addClass('is-active');
   $('#g-wrapper').addClass('menuOpen');
@@ -59,11 +57,7 @@ function openFnc() {
 }
 
 function closeFnc() {
-  window.lenis?.start();
-  if ($('#menuBtn').hasClass('is-active')) {
-    const video = document.querySelector('#kvVideo');
-    if (video) video.pause();
-  }
+  // window.lenis?.start();
   $('#menuBtn').removeClass('is-active');
   $('#g-wrapper').removeClass('menuStart menuOpenAfter');
   setTimeout(function () {

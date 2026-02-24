@@ -58,23 +58,29 @@ import Logo from '@images/logo-briefing_01.svg';
   ////////////////////
   .content {
     align-items: center;
+    justify-content: center;
   }
   ////////////////////
   .bottomLogo {
-    @include vwpxpc2(width, 314);
+    width: get_sp(254);
     img {
       @include imgset;
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .bottomLogo {
+      @include vwpxpc2(width, 314);
     }
   }
   ////////////////////
   .scrollArrow {
     position: absolute;
-    bottom: math.div(30, $design-h) * 100vh;
+    bottom: get_sp(26);
     left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    @include fz_vwpcmin(12);
+    @include fz_vw(12);
     a {
       display: flex;
       flex-direction: column;
@@ -89,7 +95,7 @@ import Logo from '@images/logo-briefing_01.svg';
       }
     }
     .arrow {
-      height: math.div(56, $design-h) * 100vh;
+      height: get_sp(56);
       span {
         display: block;
         background-color: $white;
@@ -104,6 +110,15 @@ import Logo from '@images/logo-briefing_01.svg';
       font-weight: 700;
       letter-spacing: math.div(-0.24, 12) + em;
       text-transform: uppercase;
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .scrollArrow {
+      bottom: math.div(30, $design-h) * 100vh;
+      @include fz_vwpcmin(12);
+      .arrow {
+        height: math.div(56, $design-h) * 100vh;
+      }
     }
   }
   ////////////////////

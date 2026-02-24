@@ -4,56 +4,84 @@
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 .g-ttlStyle_01 {
-  // font-size: 2rem;
-  @include fz_vwpcmin(20);
+  @include fz_vw(18);
   line-height: math.div(28, 20) + em;
   letter-spacing: math.div(-0.4, 20) + em;
   text-transform: uppercase;
   font-weight: 500;
   font-family: $font-ja;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  @media screen and (max-width: $break-point-middle-sp) {
+    text-align: left;
+  }
   span {
     font-weight: 500;
     display: block;
-    &.style_02 {
-      width: 100%;
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-ttlStyle_01 {
+    // font-size: 2rem;
+    @include fz_vwpcmin(20);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    span {
+      font-weight: 500;
+      display: block;
+      &.style_02 {
+        width: 100%;
+      }
     }
-  }
-  &.style_01 {
-    $gap: math.div(20, 20) + em;
-    transform: translateY(#{$gap});
-  }
-  &.style_02 {
-    font-size: 2rem;
+    &.style_01 {
+      $gap: math.div(20, 20) + em;
+      transform: translateY(#{$gap});
+    }
   }
 }
 ////////////////////////////////////////
 .g-ttlStyle_02 {
-  // font-size: 20rem;
-  @include fz_vwpc(200);
+  @include fz_vw(80);
   font-weight: 700;
-  line-height: 1em;
+  line-height: math.div(70, 80) + em;
   letter-spacing: math.div(-4, 200) + em;
   text-transform: uppercase;
   $gap: math.div(55, 200) + em;
   transform: translateY(#{$gap});
   white-space: nowrap;
+  text-align: left;
   span {
     font-weight: 700;
+    display: block;
+  }
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-ttlStyle_02 {
+    // font-size: 20rem;
+    @include fz_vwpc(200);
+    line-height: 1em;
+    text-align: center;
+    // display: inline;
+    > span {
+      display: inline;
+    }
   }
 }
 ////////////////////////////////////////
 .g-ttlStyle_03 {
-  text-align: center;
-  @include fz_vwpcmin(70);
+  text-align: left;
+  @include fz_vw(40);
   font-weight: 700;
   line-height: math.div(70, 70) + em;
   letter-spacing: math.div(-1.4, 70) + em;
   text-transform: uppercase;
-  &.style_01 {
-    font-size: 7rem;
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-ttlStyle_03 {
+    text-align: center;
+    @include fz_vwpcmin(70);
+    &.style_01 {
+      font-size: 7rem;
+    }
   }
 }
 ///////////////////////////////////////////////////////////
@@ -61,21 +89,31 @@
 .g-summaryStyle_01 {
   text-align: center;
   font-family: $font-ja;
-  @include fz_vwpcmin(14);
+  @include fz_vw(14);
   line-height: math.div(22, 14) + em;
   letter-spacing: math.div(-0.28, 14) + em;
   text-transform: uppercase;
   p {
     font-weight: 500;
+    @media screen and (max-width: $break-point-middle-sp) {
+      &.style_01 {
+        margin-bottom: math.div(22, 14) + em;
+      }
+    }
   }
-  &.style_01 {
-    font-size: 1.4rem;
-  }
-  &.style_02 {
-    p {
-      margin-bottom: math.div(22, 14) + em;
-      &:last-child {
-        margin-bottom: 0;
+}
+@media screen and (min-width: $break-point-middle) {
+  .g-summaryStyle_01 {
+    @include fz_vwpcmin(14);
+    &.style_01 {
+      font-size: 1.4rem;
+    }
+    &.style_02 {
+      p {
+        margin-bottom: math.div(22, 14) + em;
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -156,7 +194,6 @@
   @include btnsetting;
   display: flex;
   color: $white;
-  line-height: 1em;
   letter-spacing: math.div(-0.32, 16) + em;
   text-transform: uppercase;
   position: relative;

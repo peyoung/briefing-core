@@ -45,6 +45,9 @@ import Logo from '@images/logo-briefing_01.svg';
       height: 100%;
       object-fit: cover;
     }
+    :global(.fixedHeader) & {
+      opacity: 0;
+    }
   }
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
@@ -55,12 +58,20 @@ import Logo from '@images/logo-briefing_01.svg';
   ////////////////////
   .content {
     align-items: center;
+    justify-content: center;
   }
   ////////////////////
   .siteTtl {
     img {
-      @include vwpxpc2(width, 314);
-      min-width: 314px;
+      width: get_sp(254);
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .siteTtl {
+      img {
+        @include vwpxpc2(width, 314);
+        min-width: 314px;
+      }
     }
   }
   ////////////////////

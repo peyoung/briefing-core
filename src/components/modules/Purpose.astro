@@ -104,7 +104,7 @@ import gallery_6 from '@images/gallery-img_06.jpg';
   <!-- /.scene-->
   <div class="scene style_03" id="purpose">
     <div class="inner">
-      <div class="content">
+      <div class="content g-mrgStyle_02">
         <div class="purposeContent">
           <section class="col-top">
             <h3 class="purposeTtl">PURPOSE</h3>
@@ -264,14 +264,17 @@ import gallery_6 from '@images/gallery-img_06.jpg';
   ////////////////////
   .gallery {
     position: relative;
-    @include vwpxpc2(padding-bottom, 160);
+    @include vwpx(padding-bottom, 200);
     img {
       @include imgset;
     }
-    > .inner {
-      @include vwpxpc2(max-width, 1077);
-      margin-left: auto;
-      margin-right: auto;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .gallery {
+      @include vwpxpc2(padding-bottom, 160);
+      > .inner {
+        @include vwpxpc2(max-width, 1077);
+      }
     }
   }
   ////////////////////
@@ -285,34 +288,70 @@ import gallery_6 from '@images/gallery-img_06.jpg';
       filter: blur(0);
     }
     &.style_01 {
-      @include vwpxpc2(width, 117);
+      @include vwpx(width, 102);
       margin-left: auto;
-      @include vwpxpc2(margin-right, 150);
+      @include vwpx(margin-right, 35);
     }
     &.style_02 {
-      @include vwpxpc2(width, 351);
-      @include vwpxpc2(margin-top, -176);
+      @include vwpx(width, 206);
+      @include vwpx(margin-top, -24);
+      z-index: 10;
     }
     &.style_03 {
-      @include vwpxpc2(width, 205);
+      @include vwpx(width, 165);
       margin-left: auto;
-      @include vwpxpc2(margin-right, 248);
-      @include vwpxpc2(margin-top, -174);
+      @include vwpx(margin-right, 44);
+      @include vwpx(margin-top, -60);
     }
     &.style_04 {
-      @include vwpxpc2(width, 258);
-      @include vwpxpc2(margin-left, 179);
-      @include vwpxpc2(margin-top, 173);
+      @include vwpx(width, 152);
+      @include vwpx(margin-left, 34);
+      @include vwpx(margin-top, 100);
+      z-index: 10;
     }
     &.style_05 {
-      @include vwpxpc2(width, 394);
+      @include vwpx(width, 271);
       margin-left: auto;
-      @include vwpxpc2(margin-top, -472);
+      @include vwpx(margin-top, -100);
     }
     &.style_06 {
-      @include vwpxpc2(width, 153);
-      @include vwpxpc2(margin-left, 375);
-      @include vwpxpc2(margin-top, -164);
+      @include vwpx(width, 104);
+      @include vwpx(margin-left, 28);
+      @include vwpx(margin-top, 20);
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .item {
+      &.style_01 {
+        @include vwpxpc2(width, 117);
+        margin-left: auto;
+        @include vwpxpc2(margin-right, 150);
+      }
+      &.style_02 {
+        @include vwpxpc2(width, 351);
+        @include vwpxpc2(margin-top, -176);
+      }
+      &.style_03 {
+        @include vwpxpc2(width, 205);
+        margin-left: auto;
+        @include vwpxpc2(margin-right, 248);
+        @include vwpxpc2(margin-top, -174);
+      }
+      &.style_04 {
+        @include vwpxpc2(width, 258);
+        @include vwpxpc2(margin-left, 179);
+        @include vwpxpc2(margin-top, 173);
+      }
+      &.style_05 {
+        @include vwpxpc2(width, 394);
+        margin-left: auto;
+        @include vwpxpc2(margin-top, -472);
+      }
+      &.style_06 {
+        @include vwpxpc2(width, 153);
+        @include vwpxpc2(margin-left, 375);
+        @include vwpxpc2(margin-top, -164);
+      }
     }
   }
   ////////////////////
@@ -320,10 +359,17 @@ import gallery_6 from '@images/gallery-img_06.jpg';
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: math.div(87, $design-h) * 100vh;
-    text-align: center;
-    @include fz_vwpcmin(14);
+    align-items: flex-start;
+    gap: get_sp(54);
+    text-align: left;
+    @include fz_vw(14);
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .purposeContent {
+      gap: math.div(87, $design-h) * 100vh;
+      text-align: center;
+      @include fz_vwpcmin(14);
+    }
   }
   ////////////////////
   .purposeTtl {
@@ -333,7 +379,12 @@ import gallery_6 from '@images/gallery-img_06.jpg';
     letter-spacing: math.div(-0.24, 12) + em;
     text-transform: uppercase;
     margin-bottom: math.div(16, 12) + em;
-    @include fz_vwpcmin(12);
+    @include fz_vw(12);
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .purposeTtl {
+      @include fz_vwpcmin(12);
+    }
   }
   ////////////////////
   .en {
@@ -348,32 +399,55 @@ import gallery_6 from '@images/gallery-img_06.jpg';
   ////////////////////
   .col-top {
     .en {
-      @include fz_vwpcmin(42);
+      @include fz_vw(34);
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .col-top {
+      .en {
+        @include fz_vwpcmin(42);
+      }
     }
   }
   ////////////////////
   .col-bottom {
     width: 100%;
     .en {
-      @include fz_vwpcmin(28);
+      @include fz_vw(24);
       // white-space: nowrap;
     }
-    .purposeItem {
-      width: math.div(240, 780) * 100%;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .col-bottom {
+      .en {
+        @include fz_vwpcmin(28);
+        // white-space: nowrap;
+      }
+      .purposeItem {
+        width: math.div(240, 780) * 100%;
+      }
     }
   }
   ////////////////////
   .purposeGrid {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: math.div(50, $design-h) * 100vh;
-    column-gap: math.div(20, 780) * 100%;
+    row-gap: get_sp(20);
     // @include vwpxpc2(column-gap, 107);
     margin-left: auto;
     margin-right: auto;
-    @media screen and (min-width: 1000px) {
-      @include vwpxpc2(max-width, 780);
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .purposeGrid {
+      flex-direction: row;
+      row-gap: math.div(50, $design-h) * 100vh;
+      column-gap: math.div(20, 780) * 100%;
+      // @include vwpxpc2(column-gap, 107);
+      @media screen and (min-width: 1000px) {
+        @include vwpxpc2(max-width, 780);
+      }
     }
   }
   ////////////////////
