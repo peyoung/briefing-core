@@ -19,7 +19,7 @@ $(window).on('load', function () {
   setAcc();
   setTab();
   setHeader();
-  // setRellax();
+  setRellax();
   // setTripla();
   // if ($('#g-wrapper').hasClass('home')) {
   //   // setKv();
@@ -90,11 +90,13 @@ function setSpan() {
 function setInview() {
   const onceTargets = document.querySelectorAll('.js-inview, .js-inview-fade');
   const toggleTargets = document.querySelectorAll('.js-inview-toggle,.js-inview-fade-toggle');
+  const galleryTargets = document.querySelectorAll('.js-inview-gallery');
 
   if (!('IntersectionObserver' in window)) {
     // フォールバック
     onceTargets.forEach((el) => el.classList.add('is-active'));
     toggleTargets.forEach((el) => el.classList.add('is-active'));
+    galleryTargets.forEach((el) => el.classList.add('is-active'));
     return;
   }
 
@@ -111,6 +113,22 @@ function setInview() {
     { threshold: 0.3 }
   );
   onceTargets.forEach((target) => onceObserver.observe(target));
+
+  // ギャラリー用（基本は once と同様、ただし閾値を 0.6 に）
+  if (galleryTargets.length) {
+    const galleryObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-active');
+            galleryObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    galleryTargets.forEach((target) => galleryObserver.observe(target));
+  }
 
   // 出入りでトグル
   const toggleObserver = new IntersectionObserver(

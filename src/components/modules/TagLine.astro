@@ -1,0 +1,188 @@
+---
+import Picture from '@components/util/ImgComponent_01.astro';
+// import { Image } from 'astro:assets';
+import Img_1 from '@images/img_07.jpg';
+import Img_1Sp from '@images/img_07_sp.jpg';
+---
+
+<section class="mainSection g-mainSection js-toggleClass" id="tagLine">
+  <div class="scene style_01">
+    <div class="inner">
+      <div class="bgImg">
+        <figure>
+          <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+        </figure>
+      </div>
+      <!-- /.bgImg -->
+      <div class="content">
+        <div class="inner">
+          <h2 class="pageRead g-ttlStyle_01 style_01">
+            <span class="style_02">人生をアクティブにする発見へ、</span>
+            <span class="style_02">あなたを駆り立てる。</span>
+          </h2>
+          <!-- /.pageRead -->
+          <p class="pageTtl g-ttlStyle_02">CARRY YOUR DISCOVERY</p>
+          <!-- /.pageTtl -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+  <div class="scene style_02 stay">
+    <div class="inner">
+      <div class="content">
+        <div class="inner">
+          <div class="summary g-summaryStyle_01">
+            <p>
+              「CARRY YOUR DISCOVERY」、直訳すると“発見を持ち運べ”。 <br
+              />しかし、発見はこれから出会うもの。一見矛盾した言葉だが、そこに意味がある。<br
+              />BRIEFINGのターゲットは、好奇心があり、人生をアクティブにする新しい発見を求める人。<br
+              /> “CARRY”は、物理的な「運ぶ」という意味だけでなく、<br
+              />彼らを発見へと「導く」という意味が込められている。<br
+              />これは、トヨタが「私たちはクルマではなく、モビリティをつくる」と語ったのと同じ。<br
+              />BRIEFINGがつくるのはバッグではなく、人生を豊かにする発見へと導くギアなのだ。
+            </p>
+          </div>
+          <!-- /.summary -->
+        </div>
+        <!-- /.inner -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene-->
+  <section class="modalScene g-modalScene">
+    <div class="g-modalContent modalContent">
+      <div class="col-ttl">
+        <h3 class="g-ttlStyle_03 modalTtl g-modalTtl style_01">ACTIVES</h3>
+        <!-- /.g-ttlStyle_03 -->
+      </div>
+      <!-- /.col-ttl -->
+      <div class="col">
+        <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
+          <span class="style_02">人生を豊かにする発見を求める</span>
+          <span class="style_02">都市のアクティブな大人たち</span>
+        </p>
+        <!-- /.pageRead -->
+        <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
+          <p>
+            好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
+            />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
+            />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
+            />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
+            />旅が好き。アートやカルチャーにも関心が高い。<br
+            />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+          </p>
+        </div>
+        <!-- /.g-summaryStyle_01 -->
+        <div class="g-modalBtnSection modalBtnSection">
+          <button type="button" class="g-btnStyle_02 js-sceneModalClose">
+            <span class="labelTx">BACK</span>
+            <!-- /.labelTx -->
+          </button>
+        </div>
+        <!-- /.modalBtnSection -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.modalContent -->
+  </section>
+  <!-- /.modalScene-->
+</section>
+<!-- /.mainSection -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene {
+    height: 200vh;
+  }
+  // }
+  ////////////////////
+  // .bgImg {
+  //   figure {
+  //     &.style_02 {
+  //       opacity: 0;
+  //       :global(.is-scene_02) &,
+  //       :global(.is-modal) & {
+  //         opacity: 1;
+  //       }
+  //     }
+  //   }
+  // }
+  ////////////////////
+  .content {
+    > .inner {
+      :global(.is-modal) & {
+        opacity: 0;
+      }
+    }
+  }
+  ////////////////////
+  .pageRead {
+    margin-bottom: math.div(160, 20) + em;
+    transition: 0.6s;
+    :global(.is-scene_02) & {
+      margin-bottom: math.div(265, 20) + em;
+    }
+    // @media screen and (max-height: $breakH + px) {
+    //   margin-bottom: math.div(240, 20) + em;
+    // }
+  }
+  ////////////////////
+  .pageTtl {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    transition: 0.6s;
+    top: calc(100vh - 1em);
+    @include fz_vwpc(146);
+    :global(.is-scene_02) & {
+      $gap: math.div(130, 200) + em;
+      top: calc(50% - #{$gap});
+      @include fz_vwpcmin(70);
+      @media screen and (max-height: $breakH + px) {
+        top: math.div(126, $design-h) * 100vh;
+      }
+    }
+    // @media screen and (max-height: $breakH + px) {
+    //   top: math.div(126, $design-h) * 100vh;
+    //   @include fz_vwpcmin(70);
+    // }
+  }
+  ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene.style_02 {
+    .content {
+      opacity: 0;
+      :global(.is-current.is-scene_02) & {
+        opacity: 1;
+      }
+    }
+  }
+  // }
+  ////////////////////
+  .summary {
+    margin-bottom: math.div(64, 14) + em;
+  }
+  ////////////////////
+  .btn {
+    span {
+      &::before {
+        :global(.is-scene_02) & {
+          animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0.4s 1;
+        }
+      }
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

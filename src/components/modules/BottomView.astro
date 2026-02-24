@@ -1,0 +1,135 @@
+---
+import Picture from '@components/util/ImgComponent_01.astro';
+import { Image } from 'astro:assets';
+import Img_1 from '@images/img_08.jpg';
+import Img_1Sp from '@images/img_08_sp.jpg';
+
+import Logo from '@images/logo-briefing_01.svg';
+---
+
+<section class="mainSection g-mainSection js-toggleClass" id="bottomView">
+  <div class="scene">
+    <div class="inner">
+      <div class="bgImg">
+        <figure>
+          <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+        </figure>
+      </div>
+      <!-- /.bgImg -->
+      <div class="content">
+        <div class="bottomLogo">
+          <a href="/">
+            <Image src={Logo} alt="BRIEFING" width={314} densities={[1, 2, 3]} loading="eager" />
+          </a>
+        </div>
+        <!-- /.bottomLogo -->
+        <div class="scrollArrow">
+          <a href="#purpose">
+            <span class="arrow"><span></span></span>
+            <span class="labelTx">PURPOSE</span>
+          </a>
+        </div>
+        <!-- /.scrollArrow -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+</section>
+<!-- /.mainSection -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .mainSection {
+    z-index: 1500;
+  }
+  ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene {
+    min-height: 200vh;
+  }
+  // }
+  ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene.modalScene {
+    height: 100vh;
+  }
+  // }
+  ////////////////////
+  .content {
+    align-items: center;
+  }
+  ////////////////////
+  .bottomLogo {
+    @include vwpxpc2(width, 314);
+    img {
+      @include imgset;
+    }
+  }
+  ////////////////////
+  .scrollArrow {
+    position: absolute;
+    bottom: math.div(30, $design-h) * 100vh;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    @include fz_vwpcmin(12);
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: math.div(9, 12) + em;
+      @media (any-hover: hover) {
+        &:hover {
+          .labelTx {
+            transform: translateX(2px);
+          }
+        }
+      }
+    }
+    .arrow {
+      height: math.div(56, $design-h) * 100vh;
+      span {
+        display: block;
+        background-color: $white;
+        height: 100%;
+        width: 1px;
+        animation: scroll 1.5s cubic-bezier(1, 0, 0, 1) infinite;
+      }
+    }
+    .labelTx {
+      display: flex;
+      transition: 0.3s;
+      font-weight: 700;
+      letter-spacing: math.div(-0.24, 12) + em;
+      text-transform: uppercase;
+    }
+  }
+  ////////////////////
+  @keyframes scroll {
+    0% {
+      transform: scale(1, 0);
+      transform-origin: 0 0;
+    }
+    50% {
+      transform: scale(1, 1);
+      transform-origin: 0 0;
+    }
+    51% {
+      transform: scale(1, 1);
+      transform-origin: 0 100%;
+    }
+    100% {
+      transform: scale(1, 0);
+      transform-origin: 0 100%;
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

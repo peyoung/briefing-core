@@ -1,0 +1,386 @@
+---
+import Picture from '@components/util/ImgComponent_01.astro';
+import { Image } from 'astro:assets';
+import Img_1 from '@images/img_09.jpg';
+import Img_1Sp from '@images/img_09_sp.jpg';
+
+import gallery_1 from '@images/gallery-img_01.jpg';
+import gallery_2 from '@images/gallery-img_02.jpg';
+import gallery_3 from '@images/gallery-img_03.jpg';
+import gallery_4 from '@images/gallery-img_04.jpg';
+import gallery_5 from '@images/gallery-img_05.jpg';
+import gallery_6 from '@images/gallery-img_06.jpg';
+---
+
+<section class="mainSection g-mainSection js-toggleClass" id="purpose">
+  <div class="scene style_01">
+    <div class="inner">
+      <div class="bgImg">
+        <figure>
+          <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
+        </figure>
+      </div>
+      <!-- /.bgImg -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+  <div class="scene style_02">
+    <div class="blank"></div>
+    <!-- /.blank -->
+    <div class="gallery g-mrgStyle_01">
+      <div class="inner">
+        <div class="item style_01 js-inview-gallery">
+          <figure
+            class="js-rellax spBreak"
+            data-rellax-speed="3"
+            data-rellax-zindex="2"
+            data-rellax-percentage="0.5"
+          >
+            <Image src={gallery_1} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+          </figure>
+        </div>
+        <!-- /.item -->
+        <div class="item style_02 js-inview-gallery">
+          <figure
+            class="js-rellax spBreak"
+            data-rellax-speed="-3"
+            data-rellax-zindex="2"
+            data-rellax-percentage="0.5"
+          >
+            <Image src={gallery_2} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+          </figure>
+        </div>
+        <!-- /.item -->
+        <div class="item style_03 js-inview-gallery">
+          <figure
+            class="js-rellax spBreak"
+            data-rellax-speed="3"
+            data-rellax-zindex="2"
+            data-rellax-percentage="0.5"
+          >
+            <Image src={gallery_3} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+          </figure>
+        </div>
+        <!-- /.item -->
+        <div class="item style_04 js-inview-gallery">
+          <figure
+            class="js-rellax spBreak"
+            data-rellax-speed="-3"
+            data-rellax-zindex="2"
+            data-rellax-percentage="0.5"
+          >
+            <Image src={gallery_4} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+          </figure>
+        </div>
+        <!-- /.item -->
+        <div class="item style_05 js-inview-gallery">
+          <figure
+            class="js-rellax spBreak"
+            data-rellax-speed="3"
+            data-rellax-zindex="2"
+            data-rellax-percentage="0.5"
+          >
+            <Image src={gallery_5} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+          </figure>
+        </div>
+        <!-- /.item -->
+        <div class="item style_06 js-inview-gallery">
+          <figure
+            class="js-rellax spBreak"
+            data-rellax-speed="3"
+            data-rellax-zindex="2"
+            data-rellax-percentage="0.5"
+          >
+            <Image src={gallery_6} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+          </figure>
+        </div>
+        <!-- /.item -->
+      </div>
+      <!-- /.inner -->
+    </div>
+    <!-- /.gallery -->
+  </div>
+  <!-- /.scene-->
+  <div class="scene style_03">
+    <div class="inner">
+      <div class="content">
+        <div class="purposeContent">
+          <section class="col-top">
+            <h3 class="purposeTtl">PURPOSE</h3>
+            <!-- /.purposeTtl -->
+            <div class="purposeItem">
+              <p class="en">
+                <span>LIFE WITH EXPLORATION</span>
+                <span>AND CREATIVITY</span>
+              </p>
+              <!-- /.en -->
+              <p class="ja">探究と創造にあふれる日々の創造</p>
+              <!-- /.ja -->
+            </div>
+            <!-- /.purposeItem -->
+          </section>
+          <!-- /.col-top -->
+          <section class="col-bottom">
+            <h3 class="purposeTtl">PURPOSE</h3>
+            <!-- /.purposeTtl -->
+            <div class="purposeGrid">
+              <div class="purposeItem">
+                <p class="en">
+                  <span>GET YOUR GEEK ON</span>
+                </p>
+                <!-- /.en -->
+                <p class="ja">ハマり尽くせ</p>
+                <!-- /.ja -->
+              </div>
+              <!-- /.purposeItem -->
+              <div class="purposeItem">
+                <p class="en">
+                  <span>OWN YOUR CRAFT</span>
+                </p>
+                <!-- /.en -->
+                <p class="ja">魂は細部に宿る</p>
+                <!-- /.ja -->
+              </div>
+              <!-- /.purposeItem -->
+              <div class="purposeItem">
+                <p class="en">
+                  <span>STAY PLAYFUL</span>
+                </p>
+                <!-- /.en -->
+                <p class="ja">仕事も遊びも振り切れ</p>
+                <!-- /.ja -->
+              </div>
+              <!-- /.purposeItem -->
+              <div class="purposeItem">
+                <p class="en">
+                  <span>INNOVATE ALWAYS</span>
+                </p>
+                <!-- /.en -->
+                <p class="ja">現状維持は後退だ</p>
+                <!-- /.ja -->
+              </div>
+              <!-- /.purposeItem -->
+              <div class="purposeItem">
+                <p class="en">
+                  <span>WIN AS ONE</span>
+                </p>
+                <!-- /.en -->
+                <p class="ja">仲間を信じて</p>
+                <!-- /.ja -->
+              </div>
+              <!-- /.purposeItem -->
+            </div>
+            <!-- /.purposeGrid -->
+          </section>
+          <!-- /.col-top -->
+        </div>
+        <!-- /.purposeContent -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.inner -->
+  </div>
+  <!-- /.scene -->
+</section>
+<!-- /.mainSection -->
+
+<style lang="scss">
+  @use 'sass:math';
+  @use 'src/styles/global' as *;
+  @use 'src/styles/utils' as *;
+  ////////////////////
+  .mainSection {
+    z-index: 1500;
+  }
+  ////////////////////
+  .bgImg {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      backdrop-filter: blur(10px) saturate(100%);
+      transition: opacity 0.4s;
+      opacity: 0;
+      .is-scene_02 &,
+      .is-scene_03 & {
+        opacity: 1;
+      }
+    }
+  }
+  ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene {
+    height: 200vh;
+  }
+  // }
+  ////////////////////
+  // .bgImg {
+  //   figure {
+  //     &.style_02 {
+  //       opacity: 0;
+  //       :global(.is-scene_02) &,
+  //       :global(.is-modal) & {
+  //         opacity: 1;
+  //       }
+  //     }
+  //   }
+  // }
+  ////////////////////
+  .content {
+    > .inner {
+      :global(.is-modal) & {
+        opacity: 0;
+      }
+    }
+  }
+  ////////////////////
+  // @media screen and (min-height: $breakH + 1px) {
+  .scene.style_02 {
+    height: auto;
+    .content {
+      opacity: 0;
+      :global(.is-current.is-scene_02) & {
+        opacity: 1;
+      }
+    }
+  }
+  // }
+  ////////////////////
+  .scene.style_03 {
+    opacity: 0;
+    transition: 0.5s;
+    :global(.is-current.is-scene_03) & {
+      opacity: 1;
+    }
+    .content {
+      width: 100%;
+      align-items: center;
+    }
+  }
+  ////////////////////
+  .blank {
+    height: 100vh;
+  }
+  ////////////////////
+  .gallery {
+    position: relative;
+    @include vwpxpc2(padding-bottom, 160);
+    img {
+      @include imgset;
+    }
+    > .inner {
+      @include vwpxpc2(max-width, 1077);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  ////////////////////
+  .item {
+    position: relative;
+    filter: blur(10px);
+    opacity: 0;
+    transition: 1s;
+    &.is-active {
+      opacity: 1;
+      filter: blur(0);
+    }
+    &.style_01 {
+      @include vwpxpc2(width, 117);
+      margin-left: auto;
+      @include vwpxpc2(margin-right, 150);
+    }
+    &.style_02 {
+      @include vwpxpc2(width, 351);
+      @include vwpxpc2(margin-top, -176);
+    }
+    &.style_03 {
+      @include vwpxpc2(width, 205);
+      margin-left: auto;
+      @include vwpxpc2(margin-right, 248);
+      @include vwpxpc2(margin-top, -174);
+    }
+    &.style_04 {
+      @include vwpxpc2(width, 258);
+      @include vwpxpc2(margin-left, 179);
+      @include vwpxpc2(margin-top, 173);
+    }
+    &.style_05 {
+      @include vwpxpc2(width, 394);
+      margin-left: auto;
+      @include vwpxpc2(margin-top, -472);
+    }
+    &.style_06 {
+      @include vwpxpc2(width, 153);
+      @include vwpxpc2(margin-left, 375);
+      @include vwpxpc2(margin-top, -164);
+    }
+  }
+  ////////////////////
+  .purposeContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: math.div(87, $design-h) * 100vh;
+    text-align: center;
+    @include fz_vwpcmin(14);
+  }
+  ////////////////////
+  .purposeTtl {
+    color: $key-color1;
+    font-weight: 700;
+    line-height: 1em;
+    letter-spacing: math.div(-0.24, 12) + em;
+    text-transform: uppercase;
+    margin-bottom: math.div(16, 12) + em;
+    @include fz_vwpcmin(12);
+  }
+  ////////////////////
+  .en {
+    line-height: math.div(36, 42) + em;
+    letter-spacing: math.div(-0.84, 42) + em;
+    text-transform: uppercase;
+    span {
+      display: block;
+      font-weight: 700;
+    }
+  }
+  ////////////////////
+  .col-top {
+    .en {
+      @include fz_vwpcmin(42);
+    }
+  }
+  ////////////////////
+  .col-bottom {
+    width: 100%;
+    .en {
+      @include fz_vwpcmin(28);
+      // white-space: nowrap;
+    }
+    .purposeItem {
+      width: math.div(240, 780) * 100%;
+    }
+  }
+  ////////////////////
+  .purposeGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: math.div(50, $design-h) * 100vh;
+    column-gap: math.div(20, 780) * 100%;
+    // @include vwpxpc2(column-gap, 107);
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and (min-width: 1000px) {
+      @include vwpxpc2(max-width, 780);
+    }
+  }
+  ////////////////////
+  @media screen and (min-width: $break-point-middle) {
+  }
+</style>

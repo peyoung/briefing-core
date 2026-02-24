@@ -128,7 +128,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     margin-bottom: math.div(200, 20) + em;
     transition: 0.6s;
     :global(.is-scene_02) & {
-      margin-bottom: math.div(240, 20) + em;
+      margin-bottom: math.div(230, 20) + em;
     }
     // @media screen and (max-height: $breakH + px) {
     //   margin-bottom: math.div(240, 20) + em;
@@ -143,8 +143,12 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     top: calc(100vh - 1em);
     @include fz_vwpc(200);
     :global(.is-scene_02) & {
-      top: math.div(126, $design-h) * 100vh;
+      $gap: math.div(130, 200) + em;
+      top: calc(50% - #{$gap});
       @include fz_vwpcmin(70);
+      @media screen and (max-height: $breakH + px) {
+        top: math.div(126, $design-h) * 100vh;
+      }
     }
     // @media screen and (max-height: $breakH + px) {
     //   top: math.div(126, $design-h) * 100vh;
@@ -164,7 +168,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   // }
   ////////////////////
   .summary {
-    margin-bottom: math.div(113, 14) + em;
+    margin-bottom: math.div(103, 14) + em;
   }
   ////////////////////
   .btn {
