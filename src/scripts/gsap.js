@@ -82,6 +82,9 @@ function setToggleClass() {
             case 'tagLine':
               currentTx.textContent = 'TAGLINE';
               break;
+            case 'brandCore':
+              currentTx.textContent = 'TOP';
+              break;
             case 'bottomView':
             case 'purpose': {
               const wrapper = document.getElementById('g-wrapper');
