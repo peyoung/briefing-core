@@ -21,10 +21,8 @@ import Logo from '@images/logo-briefing_01.svg';
             </a>
           </li>
           <li>
-            <a href="#g-wrapper">
-              <span class="labelTx">TOP</span>
-              <!-- /.labelTx -->
-            </a>
+            <span class="labelTx" id="currentTx">TOP</span>
+            <!-- /.labelTx -->
           </li>
         </ul>
       </div>
@@ -66,6 +64,10 @@ import Logo from '@images/logo-briefing_01.svg';
         pointer-events: all;
       }
     }
+    :global(.is-bottomView) & {
+      opacity: 0;
+      pointer-events: none;
+    }
     > .inner {
       width: 100%;
       display: flex;
@@ -88,7 +90,10 @@ import Logo from '@images/logo-briefing_01.svg';
   ////////////////////
   .col-nav {
     display: flex;
-    gap: math.div(139, 12) + em;
+    width: math.div(280, $design-num) * 100%;
+    min-width: 280px;
+    justify-content: space-between;
+    // gap: math.div(139, 12) + em;
     line-height: normal;
     letter-spacing: math.div(-0.24, 12) + em;
     text-transform: uppercase;

@@ -270,15 +270,21 @@ import Img_1Sp from '@images/img_06_sp.jpg';
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s;
-    &.is-active {
-      opacity: 1;
-      pointer-events: all;
-    }
+    // &.is-active {
+    //   opacity: 1;
+    //   pointer-events: all;
+    // }
     @media screen and (min-width: $break-point-design) {
       padding-top: math.div(351, $design-h) * 100vh;
     }
     > .inner {
       width: math.div(420, 640) * 100%;
+    }
+  }
+  .mainSection.is-current {
+    .item.is-active {
+      opacity: 1;
+      pointer-events: all;
     }
   }
   ////////////////////

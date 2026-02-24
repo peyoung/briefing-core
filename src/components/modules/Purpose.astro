@@ -12,7 +12,7 @@ import gallery_5 from '@images/gallery-img_05.jpg';
 import gallery_6 from '@images/gallery-img_06.jpg';
 ---
 
-<section class="mainSection g-mainSection js-toggleClass" id="purpose">
+<section class="mainSection g-mainSection js-toggleClass">
   <div class="scene style_01">
     <div class="inner">
       <div class="bgImg">
@@ -102,7 +102,7 @@ import gallery_6 from '@images/gallery-img_06.jpg';
     <!-- /.gallery -->
   </div>
   <!-- /.scene-->
-  <div class="scene style_03">
+  <div class="scene style_03" id="purpose">
     <div class="inner">
       <div class="content">
         <div class="purposeContent">
@@ -189,10 +189,6 @@ import gallery_6 from '@images/gallery-img_06.jpg';
   @use 'sass:math';
   @use 'src/styles/global' as *;
   @use 'src/styles/utils' as *;
-  ////////////////////
-  .mainSection {
-    z-index: 1500;
-  }
   ////////////////////
   .bgImg {
     &::after {

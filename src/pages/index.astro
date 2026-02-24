@@ -48,11 +48,11 @@ const title = '';
       <TagLine />
     </div>
     <!-- /.pageSection -->
-    <div class="pageSection">
+    <div class="pageSection style_01">
       <BottomView />
     </div>
     <!-- /.pageSection -->
-    <div class="pageSection">
+    <div class="pageSection style_01">
       <Purpose />
     </div>
     <!-- /.pageSection -->
@@ -64,9 +64,12 @@ const title = '';
   @use 'src/styles/global' as *;
   @use 'src/styles/utils' as *;
   ////////////////////
-  // .pageSection {
-  //   position: relative;
-  // }
+  .pageSection {
+    &.style_01 {
+      position: relative;
+      z-index: 1200;
+    }
+  }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {
   }

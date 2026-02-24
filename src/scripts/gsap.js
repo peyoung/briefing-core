@@ -64,6 +64,39 @@ function setToggleClass() {
       start: startPos,
       end: 'bottom top-=20%',
       toggleClass: 'is-current',
+      onToggle: (self) => {
+        if (self.isActive && el.classList.contains('is-current')) {
+          const id = el.id;
+          const currentTx = document.getElementById('currentTx');
+          if (!currentTx) return;
+          switch (id) {
+            case 'value':
+              currentTx.textContent = 'VALUE';
+              break;
+            case 'fact':
+              currentTx.textContent = 'FACT';
+              break;
+            case 'redLine':
+              currentTx.textContent = 'USA-REDLINE';
+              break;
+            case 'tagLine':
+              currentTx.textContent = 'TAGLINE';
+              break;
+            case 'bottomView':
+            case 'purpose': {
+              const wrapper = document.getElementById('g-wrapper');
+              if (wrapper) wrapper.classList.add('is-bottomView');
+              break;
+            }
+            // それ以外は状態変化させない
+          }
+          // #bottomView, #purpose以外の時はis-bottomVIewを外す
+          if (id !== 'bottomView' && id !== 'purpose') {
+            const wrapper = document.getElementById('g-wrapper');
+            if (wrapper) wrapper.classList.remove('is-bottomView');
+          }
+        }
+      },
     });
     window.__toggleTriggers.push(st);
   });
