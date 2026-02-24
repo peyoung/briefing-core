@@ -104,7 +104,8 @@
 }
 @media screen and (min-width: $break-point-middle) {
   .g-summaryStyle_01 {
-    @include fz_vwpcmin(14);
+    font-size: 1.4rem;
+    // @include fz_vwpcmin(14);
     &.style_01 {
       font-size: 1.4rem;
     }

@@ -104,7 +104,8 @@ $base-pad: $base-pad-num + px;
 $sp-pad-num: 40;
 $sp-pad: math.div($sp-pad-num, $design-num-sp) * 100vw;
 
-$breakH: 600;
+$breakH: 650;
+// $breakH: 600;
 /* ~~未定義ここから~~*/
 $header-num: 56;
 $header-size: $header-num + px;
