@@ -172,7 +172,12 @@ import Arrow from '@images/icon-arrow_01.svg';
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
   .scene {
-    min-height: 200vh;
+    height: 100vh;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .scene {
+      height: 300vh;
+    }
   }
   // }
   ////////////////////
@@ -240,7 +245,7 @@ import Arrow from '@images/icon-arrow_01.svg';
     gap: math.div(5, 18) + em;
     align-items: center;
     opacity: 0.4;
-    transition: 0.3s;
+    // transition: 0.3s;
     position: absolute;
     @include fz_vw(18);
     .labelIcon {
@@ -265,6 +270,7 @@ import Arrow from '@images/icon-arrow_01.svg';
         bottom: math.div(2, 18) + em;
         position: absolute;
         transform: translateX(0);
+        animation: linemove_01 1.4s cubic-bezier(0.58, 0.3, 0.005, 1) 0.4s infinite;
       }
     }
     &.is-active {
@@ -274,10 +280,12 @@ import Arrow from '@images/icon-arrow_01.svg';
       color: $key-color1;
       .labelIcon {
         background-color: $key-color1;
+        animation: Blink2 2s ease-in-out infinite;
       }
       .labelTx {
         &::before {
           background-color: $key-color1;
+          animation: none;
         }
       }
     }
@@ -385,7 +393,7 @@ import Arrow from '@images/icon-arrow_01.svg';
   }
   ////////////////////
   .summary {
-    text-align: left;
+    text-align: justify;
     @media screen and (max-width: $break-point-middle-sp) {
       @include fz_vw(13);
       p {
@@ -398,7 +406,6 @@ import Arrow from '@images/icon-arrow_01.svg';
   }
   @media screen and (min-width: $break-point-middle) {
     .summary {
-      text-align: left;
       padding-right: math.div(40, 640) * 100%;
     }
   }

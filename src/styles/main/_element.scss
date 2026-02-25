@@ -87,7 +87,7 @@
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 .g-summaryStyle_01 {
-  text-align: center;
+  text-align: justify;
   font-family: $font-ja;
   @include fz_vw(14);
   line-height: math.div(22, 14) + em;
@@ -104,6 +104,7 @@
 }
 @media screen and (min-width: $break-point-middle) {
   .g-summaryStyle_01 {
+    text-align: center;
     font-size: 1.4rem;
     // @include fz_vwpcmin(14);
     &.style_01 {
@@ -178,6 +179,12 @@
   }
   span {
     font-weight: 700;
+  }
+  &.style_01 {
+    color: $key-color1;
+    &::before {
+      background-color: $key-color1;
+    }
   }
   @media (any-hover: hover) {
     &:hover {

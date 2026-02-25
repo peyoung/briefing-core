@@ -7,7 +7,7 @@ import Logo from '@images/logo-briefing_01.svg';
 ---
 
 <h1 class="siteTtl">
-  <a href="/">
+  <a href="#g-wrapper">
     <Image src={Logo} alt="BRIEFING" width={314} densities={[1, 2, 3]} loading="eager" />
   </a>
 </h1>
@@ -72,6 +72,13 @@ import Logo from '@images/logo-briefing_01.svg';
     height: 100dvh;
     pointer-events: none;
     z-index: 2000;
+    opacity: 0;
+    :global(.loaded) & {
+      animation: baseFade_01 0.4s forwards;
+    }
+    :global(.menuOpen) & {
+      opacity: 0;
+    }
     @media screen and (max-width: $break-point-middle-sp) {
       a {
         pointer-events: all;

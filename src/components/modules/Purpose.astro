@@ -12,7 +12,7 @@ import gallery_5 from '@images/gallery-img_05.jpg';
 import gallery_6 from '@images/gallery-img_06.jpg';
 ---
 
-<section class="mainSection g-mainSection js-toggleClass">
+<section class="mainSection g-mainSection js-toggleClass" id="gallery">
   <div class="scene style_01">
     <div class="inner">
       <div class="bgImg">
@@ -208,11 +208,14 @@ import gallery_6 from '@images/gallery-img_06.jpg';
     }
   }
   ////////////////////
-  // @media screen and (min-height: $breakH + 1px) {
   .scene {
     height: 200vh;
   }
-  // }
+  @media screen and (min-width: $break-point-middle) {
+    .scene {
+      height: 200vh;
+    }
+  }
   ////////////////////
   // .bgImg {
   //   figure {

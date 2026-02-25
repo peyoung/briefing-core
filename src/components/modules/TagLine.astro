@@ -112,7 +112,12 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
   .scene {
-    height: 200vh;
+    height: 100vh;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .scene {
+      height: 200vh;
+    }
   }
   // }
   ////////////////////
@@ -148,7 +153,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   .bgImg {
     :global(.is-scene_02) & {
       opacity: 1;
-      filter: brightness(0.5);
+      filter: brightness(0.3);
     }
   }
   ////////////////////
@@ -246,7 +251,6 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .summary {
       @include fz_vw(13);
-      text-align: left;
       margin-top: get_sp(130);
       br {
         display: none;

@@ -88,7 +88,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
         </div>
         <!-- /.g-summaryStyle_01 -->
         <div class="g-modalBtnSection modalBtnSection">
-          <button type="button" class="g-btnStyle_02 js-sceneModalClose">
+          <button type="button" class="g-btnStyle_02 style_01 js-sceneModalClose">
             <span class="labelTx">BACK</span>
             <!-- /.labelTx -->
           </button>
@@ -110,7 +110,12 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
   .scene {
-    height: 200vh;
+    height: 100vh;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .scene {
+      height: 200vh;
+    }
   }
   // }
   ////////////////////
@@ -134,7 +139,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   .bgImg {
     :global(.is-scene_02) & {
       opacity: 1;
-      filter: brightness(0.5);
+      filter: brightness(0.3);
     }
   }
   ////////////////////
@@ -230,7 +235,6 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .summary {
-      text-align: left;
       margin-top: get_sp(130);
     }
   }
@@ -239,7 +243,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     span {
       &::before {
         :global(.is-scene_02) & {
-          animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0.4s 1;
+          animation: linemove_01 1.4s cubic-bezier(0.58, 0.3, 0.005, 1) 0.4s infinite;
         }
       }
     }
@@ -247,7 +251,6 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   ////////////////////
   @media screen and (max-width: $break-point-middle-sp) {
     .modalSummary {
-      text-align: left;
       br {
         display: none;
       }

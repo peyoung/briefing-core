@@ -222,3 +222,23 @@
     scale: 1;
   }
 }
+////////////////////////
+@keyframes Blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+////////////////////////
+@keyframes Blink2 {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

@@ -85,7 +85,12 @@ import Img_1Sp from '@images/img_05_sp.jpg';
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
   .scene {
-    min-height: 200vh;
+    height: 100vh;
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .scene {
+      height: 200vh;
+    }
   }
   // }
   ////////////////////
@@ -147,18 +152,19 @@ import Img_1Sp from '@images/img_05_sp.jpg';
     }
     .labelIcon {
       position: absolute;
-      top: math.div(-25, 200) + em;
+      top: math.div(-30, 200) + em;
       display: block;
-      width: get_sp(18);
-      height: get_sp(18);
+      width: get_sp(24);
+      height: get_sp(24);
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: $key-color1;
       > span {
         display: block;
-        width: 100%;
-        height: get_sp(3);
-        background-color: $key-color1;
+        width: get_sp(14);
+        height: get_sp(2);
+        background-color: $white;
         position: absolute;
         &:last-child {
           transform: rotate(90deg);
@@ -167,8 +173,8 @@ import Img_1Sp from '@images/img_05_sp.jpg';
     }
     &.style_01 {
       .labelIcon {
-        right: math.div(-50, 200) + em;
-        animation: labelIconBlink 2s ease-in-out infinite;
+        right: math.div(-70, 200) + em;
+        animation: Blink 2s ease-in-out infinite;
       }
       @media (any-hover: hover) {
         &:hover {
@@ -180,8 +186,8 @@ import Img_1Sp from '@images/img_05_sp.jpg';
     }
     &.style_02 {
       .labelIcon {
-        right: math.div(-40, 200) + em;
-        animation: labelIconBlink 2s 0.2s ease-in-out infinite;
+        right: math.div(-60, 200) + em;
+        animation: Blink 2s 0.2s ease-in-out infinite;
       }
       @media (any-hover: hover) {
         &:hover {
@@ -193,8 +199,8 @@ import Img_1Sp from '@images/img_05_sp.jpg';
     }
     &.style_03 {
       .labelIcon {
-        right: math.div(-40, 200) + em;
-        animation: labelIconBlink 2s 0.4s ease-in-out infinite;
+        right: math.div(-60, 200) + em;
+        animation: Blink 2s 0.4s ease-in-out infinite;
       }
       @media (any-hover: hover) {
         &:hover {
@@ -208,42 +214,35 @@ import Img_1Sp from '@images/img_05_sp.jpg';
   @media screen and (min-width: $break-point-middle) {
     .factBtn {
       .labelIcon {
-        width: math.div(30, 200) + em;
-        height: math.div(30, 200) + em;
+        top: math.div(-20, 200) + em;
+        width: math.div(40, 200) + em;
+        height: math.div(40, 200) + em;
         > span {
-          height: 6px;
+          width: math.div(20, 200) + em;
+          height: 3px;
         }
       }
       &.style_01 {
         $gap: math.div(-50, 200) + em;
         transform: translateX(#{$gap});
         .labelIcon {
-          right: math.div(-40, 200) + em;
+          right: math.div(-60, 200) + em;
         }
       }
       &.style_02 {
         $gap: math.div(100, 200) + em;
         transform: translateX(#{$gap});
         .labelIcon {
-          right: math.div(-30, 200) + em;
+          right: math.div(-40, 200) + em;
         }
       }
       &.style_03 {
         $gap: math.div(-150, 200) + em;
         transform: translateX(#{$gap});
         .labelIcon {
-          right: math.div(-30, 200) + em;
+          right: math.div(-35, 200) + em;
         }
       }
-    }
-  }
-  @keyframes labelIconBlink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
     }
   }
   ////////////////////
