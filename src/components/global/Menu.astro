@@ -81,13 +81,13 @@ import Nav from '@components/navigation/NavGlobal.astro';
     width: get_sp(205);
     min-height: 100dvh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
     backdrop-filter: blur(10px) saturate(100%);
     // background-color: rgba(0, 0, 0, 0.5);
     clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
     transition: clip-path 0.2s $ease-out-quad;
-    padding: 0 get_sp(40);
+    padding: get_sp($grid_01 - 40) get_sp(20) 0;
     position: relative;
     text-align: right;
     letter-spacing: math.div(-0.28, 14) + em;
@@ -129,6 +129,7 @@ import Nav from '@components/navigation/NavGlobal.astro';
   @media screen and (min-width: $break-point-middle) {
     .menuContent {
       @include vwpxpc2(width, 330);
+      align-items: center;
       min-width: 330px;
       padding: 0 math.div(54, $design-num) * 100%;
       @include fz_vwpcmin(14);
@@ -154,7 +155,7 @@ import Nav from '@components/navigation/NavGlobal.astro';
   .menuCloseBtn {
     position: absolute;
     bottom: get_sp(34);
-    right: get_sp(40);
+    right: get_sp(20);
     button {
       &::before {
         width: 100%;
