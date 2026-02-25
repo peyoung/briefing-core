@@ -20,7 +20,7 @@
 }
 @media screen and (min-width: $break-point-middle) {
   .g-ttlStyle_01 {
-    // font-size: 2rem;
+    font-size: 2rem;
     @include fz_vwpcmin(20);
     display: flex;
     flex-wrap: wrap;
