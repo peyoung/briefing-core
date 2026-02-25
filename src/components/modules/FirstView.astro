@@ -6,6 +6,13 @@ import Logo from '@images/logo-briefing_01.svg';
 // import Img_1Sp from '@images/img_01_sp.jpg';
 ---
 
+<h1 class="siteTtl">
+  <a href="/">
+    <Image src={Logo} alt="BRIEFING" width={314} densities={[1, 2, 3]} loading="eager" />
+  </a>
+</h1>
+<!-- /.siteTtl -->
+
 <div class="mainSection g-mainSection js-toggleClass" id="firstView">
   <div class="scene">
     <div class="inner">
@@ -15,18 +22,6 @@ import Logo from '@images/logo-briefing_01.svg';
         </video>
       </div>
       <!-- /.bgImg -->
-      <div class="content">
-        <div class="inner">
-          <h1 class="siteTtl">
-            <a href="/">
-              <Image src={Logo} alt="BRIEFING" width={314} densities={[1, 2, 3]} loading="eager" />
-            </a>
-          </h1>
-          <!-- /.siteTtl -->
-        </div>
-        <!-- /.inner -->
-      </div>
-      <!-- /.content -->
     </div>
     <!-- /.inner -->
   </div>
@@ -39,11 +34,19 @@ import Logo from '@images/logo-briefing_01.svg';
   @use 'src/styles/global' as *;
   @use 'src/styles/utils' as *;
   ////////////////////
+  .mainSection {
+    background-color: $black;
+  }
+  ////////////////////
   .bgImg {
     video {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      opacity: 0;
+      :global(.loaded) & {
+        animation: baseFade_01 0.4s 0.4s forwards;
+      }
     }
     :global(.fixedHeader) & {
       opacity: 0;
@@ -62,15 +65,44 @@ import Logo from '@images/logo-briefing_01.svg';
   }
   ////////////////////
   .siteTtl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+    pointer-events: none;
+    z-index: 2000;
+    @media screen and (max-width: $break-point-middle-sp) {
+      a {
+        pointer-events: all;
+        position: absolute;
+        display: flex;
+        width: get_sp(254);
+        left: calc(50% - get_sp(127));
+        top: calc(50% - get_sp(17));
+        transition: 0.4s $ease-out-quad;
+        :global(.setLogoTop) & {
+          width: get_sp(132);
+          left: calc(50% - get_sp(66));
+          top: get_sp(30);
+        }
+      }
+    }
     img {
-      width: get_sp(254);
+      @include imgset;
     }
   }
   @media screen and (min-width: $break-point-middle) {
     .siteTtl {
-      img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      a {
         @include vwpxpc2(width, 314);
         min-width: 314px;
+        :global(.setLogoTop) & {
+          opacity: 0;
+        }
       }
     }
   }

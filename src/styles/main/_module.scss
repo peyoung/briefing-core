@@ -13,6 +13,10 @@
 ////////////////////////////////////////////////////////////
 #g-container {
   position: relative;
+  opacity: 0;
+  .loaded & {
+    opacity: 1;
+  }
   // cursor: default;
   // pointer-events: none;
   // padding-bottom: $footer-size-sp;

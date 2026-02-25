@@ -68,6 +68,7 @@ function setToggleClass() {
         if (self.isActive && el.classList.contains('is-current')) {
           const id = el.id;
           const currentTx = document.getElementById('currentTx');
+          const wrapper = document.getElementById('g-wrapper');
           if (!currentTx) return;
           switch (id) {
             case 'value':
@@ -87,16 +88,20 @@ function setToggleClass() {
               break;
             case 'bottomView':
             case 'purpose': {
-              const wrapper = document.getElementById('g-wrapper');
               if (wrapper) wrapper.classList.add('is-bottomView');
               break;
             }
             // それ以外は状態変化させない
           }
-          // #bottomView, #purpose以外の時はis-bottomVIewを外す
+          // #bottomView, #purpose以外の時はis-bottomViewを外す
           if (id !== 'bottomView' && id !== 'purpose') {
-            const wrapper = document.getElementById('g-wrapper');
             if (wrapper) wrapper.classList.remove('is-bottomView');
+          }
+          // value, fact, redLine, tagLine, brandCore の場合は .setLogoTop を付与
+          if (['value', 'fact', 'redLine', 'tagLine', 'brandCore'].includes(id)) {
+            if (wrapper) wrapper.classList.add('setLogoTop');
+          } else {
+            if (wrapper) wrapper.classList.remove('setLogoTop');
           }
         }
       },
