@@ -10,7 +10,7 @@ import Arrow from '@images/icon-arrow_01.svg';
 <section class="mainSection g-mainSection js-toggleClass" id="redLine">
   <div class="scene">
     <div class="inner">
-      <div class="content js-tabContent">
+      <div class="content js-tabContent js-tabSwipe">
         <div class="columnStyle">
           <div class="col-img">
             <div class="mapSection">
@@ -20,7 +20,7 @@ import Arrow from '@images/icon-arrow_01.svg';
                 </figure>
               </div>
               <!-- /.bgImg -->
-              <div class="mapContent js-tabNav">
+              <div class="mapContent js-tabNav js-navMain">
                 <button type="button" class="mapBtn style_01 is-active" data-target="redLineGeeky">
                   <span class="labelIcon"></span>
                   <span class="labelTx">GEEKY</span>
@@ -306,22 +306,34 @@ import Arrow from '@images/icon-arrow_01.svg';
       }
     }
     &.style_01 {
-      left: calc(50% - math.div(-30, $design-num) * 100vw);
-      top: math.div(311, $design-h) * 100%;
+      left: calc(50% - math.div(-30, $design-num-sp) * 100vw);
+      top: math.div(331, $design-h-sp) * 100%;
     }
     &.style_02 {
-      left: calc(50% - math.div(5, $design-num) * 100vw);
-      top: math.div(416, $design-h) * 100%;
+      left: calc(50% - math.div(55, $design-num-sp) * 100vw);
+      top: math.div(385, $design-h-sp) * 100%;
     }
     &.style_03 {
-      left: calc(50% - math.div(-80, $design-num) * 100vw);
-      top: math.div(470, $design-h) * 100%;
+      left: calc(50% - math.div(-14, $design-num-sp) * 100vw);
+      top: math.div(435, $design-h-sp) * 100%;
     }
   }
   @media screen and (min-width: $break-point-middle) {
     .mapBtn {
       // @include fz_vwpc(18);
       font-size: 1.8rem;
+      &.style_01 {
+        left: calc(50% - math.div(-30, $design-num) * 100vw);
+        top: math.div(311, $design-h) * 100%;
+      }
+      &.style_02 {
+        left: calc(50% - math.div(5, $design-num) * 100vw);
+        top: math.div(416, $design-h) * 100%;
+      }
+      &.style_03 {
+        left: calc(50% - math.div(-80, $design-num) * 100vw);
+        top: math.div(470, $design-h) * 100%;
+      }
     }
   }
   ////////////////////

@@ -286,4 +286,60 @@ function setTab() {
     $('.js-tabContent').find('.item').removeClass('is-active');
     $(target).addClass('is-active');
   });
+  // タッチデバイス限定スワイプ対応
+  if ('ontouchstart' in window) {
+    let startX = null;
+    let startY = null;
+    $('.js-tabContent.js-tabSwipe')
+      .on('touchstart', function (e) {
+        startX = e.originalEvent.touches[0].clientX;
+        startY = e.originalEvent.touches[0].clientY;
+      })
+      .on('touchmove', function (e) {
+        if (startX == null || startY == null) return;
+        const moveX = e.originalEvent.touches[0].clientX;
+        const moveY = e.originalEvent.touches[0].clientY;
+        const diffX = Math.abs(moveX - startX);
+        const diffY = Math.abs(moveY - startY);
+        // 横移動が縦移動より大きい場合のみスクロール抑制
+        if (diffX > diffY && diffX > 30) {
+          e.preventDefault();
+        }
+      })
+      .on('touchend', function (e) {
+        const endX = e.originalEvent.changedTouches[0].clientX;
+        const endY = e.originalEvent.changedTouches[0].clientY;
+        if (startX == null || startY == null) return;
+        const diffX = endX - startX;
+        const diffY = endY - startY;
+        // 横移動が縦移動より大きい場合のみタブ切り替え
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+          const $tabNav = $(this).closest('.content').find('.js-navMain');
+          const $nav = $tabNav.find('button');
+          const $active = $nav.filter('.is-active');
+          $nav.removeClass('is-active'); // js-navMain内のボタンのみ
+          if (diffX < 0) {
+            // 左スワイプ（次の要素）
+            let $next = $active.next('button');
+            if ($next.length) {
+              $next.trigger('click');
+            } else {
+              // 最後なら最初へ
+              $nav.eq(0).trigger('click');
+            }
+          } else if (diffX > 0) {
+            // 右スワイプ（前の要素）
+            let $prev = $active.prev('button');
+            if ($prev.length) {
+              $prev.trigger('click');
+            } else {
+              // 最初なら最後へ（prevがなければlast）
+              $nav.last().trigger('click');
+            }
+          }
+        }
+        startX = null;
+        startY = null;
+      });
+  }
 }

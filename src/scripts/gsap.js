@@ -98,7 +98,11 @@ function setToggleClass() {
             if (wrapper) wrapper.classList.remove('is-bottomView');
           }
           // value, fact, redLine, tagLine, brandCore, gallery の場合は .setLogoTop を付与
-          if (['value', 'fact', 'redLine', 'tagLine', 'brandCore', 'gallery'].includes(id)) {
+          if (
+            ['value', 'fact', 'redLine', 'tagLine', 'brandCore', 'bottomView', 'gallery'].includes(
+              id
+            )
+          ) {
             if (wrapper) wrapper.classList.add('setLogoTop');
           } else {
             if (wrapper) wrapper.classList.remove('setLogoTop');
