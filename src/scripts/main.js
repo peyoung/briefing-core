@@ -19,7 +19,7 @@ $(window).on('load', function () {
   setAcc();
   setTab();
   setHeader();
-  setRellax();
+  // setRellax();
   // setTripla();
   // if ($('#g-wrapper').hasClass('home')) {
   //   // setKv();

@@ -88,7 +88,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
         </div>
         <!-- /.g-summaryStyle_01 -->
         <div class="g-modalBtnSection modalBtnSection">
-          <button type="button" class="g-btnStyle_02 style_01 js-sceneModalClose">
+          <button type="button" class="g-btnStyle_02 js-sceneModalClose">
             <span class="labelTx">BACK</span>
             <!-- /.labelTx -->
           </button>
@@ -114,7 +114,10 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   }
   @media screen and (min-width: $break-point-middle) {
     .scene {
-      height: 200vh;
+      height: 100vh;
+      &.style_02 {
+        height: 0;
+      }
     }
   }
   // }
@@ -160,7 +163,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     .pageRead {
       transition: 0.3s;
       opacity: 0;
-      :global(.is-scene_02) & {
+      :global(.is-animation) & {
         opacity: 1;
       }
     }
@@ -194,14 +197,14 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .pageTtl {
       transition: 0.3s;
-      :global(.is-scene_02) & {
+      :global(.is-animation) & {
         @include fz_vw(40);
       }
       &.style_01 {
         position: absolute;
         top: 0;
         left: 0;
-        :global(.is-scene_02) & {
+        :global(.is-animation) & {
           opacity: 0;
         }
       }
@@ -209,7 +212,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
         display: block;
         opacity: 0;
         // margin-top: -70 * 3 + em;
-        :global(.is-scene_02) & {
+        :global(.is-animation) & {
           opacity: 1;
         }
         > span {
@@ -220,11 +223,23 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   }
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
-  .scene.style_02 {
-    .content {
-      opacity: 0;
-      :global(.is-current.is-scene_02) & {
-        opacity: 1;
+  @media screen and (min-width: $break-point-middle) {
+    .scene.style_02 {
+      .content {
+        opacity: 0;
+        :global(.is-current.is-scene_02) & {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .scene.style_02 {
+      .content {
+        opacity: 0;
+        :global(.is-current.is-animation) & {
+          opacity: 1;
+        }
       }
     }
   }

@@ -45,6 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
     closeButtons.forEach((btn) => btn.addEventListener('click', closeModal));
   }
 
+  // .js-factClose ボタンでモーダルを閉じる
+  const factCloseButtons = document.querySelectorAll('.js-factClose');
+  if (factCloseButtons.length) {
+    factCloseButtons.forEach((btn) => btn.addEventListener('click', closeModal));
+  }
+
   // .js-factMove ボタンでモーダル内を移動
   const moveButtons = document.querySelectorAll('.js-factMove');
   if (moveButtons.length) {
@@ -135,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     inviewObserver = new IntersectionObserver(onInview, {
       root: scroller,
-      threshold: 0.5,
+      threshold: 0.2,
     });
 
     items.forEach((it) => inviewObserver.observe(it));

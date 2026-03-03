@@ -8,7 +8,7 @@ import Img_2Sp from '@images/img_03_sp.jpg';
 ---
 
 <section class="mainSection g-mainSection js-toggleClass" id="brandCore">
-  <div class="scene">
+  <div class="scene style_01">
     <div class="inner">
       <div class="bgImg">
         <figure>
@@ -81,6 +81,7 @@ import Img_2Sp from '@images/img_03_sp.jpg';
     figure:nth-child(2) {
       opacity: 0;
       transition: $speed_1;
+      // :global(.is-scene_02) & {
       :global(.is-scene_02) & {
         opacity: 1;
         // filter: brightness(0.8);
@@ -92,7 +93,7 @@ import Img_2Sp from '@images/img_03_sp.jpg';
     .pageRead {
       transition: 0.3s;
       opacity: 0;
-      :global(.is-scene_02) & {
+      :global(.is-animation) & {
         opacity: 1;
       }
     }
@@ -106,14 +107,14 @@ import Img_2Sp from '@images/img_03_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .pageTtl {
       transition: 0.3s;
-      :global(.is-scene_02) & {
+      :global(.is-animation) & {
         @include fz_vw(40);
       }
       &.style_01 {
         position: absolute;
         top: 0;
         left: 0;
-        :global(.is-scene_02) & {
+        :global(.is-animation) & {
           opacity: 0;
         }
       }
@@ -121,7 +122,7 @@ import Img_2Sp from '@images/img_03_sp.jpg';
         display: block;
         opacity: 0;
         // margin-top: -70 * 3 + em;
-        :global(.is-scene_02) & {
+        :global(.is-animation) & {
           opacity: 1;
         }
         > span {

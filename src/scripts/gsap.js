@@ -56,6 +56,8 @@ function setToggleClass() {
   // clear previous references
   window.__toggleTriggers.length = 0;
   triggers.forEach((el, index) => {
+    let scene02Added = false;
+    let scene02TimerId = null;
     // 最初の要素だけstart位置を調整して、ロード時に確実に反応するようにする
     const startPos = index === 0 ? 'top bottom' : 'top top';
 
@@ -64,8 +66,30 @@ function setToggleClass() {
       start: startPos,
       end: 'bottom top-=20%',
       toggleClass: 'is-current',
+      onEnter: () => {
+        // #bottomView に差し掛かったら is-bottomView を付与（以降、下スクロールでは維持）
+        if (el.id === 'bottomView') {
+          const wrapper = document.getElementById('g-wrapper');
+          if (wrapper) wrapper.classList.add('is-bottomView');
+        }
+      },
+      onEnterBack: () => {
+        // 下から #bottomView に戻ってきた時も付与
+        if (el.id === 'bottomView') {
+          const wrapper = document.getElementById('g-wrapper');
+          if (wrapper) wrapper.classList.add('is-bottomView');
+        }
+      },
+      onLeaveBack: () => {
+        // 上スクロールで #bottomView が下に抜けたら削除
+        if (el.id === 'bottomView') {
+          const wrapper = document.getElementById('g-wrapper');
+          if (wrapper) wrapper.classList.remove('is-bottomView');
+        }
+      },
       onToggle: (self) => {
         if (self.isActive && el.classList.contains('is-current')) {
+          // ...既存のis-current付与時の処理...
           const id = el.id;
           const currentTx = document.getElementById('currentTx');
           const wrapper = document.getElementById('g-wrapper');
@@ -87,16 +111,14 @@ function setToggleClass() {
               currentTx.textContent = 'TOP';
               break;
             case 'bottomView':
-            case 'purpose': {
-              if (wrapper) wrapper.classList.add('is-bottomView');
+            case 'purpose':
               break;
-            }
             // それ以外は状態変化させない
           }
           // #bottomView, #purpose以外の時はis-bottomViewを外す
-          if (id !== 'bottomView' && id !== 'purpose') {
-            if (wrapper) wrapper.classList.remove('is-bottomView');
-          }
+          // if (id !== 'bottomView' && id !== 'purpose') {
+          //   if (wrapper) wrapper.classList.remove('is-bottomView');
+          // }
           // value, fact, redLine, tagLine, brandCore, gallery の場合は .setLogoTop を付与
           if (
             ['value', 'fact', 'redLine', 'tagLine', 'brandCore', 'bottomView', 'gallery'].includes(
@@ -107,6 +129,38 @@ function setToggleClass() {
           } else {
             if (wrapper) wrapper.classList.remove('setLogoTop');
           }
+
+          // scene_02付与制御
+          if (!scene02Added && !scene02TimerId) {
+            scene02TimerId = setTimeout(() => {
+              scene02TimerId = null;
+              // 付与タイミングで既にis-currentが外れている場合は何もしない
+              if (!el.classList.contains('is-current')) return;
+              // .js-toggleClassの子要素.scene.style_02のmainSectionにis-scene_02を付与
+              const scene02 = el.querySelector('.scene.style_02');
+              if (scene02) {
+                const parent02 = scene02.closest('.mainSection');
+                if (parent02) {
+                  parent02.classList.add('is-scene_02');
+                  parent02.classList.add('is-animation');
+                  scene02Added = true;
+                }
+              }
+            }, 600);
+          }
+        } else if (!self.isActive) {
+          // is-currentを外すタイミングで、未発火の付与タイマーを止めてからis-scene_02を削除
+          if (scene02TimerId) {
+            clearTimeout(scene02TimerId);
+            scene02TimerId = null;
+          }
+
+          const scene02 = el.querySelector('.scene.style_02');
+          if (scene02) {
+            const parent02 = scene02.closest('.mainSection');
+            if (parent02) parent02.classList.remove('is-scene_02');
+          }
+          scene02Added = false;
         }
       },
     });
@@ -134,7 +188,7 @@ function setHeaderActiveOnFirstView() {
 // 初期化にヘッダー制御とシーントリガーを追加
 window.addEventListener('load', () => {
   setHeaderActiveOnFirstView();
-  setSceneClasses();
+  // setSceneClasses();
 });
 
 // (モーダルハンドラは各コンポーネント側で実装します)

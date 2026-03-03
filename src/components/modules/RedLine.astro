@@ -211,6 +211,16 @@ import Arrow from '@images/icon-arrow_01.svg';
       }
     }
   }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .columnStyle {
+      .col-img {
+        padding: get_sp(69) get_sp(40) 0;
+        img {
+          height: get_sp(350);
+        }
+      }
+    }
+  }
   ////////////////////
   .mapSection {
     height: 100%;
@@ -307,15 +317,16 @@ import Arrow from '@images/icon-arrow_01.svg';
     }
     &.style_01 {
       left: calc(50% - math.div(-30, $design-num-sp) * 100vw);
-      top: math.div(331, $design-h-sp) * 100%;
+      top: math.div(311, $design-h-sp) * 100%;
     }
     &.style_02 {
-      left: calc(50% - math.div(55, $design-num-sp) * 100vw);
-      top: math.div(385, $design-h-sp) * 100%;
+      left: calc(50% - math.div(15, $design-num-sp) * 100vw);
+      top: math.div(360, $design-h-sp) * 100%;
+      flex-direction: row-reverse;
     }
     &.style_03 {
-      left: calc(50% - math.div(-14, $design-num-sp) * 100vw);
-      top: math.div(435, $design-h-sp) * 100%;
+      left: calc(50% - math.div(-10, $design-num-sp) * 100vw);
+      top: math.div(400, $design-h-sp) * 100%;
     }
   }
   @media screen and (min-width: $break-point-middle) {
@@ -329,6 +340,7 @@ import Arrow from '@images/icon-arrow_01.svg';
       &.style_02 {
         left: calc(50% - math.div(5, $design-num) * 100vw);
         top: math.div(416, $design-h) * 100%;
+        flex-direction: row;
       }
       &.style_03 {
         left: calc(50% - math.div(-80, $design-num) * 100vw);
@@ -340,14 +352,25 @@ import Arrow from '@images/icon-arrow_01.svg';
   .col-content {
     position: relative;
     overflow: clip;
+    @media screen and (max-width: $break-point-middle-sp) {
+      height: 100%;
+    }
     .bgImg {
       filter: blur(20px);
       scale: 1.2;
+      @media screen and (max-width: $break-point-middle-sp) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+      }
     }
   }
   @media screen and (min-width: $break-point-middle) {
     .col-content {
       .bgImg {
+        display: block;
         filter: blur(30px);
         scale: 1.1;
       }

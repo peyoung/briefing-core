@@ -56,12 +56,17 @@ import Logo from '@images/logo-briefing_01.svg';
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.4s;
+    transition:
+      opacity 0.4s,
+      padding 0.3s;
     @media screen and (max-width: $break-point-middle-sp) {
       align-items: flex-start;
       padding-top: get_sp($grid_01 - 40);
       padding-left: get_sp(20);
       padding-right: get_sp(20);
+      :global(.is-bottomView) & {
+        padding-top: get_sp(30);
+      }
     }
     &.is-active {
       opacity: 1;
@@ -70,10 +75,10 @@ import Logo from '@images/logo-briefing_01.svg';
         pointer-events: all;
       }
     }
-    :global(.is-bottomView) & {
-      opacity: 0;
-      pointer-events: none;
-    }
+    // :global(.is-bottomView) & {
+    //   opacity: 0;
+    //   pointer-events: none;
+    // }
     > .inner {
       width: 100%;
       display: flex;
@@ -136,6 +141,10 @@ import Logo from '@images/logo-briefing_01.svg';
   }
   ////////////////////
   .pickMenu {
+    :global(.is-bottomView) & {
+      opacity: 0;
+      pointer-events: none;
+    }
     ul {
       display: flex;
       gap: math.div(49, 12) + em;

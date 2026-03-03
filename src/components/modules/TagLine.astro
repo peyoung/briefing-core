@@ -65,43 +65,6 @@ import Img_1Sp from '@images/img_07_sp.jpg';
     <!-- /.inner -->
   </div>
   <!-- /.scene-->
-  <section class="modalScene g-modalScene">
-    <div class="g-modalContent modalContent">
-      <div class="col-ttl">
-        <h3 class="g-ttlStyle_03 modalTtl g-modalTtl style_01">ACTIVES</h3>
-        <!-- /.g-ttlStyle_03 -->
-      </div>
-      <!-- /.col-ttl -->
-      <div class="col">
-        <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
-          <span class="style_02">人生を豊かにする発見を求める</span>
-          <span class="style_02">都市のアクティブな大人たち</span>
-        </p>
-        <!-- /.pageRead -->
-        <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
-          <p>
-            好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
-            />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
-            />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
-            />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
-            />旅が好き。アートやカルチャーにも関心が高い。<br
-            />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
-          </p>
-        </div>
-        <!-- /.g-summaryStyle_01 -->
-        <div class="g-modalBtnSection modalBtnSection">
-          <button type="button" class="g-btnStyle_02 js-sceneModalClose">
-            <span class="labelTx">BACK</span>
-            <!-- /.labelTx -->
-          </button>
-        </div>
-        <!-- /.modalBtnSection -->
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.modalContent -->
-  </section>
-  <!-- /.modalScene-->
 </section>
 <!-- /.mainSection -->
 
@@ -116,7 +79,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   }
   @media screen and (min-width: $break-point-middle) {
     .scene {
-      height: 200vh;
+      height: 100vh;
     }
   }
   // }
@@ -174,7 +137,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
     .pageRead {
       transition: 0.3s;
       opacity: 0;
-      :global(.is-scene_02) & {
+      :global(.is-animation) & {
         opacity: 1;
       }
     }
@@ -209,14 +172,14 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .pageTtl {
       transition: 0.3s;
-      :global(.is-scene_02) & {
+      :global(.is-animation) & {
         @include fz_vw(37);
       }
       &.style_01 {
         position: absolute;
         top: 0;
         left: 0;
-        :global(.is-scene_02) & {
+        :global(.is-animation) & {
           opacity: 0;
         }
       }
@@ -224,7 +187,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
         display: block;
         opacity: 0;
         // margin-top: -70 * 3 + em;
-        :global(.is-scene_02) & {
+        :global(.is-animation) & {
           opacity: 1;
         }
         > span {
@@ -235,11 +198,23 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   }
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
-  .scene.style_02 {
-    .content {
-      opacity: 0;
-      :global(.is-current.is-scene_02) & {
-        opacity: 1;
+  @media screen and (max-width: $break-point-middle-sp) {
+    .scene.style_02 {
+      .content {
+        opacity: 0;
+        :global(.is-current.is-animation) & {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .scene.style_02 {
+      .content {
+        opacity: 0;
+        :global(.is-current.is-scene_02) & {
+          opacity: 1;
+        }
       }
     }
   }
@@ -254,16 +229,6 @@ import Img_1Sp from '@images/img_07_sp.jpg';
       margin-top: get_sp(130);
       br {
         display: none;
-      }
-    }
-  }
-  ////////////////////
-  .btn {
-    span {
-      &::before {
-        :global(.is-scene_02) & {
-          animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0.4s 1;
-        }
       }
     }
   }

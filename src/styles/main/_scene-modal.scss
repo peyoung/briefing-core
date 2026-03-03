@@ -80,14 +80,17 @@
   width: 100%;
   // }
   .is-modal & {
+    height: 100vh;
     pointer-events: all;
     opacity: 1;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }
 }
 // @media screen and (min-height: $breakH + 1px) {
-.g-modalScene {
-  height: 100vh;
+@media screen and (max-width: $break-point-middle-sp) {
+  .g-modalScene {
+    height: 0vh;
+  }
 }
 // }
 @media screen and (min-width: $break-point-middle) {
@@ -154,7 +157,7 @@
   @include fz_vw(16);
   &.style_01 {
     @include fz_vw(12);
-    margin-top: math.div(32, 12) + em;
+    margin-top: math.div(24, 12) + em;
     justify-content: space-between;
   }
 }

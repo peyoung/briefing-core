@@ -19,89 +19,32 @@ import gallery_6 from '@images/gallery-img_06.jpg';
         <figure>
           <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
         </figure>
+        <figure>
+          <Image src={gallery_1} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_2} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_3} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_4} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_5} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_6} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
       </div>
       <!-- /.bgImg -->
     </div>
     <!-- /.inner -->
   </div>
   <!-- /.scene -->
-  <div class="scene style_02">
-    <div class="blank"></div>
-    <!-- /.blank -->
-    <div class="gallery g-mrgStyle_01">
-      <div class="inner">
-        <div class="item style_01 js-inview-gallery">
-          <figure
-            class="js-rellax"
-            data-rellax-speed="3"
-            data-rellax-zindex="2"
-            data-rellax-percentage="0.5"
-          >
-            <Image src={gallery_1} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
-          </figure>
-        </div>
-        <!-- /.item -->
-        <div class="item style_02 js-inview-gallery">
-          <figure
-            class="js-rellax"
-            data-rellax-speed="-3"
-            data-rellax-zindex="2"
-            data-rellax-percentage="0.5"
-          >
-            <Image src={gallery_2} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
-          </figure>
-        </div>
-        <!-- /.item -->
-        <div class="item style_03 js-inview-gallery">
-          <figure
-            class="js-rellax"
-            data-rellax-speed="3"
-            data-rellax-zindex="2"
-            data-rellax-percentage="0.5"
-          >
-            <Image src={gallery_3} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
-          </figure>
-        </div>
-        <!-- /.item -->
-        <div class="item style_04 js-inview-gallery">
-          <figure
-            class="js-rellax"
-            data-rellax-speed="-3"
-            data-rellax-zindex="2"
-            data-rellax-percentage="0.5"
-          >
-            <Image src={gallery_4} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
-          </figure>
-        </div>
-        <!-- /.item -->
-        <div class="item style_05 js-inview-gallery">
-          <figure
-            class="js-rellax"
-            data-rellax-speed="3"
-            data-rellax-zindex="2"
-            data-rellax-percentage="0.5"
-          >
-            <Image src={gallery_5} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
-          </figure>
-        </div>
-        <!-- /.item -->
-        <div class="item style_06 js-inview-gallery">
-          <figure
-            class="js-rellax"
-            data-rellax-speed="3"
-            data-rellax-zindex="2"
-            data-rellax-percentage="0.5"
-          >
-            <Image src={gallery_6} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
-          </figure>
-        </div>
-        <!-- /.item -->
-      </div>
-      <!-- /.inner -->
-    </div>
-    <!-- /.gallery -->
-  </div>
-  <!-- /.scene-->
+  <div class="scene style_02"></div>
+  <!-- /.scene style_02 -->
   <div class="scene style_03" id="purpose">
     <div class="inner">
       <div class="content g-mrgStyle_02">
@@ -201,9 +144,24 @@ import gallery_6 from '@images/gallery-img_06.jpg';
       backdrop-filter: blur(10px) saturate(100%);
       transition: opacity 0.4s;
       opacity: 0;
-      .is-scene_02 &,
-      .is-scene_03 & {
-        opacity: 1;
+      :global(.is-animation) & {
+        animation: baseFade_01 0.3s 2.4s forwards;
+      }
+      // .is-scene_02 &,
+      // .is-scene_03 & {
+      //   opacity: 1;
+      // }
+    }
+    > * {
+      &:nth-child(n + 2) {
+        opacity: 0;
+      }
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          :global(.is-animation) & {
+            animation: baseFade_01 0s 0+0.3 * $i + s forwards;
+          }
+        }
       }
     }
   }
@@ -255,8 +213,11 @@ import gallery_6 from '@images/gallery-img_06.jpg';
   .scene.style_03 {
     opacity: 0;
     transition: 0.5s;
-    :global(.is-current.is-scene_03) & {
-      opacity: 1;
+    // :global(.is-current.is-scene_03) & {
+    //   opacity: 1;
+    // }
+    :global(.is-animation) & {
+      animation: baseFade_01 0.6s 2.4s forwards;
     }
     .content {
       width: 100%;
