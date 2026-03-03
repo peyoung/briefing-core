@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const closeButtons = document.querySelectorAll('.js-g-ModalClose');
   const fact = document.getElementById('fact');
   const wrapper = document.getElementById('g-wrapper');
+
+  // スクロールによるコンテンツ切替/端で閉じる(closeItem)機能を無効化
+  const ENABLE_SCROLL_SWITCH = false;
+
   let pendingTargetId = null;
   let scrollSettleTimer = null;
   let scrollListener = null;
@@ -20,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (targetEl) targetEl.classList.add('is-active');
       initiateScrollThenObserve(pendingTargetId);
     } else {
+      // ターゲット指定が無い場合も、何か1つ表示されるようにする
+      const first = fact ? fact.querySelector('.modalContent') : null;
+      if (first && first.id) setActiveContent(first.id);
       startInviewObserver();
     }
   }
@@ -82,6 +89,17 @@ document.addEventListener('DOMContentLoaded', function () {
   let visibleMap = new Map(); // targetId -> intersectionRatio
   let lastActiveId = null;
 
+  function setActiveContent(targetId) {
+    document
+      .querySelectorAll('.modalContent.is-active')
+      .forEach((el) => el.classList.remove('is-active'));
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      targetEl.classList.add('is-active');
+      lastActiveId = targetId;
+    }
+  }
+
   function onInview(entries) {
     // entries は変化があった要素のみ。状態を visibleMap に反映してから
     // 現在表示されている項目の中で intersectionRatio が最大のもののみを is-active にする
@@ -132,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function startInviewObserver() {
+    if (!ENABLE_SCROLL_SWITCH) return;
     const scroller = document.querySelector('.g-modalScroller');
     if (!scroller) return;
     const items = scroller.querySelectorAll('.handler .item, .handler .closeItem');
@@ -153,14 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const { activateAfterScroll = false } = options;
 
     function activateTarget() {
-      document
-        .querySelectorAll('.modalContent.is-active')
-        .forEach((el) => el.classList.remove('is-active'));
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        targetEl.classList.add('is-active');
-        lastActiveId = targetId;
-      }
+      setActiveContent(targetId);
     }
 
     // 既存の observer があれば一旦停止しておく（スクロール中の干渉を防ぐ）

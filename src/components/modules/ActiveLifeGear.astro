@@ -63,41 +63,44 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     <!-- /.inner -->
   </div>
   <!-- /.scene-->
-  <section class="modalScene g-modalScene">
-    <div class="g-modalContent modalContent g-mrgStyle_02">
-      <div class="col-ttl">
-        <h3 class="g-ttlStyle_03 modalTtl g-modalTtl style_01">ACTIVES</h3>
-        <!-- /.g-ttlStyle_03 -->
-      </div>
-      <!-- /.col-ttl -->
-      <div class="col">
-        <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
-          <span class="style_02">人生を豊かにする発見を求める</span>
-          <span class="style_02">都市のアクティブな大人たち</span>
-        </p>
-        <!-- /.pageRead -->
-        <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
-          <p>
-            好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
-            />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
-            />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
-            />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
-            />旅が好き。アートやカルチャーにも関心が高い。<br
-            />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+  <section class="modalScene g-modalScene" data-lenis-prevent-wheel>
+    <div class="inner">
+      <div class="g-modalContent modalContent g-mrgStyle_02">
+        <div class="col-ttl">
+          <h3 class="g-ttlStyle_03 modalTtl g-modalTtl style_01">ACTIVES</h3>
+          <!-- /.g-ttlStyle_03 -->
+        </div>
+        <!-- /.col-ttl -->
+        <div class="col">
+          <p class="g-ttlStyle_01 modalSubTtl g-modalSubTtl style_02">
+            <span class="style_02">人生を豊かにする発見を求める</span>
+            <span class="style_02">都市のアクティブな大人たち</span>
           </p>
+          <!-- /.pageRead -->
+          <div class="g-summaryStyle_01 modalSummary g-modalSummary style_01">
+            <p>
+              好奇心がある。人生を豊かにする発見への情熱にあふれる。<br
+              />仕事も遊びも本気。常に行動して吸収する。自分の軸を持っている。<br
+              />年齢に関係なく若々しい。都市で洗練された暮らしを営む30代以上の男女。<br
+              />インドア派ではなくアウトドア派。日常的に体を鍛える。<br
+              />旅が好き。アートやカルチャーにも関心が高い。<br
+              />モノには高い機能性を求めつつ、遊び心やラグジュアリー感も欠かせない。
+            </p>
+          </div>
+          <!-- /.g-summaryStyle_01 -->
+          <div class="g-modalBtnSection modalBtnSection">
+            <button type="button" class="g-btnStyle_02 js-sceneModalClose closeBtn">
+              <span class="labelTx">CLOSE</span>
+              <!-- /.labelTx -->
+            </button>
+          </div>
+          <!-- /.modalBtnSection -->
         </div>
-        <!-- /.g-summaryStyle_01 -->
-        <div class="g-modalBtnSection modalBtnSection">
-          <button type="button" class="g-btnStyle_02 js-sceneModalClose closeBtn">
-            <span class="labelTx">CLOSE</span>
-            <!-- /.labelTx -->
-          </button>
-        </div>
-        <!-- /.modalBtnSection -->
+        <!-- /.col -->
       </div>
-      <!-- /.col -->
+      <!-- /.modalContent -->
     </div>
-    <!-- /.modalContent -->
+    <!-- /.inner -->
   </section>
   <!-- /.modalScene-->
 </section>
@@ -282,6 +285,20 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .closeBtn {
       @include fz_vw(12);
+    }
+  }
+  ////////////////////
+  @media screen and (max-width: $break-point-middle-sp) {
+    .modalScene {
+      overflow: auto;
+      overscroll-behavior-y: contain;
+      /*スクロールバー非表示（IE・Edge）*/
+      -ms-overflow-style: none;
+      /*スクロールバー非表示（Firefox）*/
+      scrollbar-width: none;
+      > .inner {
+        min-height: calc(100vh + 10px);
+      }
     }
   }
   ////////////////////
