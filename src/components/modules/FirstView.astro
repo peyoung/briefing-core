@@ -65,7 +65,7 @@ import Logo from '@images/logo-briefing_01.svg';
   }
   ////////////////////
   .siteTtl {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -88,11 +88,11 @@ import Logo from '@images/logo-briefing_01.svg';
         left: calc(50% - get_sp(127));
         top: calc(50% - get_sp(17));
         transition: 0.4s $ease-out-quad;
-        :global(.setLogoTop) & {
-          width: get_sp(132);
-          left: calc(50% - get_sp(66));
-          top: get_sp(30);
-        }
+        // :global(.setLogoTop) & {
+        //   width: get_sp(132);
+        //   left: calc(50% - get_sp(66));
+        //   top: get_sp(30);
+        // }
       }
     }
     img {

@@ -32,6 +32,8 @@ function setMainMenu() {
 
   $('#menuPanel a').on('click', function () {
     setTimeout(() => {
+      // メニュー内リンク遷移時は Fact モーダルも閉じる
+      document.dispatchEvent(new CustomEvent('factModal:close'));
       closeFnc();
     }, 100);
   });

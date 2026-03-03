@@ -14,9 +14,6 @@ import Img_2Sp from '@images/img_03_sp.jpg';
         <figure>
           <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
         </figure>
-        <figure>
-          <Picture pc={Img_1} sp={Img_2Sp} alt="" loading="eager" />
-        </figure>
       </div>
       <!-- /.bgImg -->
       <div class="content g-mrgStyle_02">
@@ -62,6 +59,9 @@ import Img_2Sp from '@images/img_03_sp.jpg';
     height: 200vh;
     @media screen and (max-width: $break-point-middle-sp) {
       height: 100vh;
+      &.style_02 {
+        height: 0;
+      }
     }
   }
   // }
@@ -78,15 +78,18 @@ import Img_2Sp from '@images/img_03_sp.jpg';
   ////////////////////
   $speed_1: 1s;
   .bgImg {
-    figure:nth-child(2) {
-      opacity: 0;
-      transition: $speed_1;
-      // :global(.is-scene_02) & {
-      :global(.is-scene_02) & {
-        opacity: 1;
-        // filter: brightness(0.8);
-      }
+    :global(.is-scene_02) & {
+      filter: brightness(0.3);
     }
+    // figure:nth-child(2) {
+    //   opacity: 0;
+    //   transition: $speed_1;
+    //   // :global(.is-scene_02) & {
+    //   :global(.is-scene_02) & {
+    //     opacity: 1;
+    //     // filter: brightness(0.8);
+    //   }
+    // }
   }
   ////////////////////
   @media screen and (max-width: $break-point-middle-sp) {

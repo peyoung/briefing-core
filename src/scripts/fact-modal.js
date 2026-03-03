@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
     stopInviewObserver();
   }
 
+  // 外部スクリプトから Fact モーダルを閉じられるようにする
+  // 例: document.dispatchEvent(new CustomEvent('factModal:close'))
+  document.addEventListener('factModal:close', closeModal);
+
   if (openButtons.length) {
     openButtons.forEach((btn) => {
       btn.addEventListener('click', function (e) {
@@ -60,18 +64,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const targetId = btn.getAttribute('data-target') || btn.dataset.target || null;
         if (!targetId) return;
 
-        // 即時で対象の .modalContent をアクティブにする
+        // 先に表示を落として、スクロール完了後に is-active を付与する（チラつき防止）
         document
           .querySelectorAll('.modalContent.is-active')
           .forEach((el) => el.classList.remove('is-active'));
-        const targetEl = document.getElementById(targetId);
-        if (targetEl) {
-          targetEl.classList.add('is-active');
-          lastActiveId = targetId;
-        }
+        lastActiveId = null;
+        visibleMap.clear();
 
-        // スクロールしてから監視を再開（監視は開始しないでスクロール）
-        initiateScrollThenObserve(targetId);
+        // スクロール完了後に対象をアクティブ化してから監視を開始
+        initiateScrollThenObserve(targetId, { activateAfterScroll: true });
       });
     });
   }
@@ -148,7 +149,20 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // スクロールしてから監視を開始するユーティリティ
-  function initiateScrollThenObserve(targetId) {
+  function initiateScrollThenObserve(targetId, options = {}) {
+    const { activateAfterScroll = false } = options;
+
+    function activateTarget() {
+      document
+        .querySelectorAll('.modalContent.is-active')
+        .forEach((el) => el.classList.remove('is-active'));
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.classList.add('is-active');
+        lastActiveId = targetId;
+      }
+    }
+
     // 既存の observer があれば一旦停止しておく（スクロール中の干渉を防ぐ）
     if (inviewObserver) {
       inviewObserver.disconnect();
@@ -168,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 対象項目がない場合は監視開始して終了
     if (!targetItem) {
+      if (activateAfterScroll) activateTarget();
       startInviewObserver();
       pendingTargetId = null;
       return;
@@ -192,6 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
           scrollListener = null;
         }
         scrollSettleTimer = null;
+        if (activateAfterScroll) activateTarget();
         // スクロール完了後に監視開始
         startInviewObserver();
         pendingTargetId = null;
@@ -210,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
         clearTimeout(scrollSettleTimer);
         scrollSettleTimer = null;
       }
+      if (activateAfterScroll) activateTarget();
       if (!inviewObserver) startInviewObserver();
       pendingTargetId = null;
     }, 1200);

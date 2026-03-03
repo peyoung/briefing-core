@@ -61,6 +61,23 @@ function setToggleClass() {
     // 最初の要素だけstart位置を調整して、ロード時に確実に反応するようにする
     const startPos = index === 0 ? 'top bottom' : 'top top';
 
+    // #gallery の場合: is-current より前に is-flash を付与し、以降は維持する
+    if (el.id === 'gallery') {
+      const wrapper = document.getElementById('g-wrapper');
+      const flashSt = ScrollTrigger.create({
+        trigger: el,
+        // is-current の start('top top') より手前で発火
+        start: 'top 80%',
+        onEnter: () => {
+          if (wrapper) wrapper.classList.add('is-flash');
+        },
+        onEnterBack: () => {
+          if (wrapper) wrapper.classList.add('is-flash');
+        },
+      });
+      window.__toggleTriggers.push(flashSt);
+    }
+
     const st = ScrollTrigger.create({
       trigger: el,
       start: startPos,
@@ -146,7 +163,7 @@ function setToggleClass() {
                   scene02Added = true;
                 }
               }
-            }, 600);
+            }, 800);
           }
         } else if (!self.isActive) {
           // is-currentを外すタイミングで、未発火の付与タイマーを止めてからis-scene_02を削除

@@ -77,9 +77,12 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   .scene {
     height: 100vh;
   }
-  @media screen and (min-width: $break-point-middle) {
+  @media screen and (max-width: $break-point-middle-sp) {
     .scene {
       height: 100vh;
+      &.style_02 {
+        height: 0;
+      }
     }
   }
   // }

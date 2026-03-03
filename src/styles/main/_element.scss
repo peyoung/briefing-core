@@ -231,6 +231,13 @@
       scale: -1 1;
     }
   }
+  @media screen and (max-width: $break-point-middle-sp) {
+    &.style_02 {
+      .labelTx {
+        text-decoration: underline;
+      }
+    }
+  }
   @media (any-hover: hover) {
     &:hover {
       transform: translateX(-0.2em);

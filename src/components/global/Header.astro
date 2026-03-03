@@ -92,15 +92,30 @@ import Logo from '@images/logo-briefing_01.svg';
     }
   }
   ////////////////////
-  .col-logo {
-    img {
-      @include imgset;
-      width: 144px;
-    }
-  }
   @media screen and (max-width: $break-point-middle-sp) {
     .col-logo {
-      display: none;
+      pointer-events: none;
+      position: fixed;
+      top: get_sp(30);
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      a {
+        pointer-events: all;
+      }
+      img {
+        @include imgset;
+        width: get_sp(132);
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .col-logo {
+      img {
+        @include imgset;
+        width: 144px;
+      }
     }
   }
   ////////////////////
