@@ -9,7 +9,7 @@ function getViewportHeight() {
 let headerHeight = getViewportHeight(); // 100vh を JS 側で扱う（符号は常にプラス）
 
 function updateHeaderHeight() {
-  headerHeight = getViewportHeight();
+  headerHeight = -getViewportHeight();
 }
 
 // ウィンドウサイズが変わったら headerHeight を更新
