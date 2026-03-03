@@ -19,6 +19,7 @@ $(window).on('load', function () {
   setAcc();
   setTab();
   setHeader();
+  setAnchorNoHash();
   // setRellax();
   // setTripla();
   // if ($('#g-wrapper').hasClass('home')) {
@@ -83,6 +84,40 @@ function setSpan() {
     });
 
     this.innerHTML = html;
+  });
+}
+
+// アンカーリンククリック時にURL（hash）を書き換えずスクロールのみ行う
+function setAnchorNoHash() {
+  $(document).on('click', 'a[href^="#"]', function (e) {
+    // 新規タブ/別操作はデフォルト挙動を優先
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (typeof e.button === 'number' && e.button !== 0) return;
+
+    const href = $(this).attr('href');
+    if (!href || href === '#') return;
+
+    const rawId = href.slice(1);
+    const targetId = decodeURIComponent(rawId);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    e.preventDefault();
+
+    // Lenisが有効ならLenis経由、無ければネイティブでスクロール
+    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+      window.lenis.scrollTo(target, { immediate: true });
+    } else {
+      target.scrollIntoView();
+    }
+
+    // 念のためURLからhashを除去（他処理で付与された場合の保険）
+    try {
+      const cleanUrl = window.location.pathname + window.location.search;
+      window.history.replaceState(null, document.title, cleanUrl);
+    } catch (_) {
+      // ignore
+    }
   });
 }
 
