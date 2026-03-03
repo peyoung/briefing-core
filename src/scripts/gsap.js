@@ -66,8 +66,8 @@ function setToggleClass() {
       const wrapper = document.getElementById('g-wrapper');
       const flashSt = ScrollTrigger.create({
         trigger: el,
-        // is-current の start('top top') より手前で発火
-        start: 'top 80%',
+        // is-current と同じ start で発火（付与後は維持）
+        start: startPos,
         onEnter: () => {
           if (wrapper) wrapper.classList.add('is-flash');
         },

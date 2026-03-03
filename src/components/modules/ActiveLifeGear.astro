@@ -88,8 +88,8 @@ import Img_1Sp from '@images/img_04_sp.jpg';
         </div>
         <!-- /.g-summaryStyle_01 -->
         <div class="g-modalBtnSection modalBtnSection">
-          <button type="button" class="g-btnStyle_02 js-sceneModalClose">
-            <span class="labelTx">BACK</span>
+          <button type="button" class="g-btnStyle_02 js-sceneModalClose closeBtn">
+            <span class="labelTx">CLOSE</span>
             <!-- /.labelTx -->
           </button>
         </div>
@@ -276,6 +276,12 @@ import Img_1Sp from '@images/img_04_sp.jpg';
       br {
         display: none;
       }
+    }
+  }
+  ////////////////////
+  @media screen and (max-width: $break-point-middle-sp) {
+    .closeBtn {
+      @include fz_vw(12);
     }
   }
   ////////////////////
