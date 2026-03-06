@@ -159,7 +159,7 @@ import gallery_6 from '@images/gallery-img_06.jpg';
       @for $i from 2 through 10 {
         &:nth-child(#{$i}) {
           :global(.is-flash) & {
-            animation: baseFade_01 0s 0.1 * $i + s forwards;
+            animation: baseFade_01 0s 0.05 * $i + s forwards;
           }
         }
       }

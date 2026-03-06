@@ -16,6 +16,18 @@ import Img_1Sp from '@images/img_07_sp.jpg';
       <!-- /.bgImg -->
       <div class="content g-mrgStyle_02">
         <div class="inner">
+          <div class="summary g-summaryStyle_01 sp">
+            <p>
+              「CARRY YOUR DISCOVERY」、直訳すると“発見を持ち運べ”。 <br
+              />しかし、発見はこれから出会うもの。一見矛盾した言葉だが、そこに意味がある。<br
+              />BRIEFINGのターゲットは、好奇心があり、人生をアクティブにする新しい発見を求める人。<br
+              /> “CARRY”は、物理的な「運ぶ」という意味だけでなく、<br
+              />彼らを発見へと「導く」という意味が込められている。<br
+              />これは、自動車メーカーが「私たちはクルマではなく、モビリティをつくる」と語ったのと同じ。<br
+              />BRIEFINGがつくるのはバッグではなく、人生を豊かにする発見へと導くギアなのだ。
+            </p>
+          </div>
+          <!-- /.summary -->
           <h2 class="pageRead g-ttlStyle_01 style_01">
             <span class="style_02">人生をアクティブにする発見へ、</span>
             <span class="style_02">あなたを駆り立てる。</span>
@@ -81,6 +93,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
     .scene {
       height: 100vh;
       &.style_02 {
+        opacity: 0;
         height: 0;
       }
     }
@@ -108,10 +121,15 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .content {
-      align-items: flex-start;
-      padding-top: get_sp($grid_01);
+      align-items: flex-end;
       > .inner {
         position: relative;
+        min-height: calc(100dvh - get_sp($grid_03));
+        justify-content: center;
+        gap: 0;
+        :global(.scrollUp) & {
+          justify-content: flex-start;
+        }
       }
     }
   }
@@ -140,6 +158,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
     .pageRead {
       transition: 0.3s;
       opacity: 0;
+      margin-bottom: get_sp(10);
       :global(.is-animation) & {
         opacity: 1;
       }
@@ -175,13 +194,15 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .pageTtl {
       transition: 0.3s;
-      :global(.is-animation) & {
-        @include fz_vw(37);
-      }
+      margin-bottom: get_sp(20);
+      // :global(.is-animation) & {
+      //   @include fz_vw(37);
+      // }
       &.style_01 {
         position: absolute;
         top: 0;
         left: 0;
+        opacity: 0;
         :global(.is-animation) & {
           opacity: 0;
         }
@@ -193,9 +214,9 @@ import Img_1Sp from '@images/img_07_sp.jpg';
         :global(.is-animation) & {
           opacity: 1;
         }
-        > span {
-          display: inline;
-        }
+        // > span {
+        //   display: inline;
+        // }
       }
     }
   }
@@ -228,10 +249,17 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .summary {
-      @include fz_vw(13);
-      margin-top: get_sp(130);
+      @include fz_vw(14);
+      // letter-spacing: get_sp(-1);
+      margin-bottom: 0;
+      // margin-top: get_sp(130);
+      opacity: 0;
+      transition: opacity 0.6s;
       br {
         display: none;
+      }
+      :global(.is-current.is-animation) & {
+        opacity: 1;
       }
     }
   }

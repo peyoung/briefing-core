@@ -187,8 +187,14 @@ import Arrow from '@images/icon-arrow_01.svg';
   @use 'src/styles/utils' as *;
   ////////////////////
   @media screen and (max-width: $break-point-middle-sp) {
+    .modalTtl {
+      @include fz_vw(62);
+    }
+  }
+  ////////////////////
+  @media screen and (max-width: $break-point-middle-sp) {
     .modalSummary {
-      min-height: get_sp(160);
+      min-height: get_sp(180);
       br {
         display: none;
       }

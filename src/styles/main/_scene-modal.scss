@@ -120,7 +120,7 @@
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
-    &.is-active {
+    &.is-activeTab {
       opacity: 1;
       pointer-events: all;
     }

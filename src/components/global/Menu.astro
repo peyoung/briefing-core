@@ -157,6 +157,9 @@ import Nav from '@components/navigation/NavGlobal.astro';
     top: get_sp($grid_02);
     // bottom: get_sp(64);
     right: get_sp(20);
+    @media screen and (max-width: $break-point-middle-sp) {
+      display: none;
+    }
     button {
       &::before {
         width: 100%;

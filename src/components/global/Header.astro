@@ -31,7 +31,8 @@ import Logo from '@images/logo-briefing_01.svg';
       <!-- /.pickMenu -->
       <div class="menuBtn">
         <button type="button" id="menuBtn">
-          <span class="labelTx">MENU</span>
+          <span class="labelTx is-normal">MENU</span>
+          <span class="labelTx is-open">CLOSE</span>
         </button>
       </div>
       <!-- /.menuBtn -->
@@ -62,6 +63,7 @@ import Logo from '@images/logo-briefing_01.svg';
       opacity 0.4s,
       padding 0.3s;
     @media screen and (max-width: $break-point-middle-sp) {
+      z-index: 3000;
       align-items: flex-start;
       padding-top: get_sp($grid_02);
       padding-left: get_sp(20);
@@ -87,9 +89,11 @@ import Logo from '@images/logo-briefing_01.svg';
       align-items: center;
       justify-content: space-between;
       transition: opacity 0.3s;
-      :global(.menuOpen) & {
-        opacity: 0;
-        pointer-events: none;
+      @media screen and (min-width: $break-point-middle) {
+        :global(.menuOpen) & {
+          opacity: 0;
+          pointer-events: none;
+        }
       }
     }
   }
@@ -103,6 +107,11 @@ import Logo from '@images/logo-briefing_01.svg';
       width: 100%;
       display: flex;
       justify-content: center;
+      transition: opacity 0.3s;
+      :global(.menuOpen) & {
+        opacity: 0;
+        pointer-events: none;
+      }
       a {
         pointer-events: all;
       }
@@ -158,6 +167,13 @@ import Logo from '@images/logo-briefing_01.svg';
   }
   ////////////////////
   .pickMenu {
+    @media screen and (max-width: $break-point-middle-sp) {
+      transition: opacity 0.3s;
+      :global(.menuOpen) & {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
     :global(.is-bottomView) & {
       opacity: 0;
       pointer-events: none;
@@ -233,6 +249,28 @@ import Logo from '@images/logo-briefing_01.svg';
     //     display: block;
     //   }
     // }
+  }
+  @media screen and (max-width: $break-point-middle-sp) {
+    .menuBtn {
+      .is-normal {
+        :global(.menuOpen) & {
+          display: none !important;
+        }
+      }
+      .is-open {
+        display: none !important;
+        :global(.menuOpen) & {
+          display: block !important;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $break-point-middle) {
+    .menuBtn {
+      .is-open {
+        display: none !important;
+      }
+    }
   }
   ////////////////////
   @media screen and (min-width: $break-point-middle) {

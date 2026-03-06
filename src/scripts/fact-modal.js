@@ -1,33 +1,88 @@
-// Fact モーダルの開閉制御
+// Fact モーダルの開閉制御（シンプルなタブ切り替え）
 document.addEventListener('DOMContentLoaded', function () {
   const openButtons = document.querySelectorAll('.js-setFactModal');
   const closeButtons = document.querySelectorAll('.js-g-ModalClose');
+  const moveButtons = document.querySelectorAll('.js-factMove');
+  const factCloseButtons = document.querySelectorAll('.js-factClose');
   const fact = document.getElementById('fact');
   const wrapper = document.getElementById('g-wrapper');
 
-  // スクロールによるコンテンツ切替/端で閉じる(closeItem)機能を無効化
-  const ENABLE_SCROLL_SWITCH = false;
+  // modal 内コンテンツ（タブ）
+  function getFactModalRoot() {
+    const sample =
+      document.getElementById('factGeeky') ||
+      document.getElementById('factCrafted') ||
+      document.getElementById('factPlayful');
+    return (sample && sample.closest('.g-modalScroller')) || document;
+  }
+
+  function getModalContents() {
+    const root = getFactModalRoot();
+    return Array.from(root.querySelectorAll('.modalContent[id^="fact"]'));
+  }
 
   let pendingTargetId = null;
-  let scrollSettleTimer = null;
-  let scrollListener = null;
+
+  function deactivateAllContents() {
+    // ここで制御するクラスは is-activeTab のみ
+    // ただし過去実装の is-active が残っていると見た目が崩れるので、念のため掃除する
+    getModalContents().forEach((el) => {
+      el.classList.remove('is-activeTab');
+      el.classList.remove('is-active');
+    });
+  }
+
+  function activateContent(targetId) {
+    // カレント以外のタブアクティブ状態を必ず削除
+    deactivateAllContents();
+    if (!targetId) return;
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+    targetEl.classList.add('is-activeTab');
+  }
+
+  function isModalOpen() {
+    return (
+      (fact && fact.classList.contains('is-modal')) ||
+      (wrapper && wrapper.classList.contains('g-modalOpen'))
+    );
+  }
+
+  function getTabIdsInOrder() {
+    return getModalContents()
+      .map((el) => el && el.id)
+      .filter(Boolean);
+  }
+
+  function getActiveTabId() {
+    const root = getFactModalRoot();
+    const active = root.querySelector('.modalContent.is-activeTab');
+    return active && active.id ? active.id : null;
+  }
+
+  function activateNextTab(direction) {
+    const tabIds = getTabIdsInOrder();
+    if (!tabIds.length) return;
+    const activeId = getActiveTabId();
+    if (!activeId) return;
+
+    const currentIndex = tabIds.indexOf(activeId);
+    if (currentIndex === -1) return;
+
+    const delta = direction === 'prev' ? -1 : 1;
+    const nextIndex = (currentIndex + delta + tabIds.length) % tabIds.length;
+    activateContent(tabIds[nextIndex]);
+  }
 
   function openModal(e) {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
     if (fact) fact.classList.add('is-modal');
     if (wrapper) wrapper.classList.add('g-modalOpen');
-    // モーダルオープン時: クリック時に保存した pendingTargetId があれば
-    // - まず対象の .modalContent に is-active を付与して表示
-    // - その後ハンドラー項目までスクロールし、スクロール完了後に監視を開始
+
+    // 指定があるときだけ表示する（デフォルトは全て非表示）
     if (pendingTargetId) {
-      const targetEl = document.getElementById(pendingTargetId);
-      if (targetEl) targetEl.classList.add('is-active');
-      initiateScrollThenObserve(pendingTargetId);
-    } else {
-      // ターゲット指定が無い場合も、何か1つ表示されるようにする
-      const first = fact ? fact.querySelector('.modalContent') : null;
-      if (first && first.id) setActiveContent(first.id);
-      startInviewObserver();
+      activateContent(pendingTargetId);
+      pendingTargetId = null;
     }
   }
 
@@ -35,9 +90,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
     if (fact) fact.classList.remove('is-modal');
     if (wrapper) wrapper.classList.remove('g-modalOpen');
-    // モーダルクローズ時に監視停止・状態クリア
-    stopInviewObserver();
+    pendingTargetId = null;
+    deactivateAllContents();
   }
+
+  // 初期状態：すべて非表示
+  deactivateAllContents();
 
   // 外部スクリプトから Fact モーダルを閉じられるようにする
   // 例: document.dispatchEvent(new CustomEvent('factModal:close'))
@@ -52,211 +110,97 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  if (closeButtons.length) {
-    closeButtons.forEach((btn) => btn.addEventListener('click', closeModal));
-  }
-
-  // .js-factClose ボタンでモーダルを閉じる
-  const factCloseButtons = document.querySelectorAll('.js-factClose');
-  if (factCloseButtons.length) {
-    factCloseButtons.forEach((btn) => btn.addEventListener('click', closeModal));
-  }
-
-  // .js-factMove ボタンでモーダル内を移動
-  const moveButtons = document.querySelectorAll('.js-factMove');
   if (moveButtons.length) {
     moveButtons.forEach((btn) => {
       btn.addEventListener('click', function (e) {
         if (e && typeof e.preventDefault === 'function') e.preventDefault();
         const targetId = btn.getAttribute('data-target') || btn.dataset.target || null;
         if (!targetId) return;
-
-        // 先に表示を落として、スクロール完了後に is-active を付与する（チラつき防止）
-        document
-          .querySelectorAll('.modalContent.is-active')
-          .forEach((el) => el.classList.remove('is-active'));
-        lastActiveId = null;
-        visibleMap.clear();
-
-        // スクロール完了後に対象をアクティブ化してから監視を開始
-        initiateScrollThenObserve(targetId, { activateAfterScroll: true });
+        activateContent(targetId);
       });
     });
   }
 
-  // ---- inview 判定 (GSAP 不使用) ----
-  let inviewObserver = null;
-  let visibleMap = new Map(); // targetId -> intersectionRatio
-  let lastActiveId = null;
-
-  function setActiveContent(targetId) {
-    document
-      .querySelectorAll('.modalContent.is-active')
-      .forEach((el) => el.classList.remove('is-active'));
-    const targetEl = document.getElementById(targetId);
-    if (targetEl) {
-      targetEl.classList.add('is-active');
-      lastActiveId = targetId;
-    }
+  if (closeButtons.length) {
+    closeButtons.forEach((btn) => btn.addEventListener('click', closeModal));
   }
 
-  function onInview(entries) {
-    // entries は変化があった要素のみ。状態を visibleMap に反映してから
-    // 現在表示されている項目の中で intersectionRatio が最大のもののみを is-active にする
-    entries.forEach((entry) => {
-      const item = entry.target;
-      const isCloseItem = item.classList && item.classList.contains('closeItem');
-      if (isCloseItem) {
-        if (entry.isIntersecting) closeModal();
-        return;
-      }
-
-      const targetId = item.getAttribute('data-target') || item.dataset.target;
-      if (!targetId) return;
-
-      if (entry.isIntersecting) {
-        visibleMap.set(targetId, entry.intersectionRatio || 0);
-      } else {
-        visibleMap.delete(targetId);
-      }
-    });
-
-    // visibleMap の中から最大のものを選ぶ
-    let maxId = null;
-    let maxRatio = -1;
-    visibleMap.forEach((ratio, id) => {
-      if (ratio > maxRatio) {
-        maxRatio = ratio;
-        maxId = id;
-      }
-    });
-    // maxId があればそれを唯一の is-active にする。
-    // maxId が無い場合（visibleMap が空）は、直前の lastActiveId を維持する。
-    if (maxId) {
-      if (lastActiveId !== maxId) {
-        document
-          .querySelectorAll('.modalContent.is-active')
-          .forEach((el) => el.classList.remove('is-active'));
-        const el = document.getElementById(maxId);
-        if (el) el.classList.add('is-active');
-        lastActiveId = maxId;
-      }
-    } else if (lastActiveId) {
-      // まだ lastActiveId があればそれを維持し、他の is-active を削除
-      document.querySelectorAll('.modalContent.is-active').forEach((el) => {
-        if (el.id !== lastActiveId) el.classList.remove('is-active');
-      });
-    }
+  if (factCloseButtons.length) {
+    factCloseButtons.forEach((btn) => btn.addEventListener('click', closeModal));
   }
 
-  function startInviewObserver() {
-    if (!ENABLE_SCROLL_SWITCH) return;
-    const scroller = document.querySelector('.g-modalScroller');
-    if (!scroller) return;
-    const items = scroller.querySelectorAll('.handler .item, .handler .closeItem');
-    if (!items.length) return;
+  // ---- タッチデバイス: 左右スワイプでタブ切替 ----
+  (function setupSwipeToSwitchTabs() {
+    const swipeRoot = getFactModalRoot();
+    if (!(swipeRoot instanceof Element)) return;
 
-    // 既に作成済みなら一旦切断
-    if (inviewObserver) inviewObserver.disconnect();
+    const SWIPE_THRESHOLD_PX = 40;
+    const SWIPE_MAX_TIME_MS = 700;
 
-    inviewObserver = new IntersectionObserver(onInview, {
-      root: scroller,
-      threshold: 0.2,
-    });
+    let startX = 0;
+    let startY = 0;
+    let startTime = 0;
+    let tracking = false;
 
-    items.forEach((it) => inviewObserver.observe(it));
-  }
-
-  // スクロールしてから監視を開始するユーティリティ
-  function initiateScrollThenObserve(targetId, options = {}) {
-    const { activateAfterScroll = false } = options;
-
-    function activateTarget() {
-      setActiveContent(targetId);
+    function reset() {
+      tracking = false;
+      startX = 0;
+      startY = 0;
+      startTime = 0;
     }
 
-    // 既存の observer があれば一旦停止しておく（スクロール中の干渉を防ぐ）
-    if (inviewObserver) {
-      inviewObserver.disconnect();
-      inviewObserver = null;
-    }
-    const scroller = document.querySelector('.g-modalScroller');
-    if (!scroller) {
-      startInviewObserver();
-      pendingTargetId = null;
-      return;
+    function shouldHandleSwipe(dx, dy, dt) {
+      if (!isModalOpen()) return false;
+      if (dt > SWIPE_MAX_TIME_MS) return false;
+      if (Math.abs(dx) < SWIPE_THRESHOLD_PX) return false;
+      // 縦スクロール優位なら無視
+      if (Math.abs(dy) >= Math.abs(dx)) return false;
+      return true;
     }
 
-    const items = scroller.querySelectorAll('.handler .item');
-    const targetItem = Array.from(items).find((it) => {
-      return (it.getAttribute('data-target') || it.dataset.target) === targetId;
-    });
+    // Touch Events
+    swipeRoot.addEventListener(
+      'touchstart',
+      (e) => {
+        if (!e.touches || e.touches.length !== 1) return;
+        const t = e.touches[0];
+        tracking = true;
+        startX = t.clientX;
+        startY = t.clientY;
+        startTime = Date.now();
+      },
+      { passive: true }
+    );
 
-    // 対象項目がない場合は監視開始して終了
-    if (!targetItem) {
-      if (activateAfterScroll) activateTarget();
-      startInviewObserver();
-      pendingTargetId = null;
-      return;
-    }
-
-    // 既存のリスナをクリア
-    if (scrollListener) {
-      scroller.removeEventListener('scroll', scrollListener);
-      scrollListener = null;
-    }
-    if (scrollSettleTimer) {
-      clearTimeout(scrollSettleTimer);
-      scrollSettleTimer = null;
-    }
-
-    // スクロール終了を検知するためのリスナ
-    scrollListener = function () {
-      if (scrollSettleTimer) clearTimeout(scrollSettleTimer);
-      scrollSettleTimer = setTimeout(function () {
-        if (scrollListener) {
-          scroller.removeEventListener('scroll', scrollListener);
-          scrollListener = null;
+    swipeRoot.addEventListener(
+      'touchend',
+      (e) => {
+        if (!tracking) return;
+        if (!e.changedTouches || e.changedTouches.length !== 1) {
+          reset();
+          return;
         }
-        scrollSettleTimer = null;
-        if (activateAfterScroll) activateTarget();
-        // スクロール完了後に監視開始
-        startInviewObserver();
-        pendingTargetId = null;
-      }, 150);
-    };
+        const t = e.changedTouches[0];
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+        const dt = Date.now() - startTime;
 
-    scroller.addEventListener('scroll', scrollListener);
+        if (shouldHandleSwipe(dx, dy, dt)) {
+          // 左スワイプ: 次 / 右スワイプ: 前
+          if (dx < 0) activateNextTab('next');
+          else activateNextTab('prev');
+        }
+        reset();
+      },
+      { passive: true }
+    );
 
-    // フォールバック: 1.2s 経過後は強制的に監視開始
-    setTimeout(function () {
-      if (scrollListener) {
-        scroller.removeEventListener('scroll', scrollListener);
-        scrollListener = null;
-      }
-      if (scrollSettleTimer) {
-        clearTimeout(scrollSettleTimer);
-        scrollSettleTimer = null;
-      }
-      if (activateAfterScroll) activateTarget();
-      if (!inviewObserver) startInviewObserver();
-      pendingTargetId = null;
-    }, 1200);
-
-    // 最後にスクロール実行（監視はまだ開始しない）
-    targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  function stopInviewObserver() {
-    if (inviewObserver) {
-      inviewObserver.disconnect();
-      inviewObserver = null;
-    }
-    // pendingTargetId をクリア
-    pendingTargetId = null;
-    // モーダルのコンテンツ要素（.modalContent）の is-active のみクリア
-    document
-      .querySelectorAll('.modalContent.is-active')
-      .forEach((el) => el.classList.remove('is-active'));
-  }
+    swipeRoot.addEventListener(
+      'touchcancel',
+      () => {
+        reset();
+      },
+      { passive: true }
+    );
+  })();
 });
