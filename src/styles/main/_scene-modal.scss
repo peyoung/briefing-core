@@ -32,7 +32,7 @@
     position: sticky;
     top: 0;
     @media screen and (max-width: $break-point-middle-sp) {
-      align-items: flex-start;
+      align-items: flex-end;
     }
   }
   .handler {
@@ -69,7 +69,9 @@
   transition: 0.3s;
   backdrop-filter: blur(10px) saturate(100%);
   clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
-  transition: clip-path 0.4s $ease-out-quad;
+  transition:
+    clip-path 0.4s $ease-out-quad,
+    opacity 0.4s $ease-out-quad;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -89,7 +91,11 @@
 // @media screen and (min-height: $breakH + 1px) {
 @media screen and (max-width: $break-point-middle-sp) {
   .g-modalScene {
-    height: 0vh;
+    // height: 0vh;
+    > .inner {
+      display: flex;
+      align-items: flex-end;
+    }
   }
 }
 // }
@@ -107,7 +113,7 @@
   flex-direction: column;
   align-items: flex-start;
   // @media screen and (min-height: $breakH + 1px) {
-  transform: translateY(get_sp($grid_01 + 8));
+  // transform: translateY(get_sp($grid_01 + 8));
   // }
   &.style_01 {
     position: absolute;
@@ -118,6 +124,12 @@
       opacity: 1;
       pointer-events: all;
     }
+  }
+}
+@media screen and (max-width: $break-point-middle-sp) {
+  .g-modalContent {
+    min-height: calc(100dvh - get_sp($grid_03));
+    justify-content: center;
   }
 }
 @media screen and (min-width: $break-point-middle) {
@@ -159,6 +171,12 @@
     @include fz_vw(12);
     margin-top: math.div(24, 12) + em;
     justify-content: space-between;
+    > * {
+      &:nth-child(2) {
+        position: absolute;
+        left: calc(50% - 1.5em);
+      }
+    }
   }
 }
 @media screen and (min-width: $break-point-middle) {

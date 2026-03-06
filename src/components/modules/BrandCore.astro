@@ -56,22 +56,20 @@ import Img_2Sp from '@images/img_03_sp.jpg';
   ////////////////////
   // @media screen and (min-height: $breakH + 1px) {
   .scene {
-    height: 200vh;
-    @media screen and (max-width: $break-point-middle-sp) {
-      height: 0vh;
-      &.style_02 {
-        height: 100vh;
-      }
+    height: 0vh;
+    &.style_02 {
+      height: 100vh;
     }
   }
   // }
   ////////////////////
   @media screen and (max-width: $break-point-middle-sp) {
     .content {
-      align-items: flex-start;
-      padding-top: get_sp($grid_01);
+      align-items: flex-end;
       > .inner {
         position: relative;
+        min-height: calc(100dvh - get_sp($grid_03));
+        justify-content: center;
       }
     }
   }
@@ -110,16 +108,17 @@ import Img_2Sp from '@images/img_03_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .pageTtl {
       transition: 0.3s;
-      :global(.is-animation) & {
-        @include fz_vw(40);
-      }
+      // :global(.is-animation) & {
+      //   @include fz_vw(40);
+      // }
       &.style_01 {
         position: absolute;
         top: 0;
         left: 0;
-        :global(.is-animation) & {
-          opacity: 0;
-        }
+        opacity: 0;
+        // :global(.is-animation) & {
+        //   opacity: 0;
+        // }
       }
       &.style_02 {
         display: block;
@@ -128,9 +127,9 @@ import Img_2Sp from '@images/img_03_sp.jpg';
         :global(.is-animation) & {
           opacity: 1;
         }
-        > span {
-          display: inline;
-        }
+        // > span {
+        //   display: inline;
+        // }
       }
     }
   }

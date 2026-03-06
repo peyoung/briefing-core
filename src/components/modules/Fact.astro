@@ -114,11 +114,13 @@ import Img_1Sp from '@images/img_05_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .content {
-      align-items: flex-start;
-      padding-top: get_sp($grid_01);
+      transform: translateY(0);
+      align-items: flex-end;
       > .inner {
         position: relative;
         flex-direction: column;
+        justify-content: center;
+        min-height: calc(100dvh - get_sp($grid_03));
         gap: get_sp(10);
       }
     }

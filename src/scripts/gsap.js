@@ -163,7 +163,7 @@ function setToggleClass() {
                   scene02Added = true;
                 }
               }
-            }, 800);
+            }, 400);
           }
         } else if (!self.isActive) {
           // is-currentを外すタイミングで、未発火の付与タイマーを止めてからis-scene_02を削除

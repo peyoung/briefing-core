@@ -154,8 +154,8 @@ import Nav from '@components/navigation/NavGlobal.astro';
   ////////////////////
   .menuCloseBtn {
     position: absolute;
-    // bottom: get_sp(34);
-    bottom: get_sp(64);
+    top: get_sp($grid_02);
+    // bottom: get_sp(64);
     right: get_sp(20);
     button {
       &::before {
@@ -170,6 +170,7 @@ import Nav from '@components/navigation/NavGlobal.astro';
   }
   @media screen and (min-width: $break-point-middle) {
     .menuCloseBtn {
+      top: auto;
       bottom: math.div(58, $design-h) * 100vh;
       right: math.div(54, 330) * 100%;
     }

@@ -16,6 +16,16 @@ import Img_1Sp from '@images/img_04_sp.jpg';
       <!-- /.bgImg -->
       <div class="content g-mrgStyle_02">
         <div class="inner">
+          <div class="summary g-summaryStyle_01 sp">
+            <p class="style_01">
+              BRIEFINGがつくるのは、バッグではない。<br /><button
+                type="button"
+                class="g-btnStyle_01 btn js-sceneModal">“<span>ACTIVES</span>”</button
+              >の人生を豊かにする<br class="sp" />発見へと導くギアを生み出している。
+            </p>
+            <p>日常、出発、目的地。<br />すべての時間を、心高まる瞬間に変えるもの。</p>
+          </div>
+          <!-- /.summary -->
           <h2 class="pageRead g-ttlStyle_01 style_01">
             <span class="style_02">好奇心を発見へと導く</span>
             <span class="style_02">高品質なギア</span>
@@ -119,6 +129,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     .scene {
       height: 100vh;
       &.style_02 {
+        opacity: 0;
         height: 0;
       }
     }
@@ -134,10 +145,12 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .content {
-      align-items: flex-start;
-      padding-top: get_sp($grid_01);
+      align-items: flex-end;
       > .inner {
         position: relative;
+        min-height: calc(100dvh - get_sp($grid_03));
+        justify-content: center;
+        gap: 0;
       }
     }
   }
@@ -166,6 +179,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
     .pageRead {
       transition: 0.3s;
       opacity: 0;
+      margin-bottom: get_sp(15);
       :global(.is-animation) & {
         opacity: 1;
       }
@@ -200,13 +214,15 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .pageTtl {
       transition: 0.3s;
-      :global(.is-animation) & {
-        @include fz_vw(40);
-      }
+      margin-bottom: get_sp(30);
+      // :global(.is-animation) & {
+      //   @include fz_vw(40);
+      // }
       &.style_01 {
         position: absolute;
         top: 0;
         left: 0;
+        opacity: 0;
         :global(.is-animation) & {
           opacity: 0;
         }
@@ -218,9 +234,9 @@ import Img_1Sp from '@images/img_04_sp.jpg';
         :global(.is-animation) & {
           opacity: 1;
         }
-        > span {
-          display: inline;
-        }
+        // > span {
+        //   display: inline;
+        // }
       }
     }
   }
@@ -238,6 +254,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .scene.style_02 {
+      pointer-events: none;
       .content {
         opacity: 0;
         :global(.is-current.is-animation) & {
@@ -253,7 +270,13 @@ import Img_1Sp from '@images/img_04_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .summary {
-      margin-top: get_sp(130);
+      margin-bottom: 0;
+      margin-top: 0;
+      opacity: 0;
+      transition: opacity 0.6s;
+      :global(.is-current.is-animation) & {
+        opacity: 1;
+      }
     }
   }
   ////////////////////
@@ -297,7 +320,7 @@ import Img_1Sp from '@images/img_04_sp.jpg';
       /*スクロールバー非表示（Firefox）*/
       scrollbar-width: none;
       > .inner {
-        min-height: calc(100vh + 10px);
+        min-height: calc(100dvh + 1px);
       }
     }
   }

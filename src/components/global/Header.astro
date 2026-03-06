@@ -21,8 +21,10 @@ import Logo from '@images/logo-briefing_01.svg';
             </a>
           </li>
           <li>
-            <span class="labelTx" id="currentTx">TOP</span>
-            <!-- /.labelTx -->
+            <a href="#" class="dis">
+              <span class="labelTx" id="currentTx">TOP</span>
+              <!-- /.labelTx -->
+            </a>
           </li>
         </ul>
       </div>
@@ -61,7 +63,7 @@ import Logo from '@images/logo-briefing_01.svg';
       padding 0.3s;
     @media screen and (max-width: $break-point-middle-sp) {
       align-items: flex-start;
-      padding-top: get_sp($grid_01 - 40);
+      padding-top: get_sp($grid_02);
       padding-left: get_sp(20);
       padding-right: get_sp(20);
       :global(.is-bottomView) & {
@@ -162,6 +164,7 @@ import Logo from '@images/logo-briefing_01.svg';
     }
     ul {
       display: flex;
+      align-items: center;
       gap: math.div(49, 12) + em;
       @media screen and (max-width: $break-point-middle-sp) {
         gap: math.div(14, 12) + em;
@@ -179,6 +182,10 @@ import Logo from '@images/logo-briefing_01.svg';
         position: absolute;
         transition: 0.3s;
         background-color: $white;
+      }
+      &.dis {
+        cursor: default;
+        pointer-events: none;
       }
       @media (any-hover: hover) {
         &:hover {
