@@ -169,7 +169,7 @@ import gallery_13 from '@images/gallery-img_13.jpg';
       transition: opacity 0.4s;
       opacity: 0;
       :global(.is-animation) & {
-        animation: baseFade_01 0.3s 1.2s forwards;
+        animation: baseFade_01 0.3s 1.4s forwards;
       }
       // .is-scene_02 &,
       // .is-scene_03 & {
@@ -183,7 +183,7 @@ import gallery_13 from '@images/gallery-img_13.jpg';
       @for $i from 2 through 14 {
         &:nth-child(#{$i}) {
           :global(.is-flash) & {
-            animation: baseFade_01 0.05s 0.1 * $i + s forwards;
+            animation: baseFade_01 0.05s 0.13 * $i + s forwards;
           }
         }
       }
@@ -238,7 +238,7 @@ import gallery_13 from '@images/gallery-img_13.jpg';
     //   opacity: 1;
     // }
     :global(.is-animation) & {
-      animation: baseFade_01 0.6s 1.3s forwards;
+      animation: baseFade_01 0.6s 1.5s forwards;
     }
     .content {
       width: 100%;
