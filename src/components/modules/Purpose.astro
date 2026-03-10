@@ -1,10 +1,9 @@
 ---
 import Picture from '@components/util/ImgComponent_01.astro';
 import { Image } from 'astro:assets';
-import Img_1 from '@images/img_09.jpg';
-import Img_1Sp from '@images/img_09_sp.jpg';
+import Img_1 from '@images/gallery-img_01.jpg';
+import Img_1Sp from '@images/gallery-img_01.jpg';
 
-import gallery_1 from '@images/gallery-img_01.jpg';
 import gallery_2 from '@images/gallery-img_02.jpg';
 import gallery_3 from '@images/gallery-img_03.jpg';
 import gallery_4 from '@images/gallery-img_04.jpg';
@@ -13,6 +12,10 @@ import gallery_6 from '@images/gallery-img_06.jpg';
 import gallery_7 from '@images/gallery-img_07.jpg';
 import gallery_8 from '@images/gallery-img_08.jpg';
 import gallery_9 from '@images/gallery-img_09.jpg';
+import gallery_10 from '@images/gallery-img_10.jpg';
+import gallery_11 from '@images/gallery-img_11.jpg';
+import gallery_12 from '@images/gallery-img_12.jpg';
+import gallery_13 from '@images/gallery-img_13.jpg';
 ---
 
 <section class="mainSection g-mainSection js-toggleClass" id="gallery">
@@ -21,9 +24,6 @@ import gallery_9 from '@images/gallery-img_09.jpg';
       <div class="bgImg">
         <figure>
           <Picture pc={Img_1} sp={Img_1Sp} alt="" loading="eager" />
-        </figure>
-        <figure>
-          <Image src={gallery_1} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
         </figure>
         <figure>
           <Image src={gallery_2} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
@@ -48,6 +48,18 @@ import gallery_9 from '@images/gallery-img_09.jpg';
         </figure>
         <figure>
           <Image src={gallery_9} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_10} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_11} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_12} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_13} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
         </figure>
       </div>
       <!-- /.bgImg -->
@@ -157,7 +169,7 @@ import gallery_9 from '@images/gallery-img_09.jpg';
       transition: opacity 0.4s;
       opacity: 0;
       :global(.is-animation) & {
-        animation: baseFade_01 0.3s 0.8s forwards;
+        animation: baseFade_01 0.3s 1.2s forwards;
       }
       // .is-scene_02 &,
       // .is-scene_03 & {
@@ -168,7 +180,7 @@ import gallery_9 from '@images/gallery-img_09.jpg';
       &:nth-child(n + 2) {
         opacity: 0;
       }
-      @for $i from 2 through 10 {
+      @for $i from 2 through 14 {
         &:nth-child(#{$i}) {
           :global(.is-flash) & {
             animation: baseFade_01 0.05s 0.1 * $i + s forwards;
@@ -226,7 +238,7 @@ import gallery_9 from '@images/gallery-img_09.jpg';
     //   opacity: 1;
     // }
     :global(.is-animation) & {
-      animation: baseFade_01 0.6s 0.9s forwards;
+      animation: baseFade_01 0.6s 1.3s forwards;
     }
     .content {
       width: 100%;
