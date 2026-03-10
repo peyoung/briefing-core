@@ -238,6 +238,28 @@
       }
     }
   }
+  @media screen and (min-width: $break-point-middle) {
+    &.style_02 {
+      overflow: hidden;
+      transition: 0.3s;
+      &::before {
+        content: '';
+        height: 1px;
+        width: 100%;
+        background-color: $white;
+        bottom: 0.6em;
+        position: absolute;
+        transform: translateX(0);
+        transition: 0.3s;
+      }
+      &:hover {
+        transform: translateX(0.2em);
+        &::before {
+          animation: linemove_01 0.8s cubic-bezier(0.58, 0.3, 0.005, 1) 0s 1;
+        }
+      }
+    }
+  }
   @media (any-hover: hover) {
     &:hover {
       transform: translateX(-0.2em);
