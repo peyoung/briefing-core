@@ -128,7 +128,8 @@ import Img_1Sp from '@images/img_07_sp.jpg';
         justify-content: center;
         gap: 0;
         :global(.scrollUp) & {
-          justify-content: flex-start;
+          transform: translateY(get_sp(30));
+          // justify-content: flex-start;
         }
       }
     }
@@ -195,7 +196,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   @media screen and (max-width: $break-point-middle-sp) {
     .pageTtl {
       transition: 0.3s;
-      margin-bottom: get_sp(20);
+      margin-bottom: get_sp(40);
       // :global(.is-animation) & {
       //   @include fz_vw(37);
       // }
@@ -210,7 +211,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
       }
       &.style_02 {
         display: block;
-        transform: translateY(get_sp(10));
+        // transform: translateY(get_sp(10));
         span {
           opacity: 0;
           transform: translateX(-0.2em);
@@ -263,7 +264,7 @@ import Img_1Sp from '@images/img_07_sp.jpg';
   }
   @media screen and (max-width: $break-point-middle-sp) {
     .summary {
-      @include fz_vw(14);
+      @include fz_vw(12);
       // letter-spacing: get_sp(-1);
       margin-bottom: 0;
       // margin-top: get_sp(130);
