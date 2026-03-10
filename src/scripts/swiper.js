@@ -1,5 +1,6 @@
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+import Swiper, { Mousewheel } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/mousewheel';
 
 //rellaxプラグイン
 
@@ -14,8 +15,12 @@ export let swiper01 = null;
 
 //
 function setSlider_01() {
+  const target = document.querySelector('.swiper_01');
+  if (!(target instanceof Element)) return null;
+  if (swiper01 && !swiper01.destroyed) return swiper01;
+
   swiper01 = new Swiper('.swiper_01', {
-    // modules: [Navigation],
+    modules: [Mousewheel],
     // initialSlide: 2,
     centeredSlides: true,
     slidesPerView: 1,
@@ -33,13 +38,13 @@ function setSlider_01() {
     //   },
     // },
   });
+
+  return swiper01;
 }
 
 // 複数ある `.js-setFactModal` のいずれかがクリックされたら `setSlider_01` を起動
 document.addEventListener('click', (e) => {
   const trigger = e.target instanceof Element ? e.target.closest('.js-setFactModal') : null;
   if (!trigger) return;
-  if (!swiper01) {
-    setSlider_01();
-  }
+  setSlider_01();
 });

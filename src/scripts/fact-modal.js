@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   let pendingTargetId = null;
+  const TAB_SWITCH_COOLDOWN_MS = 320;
+
+  let switchUnlockTimer = null;
+  let isSwitchLocked = false;
 
   function deactivateAllContents() {
     // ここで制御するクラスは is-activeTab のみ
@@ -32,13 +36,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  function clearSwitchLockTimer() {
+    if (switchUnlockTimer) {
+      window.clearTimeout(switchUnlockTimer);
+      switchUnlockTimer = null;
+    }
+  }
+
+  function lockTabSwitch() {
+    isSwitchLocked = true;
+    clearSwitchLockTimer();
+    switchUnlockTimer = window.setTimeout(() => {
+      isSwitchLocked = false;
+      switchUnlockTimer = null;
+    }, TAB_SWITCH_COOLDOWN_MS);
+  }
+
   function activateContent(targetId) {
+    if (isSwitchLocked) return false;
+
+    const activeId = getActiveTabId();
+    if (activeId && activeId === targetId) return false;
+
     // カレント以外のタブアクティブ状態を必ず削除
     deactivateAllContents();
-    if (!targetId) return;
+    if (!targetId) return false;
     const targetEl = document.getElementById(targetId);
-    if (!targetEl) return;
+    if (!targetEl) return false;
     targetEl.classList.add('is-activeTab');
+    lockTabSwitch();
+    return true;
   }
 
   function isModalOpen() {
@@ -78,6 +105,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
     if (fact) fact.classList.add('is-modal');
     if (wrapper) wrapper.classList.add('g-modalOpen');
+    clearSwitchLockTimer();
+    isSwitchLocked = false;
 
     // 指定があるときだけ表示する（デフォルトは全て非表示）
     if (pendingTargetId) {
@@ -91,6 +120,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (fact) fact.classList.remove('is-modal');
     if (wrapper) wrapper.classList.remove('g-modalOpen');
     pendingTargetId = null;
+    clearSwitchLockTimer();
+    isSwitchLocked = false;
     deactivateAllContents();
   }
 
@@ -136,21 +167,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const SWIPE_THRESHOLD_PX = 40;
     const SWIPE_MAX_TIME_MS = 700;
+    const SWIPE_AXIS_LOCK_PX = 12;
 
     let startX = 0;
     let startY = 0;
     let startTime = 0;
     let tracking = false;
+    let isHorizontalGesture = false;
+    let isVerticalGesture = false;
 
     function reset() {
       tracking = false;
       startX = 0;
       startY = 0;
       startTime = 0;
+      isHorizontalGesture = false;
+      isVerticalGesture = false;
     }
 
     function shouldHandleSwipe(dx, dy, dt) {
       if (!isModalOpen()) return false;
+      if (isSwitchLocked) return false;
       if (dt > SWIPE_MAX_TIME_MS) return false;
       if (Math.abs(dx) < SWIPE_THRESHOLD_PX) return false;
       // 縦スクロール優位なら無視
@@ -168,6 +205,33 @@ document.addEventListener('DOMContentLoaded', function () {
         startX = t.clientX;
         startY = t.clientY;
         startTime = Date.now();
+        isHorizontalGesture = false;
+        isVerticalGesture = false;
+      },
+      { passive: true }
+    );
+
+    swipeRoot.addEventListener(
+      'touchmove',
+      (e) => {
+        if (!tracking) return;
+        if (!e.touches || e.touches.length !== 1) {
+          reset();
+          return;
+        }
+
+        const t = e.touches[0];
+        const dx = t.clientX - startX;
+        const dy = t.clientY - startY;
+
+        if (!isHorizontalGesture && !isVerticalGesture) {
+          if (Math.abs(dx) >= SWIPE_AXIS_LOCK_PX && Math.abs(dx) > Math.abs(dy)) {
+            isHorizontalGesture = true;
+          } else if (Math.abs(dy) >= SWIPE_AXIS_LOCK_PX && Math.abs(dy) >= Math.abs(dx)) {
+            isVerticalGesture = true;
+            reset();
+          }
+        }
       },
       { passive: true }
     );
@@ -185,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const dy = t.clientY - startY;
         const dt = Date.now() - startTime;
 
-        if (shouldHandleSwipe(dx, dy, dt)) {
+        if (isHorizontalGesture && shouldHandleSwipe(dx, dy, dt)) {
           // 左スワイプ: 次 / 右スワイプ: 前
           if (dx < 0) activateNextTab('next');
           else activateNextTab('prev');
