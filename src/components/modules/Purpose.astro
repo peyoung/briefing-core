@@ -10,6 +10,9 @@ import gallery_3 from '@images/gallery-img_03.jpg';
 import gallery_4 from '@images/gallery-img_04.jpg';
 import gallery_5 from '@images/gallery-img_05.jpg';
 import gallery_6 from '@images/gallery-img_06.jpg';
+import gallery_7 from '@images/gallery-img_07.jpg';
+import gallery_8 from '@images/gallery-img_08.jpg';
+import gallery_9 from '@images/gallery-img_09.jpg';
 ---
 
 <section class="mainSection g-mainSection js-toggleClass" id="gallery">
@@ -36,6 +39,15 @@ import gallery_6 from '@images/gallery-img_06.jpg';
         </figure>
         <figure>
           <Image src={gallery_6} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_7} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_8} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_9} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
         </figure>
       </div>
       <!-- /.bgImg -->
@@ -145,7 +157,7 @@ import gallery_6 from '@images/gallery-img_06.jpg';
       transition: opacity 0.4s;
       opacity: 0;
       :global(.is-animation) & {
-        animation: baseFade_01 0.3s 0.2s forwards;
+        animation: baseFade_01 0.3s 0.8s forwards;
       }
       // .is-scene_02 &,
       // .is-scene_03 & {
@@ -159,7 +171,7 @@ import gallery_6 from '@images/gallery-img_06.jpg';
       @for $i from 2 through 10 {
         &:nth-child(#{$i}) {
           :global(.is-flash) & {
-            animation: baseFade_01 0s 0.05 * $i + s forwards;
+            animation: baseFade_01 0.05s 0.1 * $i + s forwards;
           }
         }
       }
@@ -214,7 +226,7 @@ import gallery_6 from '@images/gallery-img_06.jpg';
     //   opacity: 1;
     // }
     :global(.is-animation) & {
-      animation: baseFade_01 0.6s 0.2s forwards;
+      animation: baseFade_01 0.6s 0.9s forwards;
     }
     .content {
       width: 100%;
