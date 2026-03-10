@@ -52,6 +52,11 @@ $speed_1: 0.6s;
     transition:
       opacity $speed_1,
       filter $speed_1;
+    @media screen and (max-width: $break-point-middle-sp) {
+      transition:
+        opacity $speed_1,
+        filter $speed_1 $wait + s;
+    }
     figure {
       height: 100%;
       transition: opacity $speed_1;
