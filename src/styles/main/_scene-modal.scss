@@ -178,6 +178,12 @@
       }
     }
   }
+  @media screen and (max-width: $break-point-middle-sp) {
+    &.style_02 {
+      // margin-top: math.div(20, 16) + em;
+      margin-top: math.div(32, 12) + em;
+    }
+  }
 }
 @media screen and (min-width: $break-point-middle) {
   .g-modalBtnSection {

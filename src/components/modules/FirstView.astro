@@ -65,7 +65,7 @@ import Logo from '@images/logo-briefing_01.svg';
   }
   ////////////////////
   .siteTtl {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -73,43 +73,35 @@ import Logo from '@images/logo-briefing_01.svg';
     pointer-events: none;
     z-index: 2000;
     opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     :global(.loaded) & {
       animation: baseFade_01 0.4s forwards;
     }
     :global(.menuOpen) & {
       opacity: 0;
     }
-    @media screen and (max-width: $break-point-middle-sp) {
-      a {
-        pointer-events: all;
-        position: absolute;
-        display: flex;
-        width: get_sp(254);
-        left: calc(50% - get_sp(127));
-        top: calc(50% - get_sp(17));
-        transition: 0.4s $ease-out-quad;
-        // :global(.setLogoTop) & {
-        //   width: get_sp(132);
-        //   left: calc(50% - get_sp(66));
-        //   top: get_sp(30);
-        // }
-      }
-    }
     img {
       @include imgset;
+    }
+    a {
+      width: get_sp(254);
+      @media screen and (max-width: $break-point-middle-sp) {
+        :global(.fixedHeader) & {
+          opacity: 0;
+        }
+      }
+      :global(.setLogoTop) & {
+        opacity: 0;
+      }
     }
   }
   @media screen and (min-width: $break-point-middle) {
     .siteTtl {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       a {
         @include vwpxpc2(width, 314);
         min-width: 314px;
-        :global(.setLogoTop) & {
-          opacity: 0;
-        }
       }
     }
   }

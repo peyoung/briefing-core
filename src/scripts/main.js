@@ -264,7 +264,7 @@ function setHeader() {
     let h;
     let baseHeight;
     if ($('#g-wrapper').hasClass('home')) {
-      h = 1000;
+      h = $('#firstView').height();
       baseHeight = h - 50;
     } else {
       baseHeight = 50;
