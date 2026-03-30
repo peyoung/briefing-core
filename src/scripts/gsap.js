@@ -50,7 +50,7 @@ window.addEventListener('load', () => {
 });
 
 const playedGalleryFlashSections = new WeakSet();
-const galleryFlashFrameInterval = 0.13;
+const galleryFlashFrameInterval = 0.1;
 const galleryFlashHoldDuration = 0.42;
 const purposeSceneRevealDelay = 2.1;
 
