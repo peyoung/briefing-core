@@ -49,6 +49,60 @@ window.addEventListener('load', () => {
   setToggleClass();
 });
 
+const playedGalleryFlashSections = new WeakSet();
+const galleryFlashFrameInterval = 0.13;
+const galleryFlashHoldDuration = 0.42;
+const purposeSceneRevealDelay = 2.1;
+
+function getGalleryFlashDuration(section) {
+  const frameCount = Math.max(0, section.querySelectorAll('.bgImg > figure').length - 1);
+  return frameCount * galleryFlashFrameInterval;
+}
+
+function getGallerySceneDelay(section) {
+  return Math.max(
+    0,
+    getGalleryFlashDuration(section) + galleryFlashHoldDuration - purposeSceneRevealDelay
+  );
+}
+
+function playGalleryFlash(section) {
+  if (!section || playedGalleryFlashSections.has(section)) return;
+
+  const figures = Array.from(section.querySelectorAll('.bgImg > figure'));
+  if (figures.length <= 1) {
+    playedGalleryFlashSections.add(section);
+    return;
+  }
+
+  playedGalleryFlashSections.add(section);
+
+  gsap.set(figures, { visibility: 'hidden' });
+
+  const timeline = gsap.timeline();
+  timeline.set(figures[0], { visibility: 'visible' }, 0);
+
+  figures.slice(1).forEach((figure, index) => {
+    const frameTime = (index + 1) * galleryFlashFrameInterval;
+
+    timeline.set(
+      figures[index],
+      {
+        visibility: 'hidden',
+      },
+      frameTime
+    );
+
+    timeline.set(
+      figure,
+      {
+        visibility: 'visible',
+      },
+      frameTime
+    );
+  });
+}
+
 function setToggleClass() {
   const triggers = document.querySelectorAll('.js-toggleClass');
   // store created toggle ScrollTriggers so other code can disable/enable them
@@ -70,9 +124,11 @@ function setToggleClass() {
         start: startPos,
         onEnter: () => {
           if (wrapper) wrapper.classList.add('is-flash');
+          playGalleryFlash(el);
         },
         onEnterBack: () => {
           if (wrapper) wrapper.classList.add('is-flash');
+          playGalleryFlash(el);
         },
       });
       window.__toggleTriggers.push(flashSt);
@@ -149,6 +205,8 @@ function setToggleClass() {
 
           // scene_02付与制御
           if (!scene02Added && !scene02TimerId) {
+            const sceneDelay = el.id === 'gallery' ? getGallerySceneDelay(el) * 1000 : 400;
+
             scene02TimerId = setTimeout(() => {
               scene02TimerId = null;
               // 付与タイミングで既にis-currentが外れている場合は何もしない
@@ -163,7 +221,7 @@ function setToggleClass() {
                   scene02Added = true;
                 }
               }
-            }, 400);
+            }, sceneDelay);
           }
         } else if (!self.isActive) {
           // is-currentを外すタイミングで、未発火の付与タイマーを止めてからis-scene_02を削除

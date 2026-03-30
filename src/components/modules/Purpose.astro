@@ -16,6 +16,10 @@ import gallery_10 from '@images/gallery-img_10.jpg';
 import gallery_11 from '@images/gallery-img_11.jpg';
 import gallery_12 from '@images/gallery-img_12.jpg';
 import gallery_13 from '@images/gallery-img_13.jpg';
+import gallery_14 from '@images/gallery-img_14.jpg';
+import gallery_15 from '@images/gallery-img_15.jpg';
+import gallery_16 from '@images/gallery-img_16.jpg';
+import gallery_17 from '@images/gallery-img_17.jpg';
 ---
 
 <section class="mainSection g-mainSection js-toggleClass" id="gallery">
@@ -30,6 +34,12 @@ import gallery_13 from '@images/gallery-img_13.jpg';
         </figure>
         <figure>
           <Image src={gallery_3} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_14} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_15} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
         </figure>
         <figure>
           <Image src={gallery_4} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
@@ -47,10 +57,16 @@ import gallery_13 from '@images/gallery-img_13.jpg';
           <Image src={gallery_8} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
         </figure>
         <figure>
+          <Image src={gallery_16} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
           <Image src={gallery_9} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
         </figure>
         <figure>
           <Image src={gallery_10} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
+        </figure>
+        <figure>
+          <Image src={gallery_17} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
         </figure>
         <figure>
           <Image src={gallery_11} alt="" width={1000} densities={[1, 2, 3]} loading="eager" />
@@ -82,7 +98,7 @@ import gallery_13 from '@images/gallery-img_13.jpg';
                 <span>AND CREATIVITY</span>
               </p>
               <!-- /.en -->
-              <p class="ja">探究と創造にあふれる日々を</p>
+              <p class="ja style_01">探究と創造にあふれる日々を</p>
               <!-- /.ja -->
             </div>
             <!-- /.purposeItem -->
@@ -178,14 +194,7 @@ import gallery_13 from '@images/gallery-img_13.jpg';
     }
     > * {
       &:nth-child(n + 2) {
-        opacity: 0;
-      }
-      @for $i from 2 through 14 {
-        &:nth-child(#{$i}) {
-          :global(.is-flash) & {
-            animation: baseFade_01 0.05s 0.13 * $i + s forwards;
-          }
-        }
+        visibility: hidden;
       }
     }
   }
@@ -388,6 +397,11 @@ import gallery_13 from '@images/gallery-img_13.jpg';
   ////////////////////
   .ja {
     font-weight: 600;
+    @media screen and (max-width: $break-point-middle-sp) {
+      &.style_01 {
+        @include fz_vw(18);
+      }
+    }
   }
   ////////////////////
   .col-top {
